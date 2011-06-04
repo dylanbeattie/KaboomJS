@@ -1,25 +1,27 @@
-function Level () {
-	this.rows = 13;
-	this.cols = 17;
-	this.tileSize = 48;
+TileType = {
+	Solid: 0,
+	Destroyable: 1,
+	Blank: 2
+};
 
-    this.pixelToTiles = function (x,y) {
-        /* TODO: translate a pixel location into tile co-ordinates */
-    }
-	
+Level = function () {
+	/*this.rows = 13;
+	this.cols = 17;*/
+
 	this.rows = [];
-	
+    this.copyStateFrom = function(that) {
+        // TODO: what goes here?
+    }
+
 	this.parseLevel = function(file) {
 		var r, c;
 		var entry;
 		var index;
-		var itemImages = [ 	"images/solid-block.png", 
-							"images/destroyable-block.png",
-							"images/blank.png" ];
 		var spawn, spawnNum = 0;
-		var solid, itemImage;
+		var solid, tileType;
 		
 		var row = [];
+		this.spawns = [];
 		for (r = 0; r < file.length; r++) {
 			entry = file[r];
 			switch (entry) {
@@ -28,66 +30,76 @@ function Level () {
 					row = [];
 					continue;
 				case "*":
-					itemImage = itemImages[0];
+					tileType = TileType.Solid;
 					solid = true;
 					spawn = false;
 					break;
 				case "-":
-					itemImage = itemImages[1];
+					tileType = TileType.Destroyable;
 					solid = true;
 					spawn = false
 					break;
 				case " ":
-					itemImage = itemImages[2];
+					tileType = TileType.Blank;
 					solid = false;
 					spawn = false;
 					break;
 				case "1":
-					itemImage = itemImages[2];
+					tileType = TileType.Blank;
 					solid = false;
 					spawn = true;
 					spawnNum = 1;
 					break;
 				case "2":
-					itemImage = itemImages[2];
+					tileType = TileType.Blank;
 					solid = false;
 					spawn = true;
 					spawnNum = 2;
 					break;
 				case "3":
-					itemImage = itemImages[2];
+					tileType = TileType.Blank;
 					solid = false;
 					spawn = true;
 					spawnNum = 3;
 					break;
 				case "4":
-					itemImage = itemImages[2];
+					tileType = TileType.Blank;
 					solid = false;
 					spawn = true;
 					spawnNum = 4;
 					break;
+				default:
+					console.log(entry);
 					
 			}
-			var item = new Item(solid, itemImage);
-			var tile = new Tile(this.tileSize, this.tileSize, item, spawn, spawnNum);
+			if (spawn)
+			{
+				this.spawns.push(new Spawn(spawnNum, row.length, this.rows.length));
+			}
+			var tile = new Tile(solid, tileType);
 			row.push(tile);
-			
 		}
 		
-		this.rows.push(row);
+		if (row.length > 0)
+			this.rows.push(row);
+		console.log(this.spawns);
 	}
-	
+
+	this.getFirstEmptySpawnPoint = function()
+	{
+		for(var i = 0; i < this.spawns.length; i++) {
+			if (spawn.player == null) return(spawn);
+		}
+	}
 }
 
-function Tile (height, width, item, spawn, spawnNum) {
-	this.height = height;
-	this.width = width;
-	this.item = item;
-	this.spawn = spawn;
-	this.spawnNum = spawnNum;
-}
-
-function Item (solid, image) { // more shit to add
+function Tile (solid, tileType) { // more shit to add
 	this.solid = solid;
-	this.image = image;
+	this.tileType = tileType;
+}
+
+function Spawn (num, x, y) {
+	this.number = num;
+	this.position = new Position(x,y);
+	this.player = null;
 }

@@ -2,5 +2,9 @@
   "gameServer" : {
     "host" : "localhost",
     "port" : "5678"
+  },
+  "backDoor" : {
+    "host" : "localhost",
+    "port" : 9999
   }
 }
