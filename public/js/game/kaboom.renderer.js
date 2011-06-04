@@ -66,6 +66,7 @@ function KaboomRenderer(target, game) {
 				  if (player.velocity.dy > 0){		
 					playerDiv.css({background: 'url(images/walk-up-sprite.png)'});
 					playerDiv.sprite({fps: 4, no_of_frames: 2});
+					}
 				  
 				  
 				  if (player.velocity.dx < 0){		
@@ -78,7 +79,7 @@ function KaboomRenderer(target, game) {
 					playerDiv.sprite({fps: 4, no_of_frames: 2});
 				  }	
 				}
-			}			  
+						  
         }
       }
     }
