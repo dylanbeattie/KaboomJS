@@ -85,11 +85,10 @@ KaboomClient.prototype = {
 	
 	gameSuccessfullyJoined : function(gameState, playerState){
 		console.log('Creating game...');
-		window.player = new KaboomPlayer();
-		window.player.copyStateFrom(playerState);
 		window.game = new KaboomGame();
 		window.game.copyStateFrom(gameState);
-		
+		window.player = window.game.findPlayer(playerState);
+        
 		$(document).bind('keydown', this.onKeyDown.bind(this));
 		$(document).bind('keyup', this.onKeyUp.bind(this));
 

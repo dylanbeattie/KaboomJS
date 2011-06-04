@@ -11,23 +11,26 @@ if (typeof require == "function") {
 	var Position = require("./kaboom.player").Position;
 };
 
-var KaboomGame = function (level) {
-    this.level = level;
+var KaboomGame = function (levelMap) {
+    this.level = new Level(levelMap);
     this.players = [];
     this.DISTANCE = 5;
     this.TILE_SIZE = 48;
 };
 
 KaboomGame.prototype = {
-    
-
+   
     copyStateFrom : function(gameState) {
         this.DISTANCE = gameState.DISTANCE;
         this.TILE_SIZE = gameState.TILE_SIZE;
 		this.level = this.level || new Level();
         this.level.copyStateFrom(gameState.level);
         for (var i = 0; i < gameState.players.length; i++) {
-            this.findPlayer(gameState.players[i]).copyStateFrom(gameState.players[i]);
+            var sourcePlayer = gameState.players[i];
+            if (sourcePlayer) {
+                var targetPlayer = this.findPlayer(gameState.players[i]) || this.addPlayer(new KaboomPlayer());
+                targetPlayer.copyStateFrom(gameState.players[i]);
+            }
         }
     },
 
@@ -46,7 +49,8 @@ KaboomGame.prototype = {
         },
 
     addPlayer : function(player) {
-        /* TODO: find the first empty spawn point and put the supplied player in it. */
+        this.players.push(player);
+        return(player);
     },
 
     removePlayer: function(player) {
@@ -65,6 +69,7 @@ KaboomGame.prototype = {
         if (spawn == null) return(null);
         var player = new KaboomPlayer("Player " + spawn.number, that.tilesToPixels(spawn.position));
 		console.log(player);
+        this.players[spawn.number - 1] = player;
         return player;
     },
 
@@ -105,3 +110,118 @@ KaboomGame.prototype = {
 if (typeof exports == "object") {
 	exports.KaboomGame = KaboomGame;
 };
+
+TileType = {
+	Solid: 0,
+	Destroyable: 1,
+	Blank: 2
+};
+
+function Level(initialTileMap) {
+
+	/*this.rows = 13;
+	this.cols = 17;*/
+
+	this.rows = [];
+    this.spawns = [];
+
+    this.copyStateFrom = function(that) {
+        this.rows = that.rows;
+        this.spawns = that.spawns;
+    }
+
+	this.parseLevel = function(tileMap) {
+		var r, c;
+		var entry;
+		var index;
+		var spawn, spawnNum = 0;
+		var solid, tileType;
+
+		var row = [];
+
+		for (r = 0; r < tileMap.length; r++) {
+			entry = tileMap[r];
+			switch (entry) {
+				case "\n":
+					this.rows.push(row);
+					row = [];
+					continue;
+				case "*":
+					tileType = TileType.Solid;
+					solid = true;
+					spawn = false;
+					break;
+				case "-":
+					tileType = TileType.Destroyable;
+					solid = true;
+					spawn = false
+					break;
+				case " ":
+					tileType = TileType.Blank;
+					solid = false;
+					spawn = false;
+					break;
+				case "1":
+					tileType = TileType.Blank;
+					solid = false;
+					spawn = true;
+					spawnNum = 1;
+					break;
+				case "2":
+					tileType = TileType.Blank;
+					solid = false;
+					spawn = true;
+					spawnNum = 2;
+					break;
+				case "3":
+					tileType = TileType.Blank;
+					solid = false;
+					spawn = true;
+					spawnNum = 3;
+					break;
+				case "4":
+					tileType = TileType.Blank;
+					solid = false;
+					spawn = true;
+					spawnNum = 4;
+					break;
+				default:
+					console.log(entry);
+
+			}
+			if (spawn)
+			{
+				this.spawns.push(new Spawn(spawnNum, row.length, this.rows.length));
+			}
+			var tile = new Tile(solid, tileType);
+			row.push(tile);
+		}
+
+		if (row.length > 0)
+			this.rows.push(row);
+		console.log(this.spawns);
+	}
+
+
+    if (initialTileMap) {
+        this.parseLevel(initialTileMap);
+    }
+    
+	this.getFirstEmptySpawnPoint = function()
+	{
+		for(var i = 0; i < this.spawns.length; i++) {
+			if (spawn.player == null) return(spawn);
+		}
+	}
+}
+
+function Tile (solid, tileType) { // more shit to add
+	this.solid = solid;
+	this.tileType = tileType;
+}
+
+function Spawn (num, x, y) {
+	this.number = num;
+	this.position = new Position(x,y);
+	this.player = null;
+}

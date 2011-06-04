@@ -6,8 +6,8 @@ var Game = require(__dirname+"/public/js/game/kaboom.game").KaboomGame;
 var Player = require(__dirname+"/public/js/game/kaboom.player").KaboomPlayer;
 
 var runningGame;
-var file = fs.readFileSync("data/level.txt", "binary");
-runningGame = new Game(file);
+var levelMap = fs.readFileSync("data/level.txt", "binary");
+runningGame = new Game(levelMap);
 console.log(runningGame);
 
 try {
