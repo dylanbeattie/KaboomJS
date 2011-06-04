@@ -21,8 +21,8 @@ function KaboomRenderer(target, game) {
     }
     
     // create players
-    for (var player; player < game.players.length; player++) {
-      this.createPlayer(player + 1, target.playerLayer)
+    for (var player = 0; player < game.players.length; player++) {
+      this.createPlayer(player + 1, target.playerLayer);
     }
   };
   

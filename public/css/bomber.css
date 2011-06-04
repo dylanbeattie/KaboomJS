@@ -17,9 +17,17 @@ body {
 
 #arena {
 	position: absolute;
-	width: 544px;
-	height: 416px;
+	width: 816px; 
+	height: 624px;
 	z-index: 10;
+}
+
+#playerLayer {
+  position: absolute;
+  left: 860px;
+  width: 48px;
+  height: 624px;
+  z-index: 20;
 }
 
 .row {
@@ -31,23 +39,23 @@ body {
 }
 
 .player {
-  position: absolute;
+  float: left;
   width: 36px;
   height: 72px;
 }
 
 #player_1 {
-  background: url(images/player-1.png);
+  background: url(../images/player-1.png);
 }
 
 #player_2 {
-  background: url(images/player-2.png);
+  background: url(../images/player-2.png);
 }
 
 #player_3 {
-  background: url(images/player-3.png);
+  background: url(../images/player-3.png);
 }
 
 #player_4 {
-  background: url(images/player-4.png);
+  background: url(../images/player-4.png);
 }

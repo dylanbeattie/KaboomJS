@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="js/game/level.js"></script>
 	<script type="text/javascript" src="js/game/kaboom.game.js"></script>
 	<script type="text/javascript" src="js/game/kaboom.renderer.js"></script>
+	<script type="text/javascript" src="js/game/kaboom.player.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -34,6 +35,12 @@ $(document).ready(function() {
 	level.parseLevel(levelMap);
 				
 	var game = new KaboomGame(level);
+	
+	var p1 = new KaboomPlayer('Player 1');
+	var p2 = new KaboomPlayer('Player 2');
+  game.players.push(p1);
+  game.players.push(p2);
+	
 	var renderingTargets = {
 	  arena: $('#arena'),
 	  playerLayer: $('#playerLayer')
