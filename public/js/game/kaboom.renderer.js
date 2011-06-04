@@ -58,12 +58,15 @@ function KaboomRenderer(target, game) {
         var tile = game.level.rows[rowIndex][tileIndex];
         var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
         
-        if (tile == null) {
-          tileDiv.css('background', 'url(images/blank.png)');
+        var url = null;
+		if (tile == null) {
+          url = 'url(images/blank.png)';
         } else {
-    			tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
+    		url = 'url(' + this.itemImages[tile.tileType] + ')';
     		}
-      }
+          if (tileDiv.css('background') != url)
+			  tileDiv.css('background', url);
+       }
     }
   };
   
