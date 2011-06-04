@@ -48,13 +48,15 @@ function KaboomRenderer(target, game) {
         }
         
         if (playerDiv.data('y') != player.position.y && playerDiv.data('x') != player.position.x) {
+          var y = player.position.y - 32;
+          var x = player.position.x + 8;
           playerDiv.css({
             position: 'absolute',
-            top: player.position.y + 'px',
-            left: player.position.x + 'px'
+            top: y + 'px',
+            left: x + 'px'
           });
-          playerDiv.data('x', player.position.x);
-          playerDiv.data('y', player.position.y);
+          playerDiv.data('x', x);
+          playerDiv.data('y', y);
         }
       }
     }
