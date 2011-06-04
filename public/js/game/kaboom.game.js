@@ -6,12 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function KaboomGame(level) {
+KaboomGame = function (level) {
     this.level = level;
+    this.players = new Array();
+    this.DISTANCE = 5;
 }
 
 KaboomGame.prototype = {
-        players : new Array(),
         playerChangedVelocity : function(player) {
             /* TODO: find the GAME player matching the supplied player and
                update their position and velocity with those from the
@@ -27,7 +28,6 @@ KaboomGame.prototype = {
         /* TODO: Find and free the player slot used by the specified player */
     },
 
-    DISTANCE: 5,
 
     update: function() {
         /* TODO: For each player, assume they have moved DISTANCE in their own velocity
