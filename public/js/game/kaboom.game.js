@@ -10,6 +10,7 @@ KaboomGame = function (level) {
     this.level = level;
     this.players = [];
     this.DISTANCE = 5;
+    this.tileSize = 48;
 }
 
 KaboomGame.prototype = {

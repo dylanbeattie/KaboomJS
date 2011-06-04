@@ -7,7 +7,7 @@ function KaboomRenderer(target, game) {
     
     // create tiles
     for (var row = 0; row < level.rows.length; row++) {
-    	var rowDiv = $('<div class="row" style="position:absolute;top:'+row*level.tileSize+'px;height:'+level.tileSize+'px;width:'+level.tileSize*level.rows[row].length+'px" />');
+    	var rowDiv = $('<div class="row" style="position:absolute;top:'+row*game.tileSize+'px;height:'+game.tileSize+'px;width:'+game.tileSize*level.rows[row].length+'px" />');
 
     	for (var tileIndex = 0; tileIndex < level.rows[row].length; tileIndex++) {
     		var tile = level.rows[row][tileIndex];
