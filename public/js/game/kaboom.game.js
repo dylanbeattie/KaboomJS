@@ -6,12 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 
-KaboomGame = function (level) {
+if (typeof require == "function") {
+	var KaboomPlayer = require("./kaboom.player").KaboomPlayer;
+	var Position = require("./kaboom.player").Position;
+};
+
+var KaboomGame = function (level) {
     this.level = level;
     this.players = [];
     this.DISTANCE = 5;
     this.TILE_SIZE = 48;
-}
+};
 
 KaboomGame.prototype = {
     
@@ -22,6 +27,13 @@ KaboomGame.prototype = {
         this.level.copyStateFrom(gameState.level);
         for (var i = 0; i < gameState.players.length; i++) {
             this.findPlayer(gameState.players[i]).copyStateFrom(gameState.players[i]);
+        }
+    },
+
+    /* Finds the player instance within THIS game representing the same player as the supplied player */
+    findPlayer : function(player) {
+        for(var i = 0; i < this.players; i++) {
+            if (this.players[i].name == player.name) return(this.players[i]);
         }
     },
 
@@ -42,15 +54,22 @@ KaboomGame.prototype = {
     },
 
     createPlayer : function() {
-        var spawn = level.getFirstEmptySpawnPoint();
+        //var spawn = level.getFirstEmptySpawnPoint();
+		var that=this;
+		var spawn = {
+			position: new Position(0,0),
+			number: 1
+		};
+		console.log(spawn);
         if (spawn == null) return(null);
-        var player = new KaboomPlayer("Player " + spawn.number, tilesToPixels(spawn.position));
-        return(player);
+        var player = new KaboomPlayer("Player " + spawn.number, that.tilesToPixels(spawn.position));
+		console.log(player);
+        return player;
     },
 
     tilesToPixels : function(position) {
-        var pixelX = position.x * TILE_SIZE;
-        var pixelY = position.y * TILE_SIZE;
+        var pixelX = position.x * this.TILE_SIZE;
+        var pixelY = position.y * this.TILE_SIZE;
         var p = new Position(pixelX, pixelY)
     },
 
@@ -68,4 +87,8 @@ KaboomGame.prototype = {
 		});
         /* TODO: check for wall/bomb collisions, etc. */
     }
-}
+};
+
+if (typeof exports == "object") {
+	exports.KaboomGame = KaboomGame;
+};

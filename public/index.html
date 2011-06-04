@@ -7,23 +7,26 @@
 	
 	<body>
 		<a id="join" href="#">Join</a>
-		<script src="/js/libs/jquery-1.6.1.js"></script>
-		<script src="/js/libs/socket.io.min.js"></script>
-		<script src="/js/libs/jquery.hotkeys.js"></script>
-		<script src="/js/libs/key_status.js"></script>
-		<script src="/js/libs/json2.js"></script>
-		<script src="/js/game/client.js"></script>
-        <script src="/js/game/kaboom.game.js"></script>
-        <script src="/js/game/kaboom.player.js"></script>
+		<script src="js/libs/jquery-1.6.1.js"></script>
+		<script src="js/libs/socket.io.min.js"></script>
+		<script src="js/libs/jquery.hotkeys.js"></script>
+		<script src="js/libs/key_status.js"></script>
+		<script src="js/libs/json2.js"></script>
+		<script src="js/game/client.js"></script>
+		<script src="js/game/kaboom.socket.js"></script>
 		<script type="text/javascript">
 		$(function(){
-			var game = new KaboomClient({fps: 30});
-			game.init();
+			var client = new KaboomClient({fps: 30});
+			client.init();
 
 			$('#join').click(function(){
-				game.join();
-			});
+				client.join();
+			});	
+			
 		});
+		
+		
 		</script>
+		
 	</body>
 </html>
