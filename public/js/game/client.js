@@ -20,54 +20,60 @@ KaboomClient.prototype = {
 
 
 	onKeyDown : function(event){
-		console.log('keydown');
 		var player = window.player;
 		
 		var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
 		
 		var playerChanged = false;
+		var handled = false;
 		
 		if (key == 'left') {
+			handled = true;
 		    playerChanged = player.goLeft();
 		}
 
 		if (key == 'right') {
+			handled = true;
 		    playerChanged = player.goRight();
 		}
 
 		if (key == 'up') {
+			handled = true;
 			playerChanged = player.goUp();
 		}
 
 		if (key == 'down') {
+			handled = true;
 		    playerChanged = player.goDown();
 		}
 		
-		if (playerChanged)
+		if (playerChanged){
 			this.notifyPlayerChanged();
-		return false;	
+		}
 		
+		return !handled;	
 	},
 
 	onKeyUp : function(event){
-		console.log('keyup');
 		var player = window.player;
 		var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
-
+		var handled = false;
+		
 		switch (key){
 			case 'left':
 			case 'right':
+				handled = true;
 				player.horizontalStop();
 				break
 			case 'up':
 			case 'down':
+				handled = true;
 				player.verticalStop();
 				break;
 		}
 		
 		this.notifyPlayerChanged();
-		return false;
-		
+		return !handled;			
 	},
 	
 	
@@ -109,10 +115,15 @@ KaboomClient.prototype = {
 			window.game.update();
 			renderer.update();
 		}, 1000/this.fps);
-
-
-		
+	},
+	
+	playerJoined: function(playerState){
+		var newPlayer = new KaboomPlayer();
+		newPlayer.copyStateFrom(playerState);
+		window.game.addPlayer(newPlayer);
 	}
+	
+	
 };
 
 

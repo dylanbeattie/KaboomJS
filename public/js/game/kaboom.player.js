@@ -26,19 +26,35 @@ function Velocity(dx, dy) {
 KaboomPlayer.prototype = {
 	
 	goLeft: function(){
-		this.velocity.dx = -1;
+		if(this.velocity.dx != -1){
+			this.velocity.dx = -1;
+			return true;
+		}
+		return false;
 	},
 	
 	goRight: function(){
-		this.velocity.dx = 1;
+		if (this.velocity.dx != 1) {
+			this.velocity.dx = 1;
+			return true;
+		}
+		return false;
 	},
 	
 	goUp: function(){
-		this.velocity.dy = -1;
+		if(this.velocity.dy != -1){
+			this.velocity.dy = -1;
+			return true;
+		}
+		return false;
 	},
 	
 	goDown: function(){
+		if(this.velocity.dy != 1){
 		this.velocity.dy = 1;
+			return true;
+		}
+		return false;
 	},
 	
 	horizontalStop: function(){
