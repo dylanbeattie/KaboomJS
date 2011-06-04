@@ -1,8 +1,9 @@
-var http = require('http');
+var express = require('express');
  
-var server = http.createServer(function (req, res) {
-  res.writeHead(200, { "Content-Type": "text/plain" })
-  res.end("There's supposed to be an earth-shattering kaboom...\n");
+var server = express.createServer(express.logger());
+
+server.get('/', function(request, response) {
+  response.send("There's supposed to be an earth-shattering kaboom...\n");
 });
- 
+
 server.listen(process.env.PORT || 80);
