@@ -43,7 +43,6 @@ KaboomGame.prototype = {
         var p = new Position(pixelX, pixelY)
     },
 
-
     update: function() {
 		var game = this;
 		/* For each player, assume they have moved DISTANCE in their own velocity */
