@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bomber.css" media="screen" />
 	<script type="text/javascript" src="js/game/level.js"></script>
 	<script type="text/javascript" src="js/game/renderer.js"></script>
+	<script type="text/javascript" src="js/game/kaboom.game.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -31,8 +32,9 @@ $(document).ready(function() {
 				console.log(Level);
 	var level = new Level();
 	level.parseLevel(levelMap);
+	var game = new KaboomGame(level);
 
-  var renderer = new Renderer($('#canvas'), level);
+  var renderer = new Renderer($('#canvas'), game);
 });
 </script>
 </body>

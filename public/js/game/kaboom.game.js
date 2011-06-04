@@ -28,7 +28,6 @@ KaboomGame.prototype = {
         /* TODO: Find and free the player slot used by the specified player */
     },
 
-
     update: function() {
 		var game = this;
 		/* For each player, assume they have moved DISTANCE in their own velocity */
