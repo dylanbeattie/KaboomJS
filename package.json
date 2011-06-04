@@ -1,0 +1,8 @@
+{ "name" : "KaboomJS"
+, "version" : "0.0.1"
+, "description" : ""
+, "scripts" : { "start" : "node server.js" }
+, "dependencies" : { "socket.io" : "0.6.18"
+  , "faye" : "0.6.0"
+  , "express" : "2.3.10"
+  , "log4js" : "0.2.5"}}

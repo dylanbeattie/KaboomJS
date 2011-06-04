@@ -1,0 +1,23 @@
+
+body {
+	font-family: helvetica;
+	font-size: 1.5em;
+	background: black;
+	color: #ccc;
+}
+
+#container {
+	position: absolute; 
+	width: 564px; 
+	height: 436px;
+	margin: 5px;
+	padding: 10px;
+	z-index: 0;
+}
+
+#canvas {
+	position: absolute;
+	width: 544px;
+	height: 416px;
+	z-index: 10;
+}
