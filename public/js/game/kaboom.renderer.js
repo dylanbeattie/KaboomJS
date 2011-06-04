@@ -58,20 +58,25 @@ function KaboomRenderer(target, game) {
 
 			if (player.velocity != null){
 			
-				if (player.velocity.dy < 0){		
-					playerDiv.css({background: 'url(images/walk-down-sprite.png)'});
+				if (player.velocity.dx == 0 && player.velocity.dy == 0){				
+					playerDiv.destroy();
 				}
-				else if (player.velocity.dy > 0){		
-					playerDiv.css({background: 'url(images/walk-up-sprite.png)'});
+				else {				
+					if (player.velocity.dy < 0){		
+						playerDiv.css({background: 'url(images/walk-down-sprite.png)'});
+					}
+					else if (player.velocity.dy > 0){		
+						playerDiv.css({background: 'url(images/walk-up-sprite.png)'});
+					}
+					else if (player.velocity.dx < 0){		
+						playerDiv.css({background: 'url(images/walk-left-sprite.png)'});
+					}
+					else if (player.velocity.dx > 0){		
+						playerDiv.css({background: 'url(images/walk-right-sprite.png)'});
+					}
+					
+					playerDiv.sprite({fps: 4, no_of_frames: 2});
 				}
-				else if (player.velocity.dx < 0){		
-					playerDiv.css({background: 'url(images/walk-left-sprite.png)'});
-				}
-				else if (player.velocity.dx > 0){		
-					playerDiv.css({background: 'url(images/walk-right-sprite.png)'});
-				}
-				
-				playerDiv.sprite({fps: 4, no_of_frames: 2});
 			}
 						  
         }
