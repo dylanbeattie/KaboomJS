@@ -1,8 +1,10 @@
 var socket,
 	levelData;
-	
-$("#join").click(function() {
-	initSocket();
+
+$(function() {
+	$("#join").click(function() {
+		initSocket();
+	});	
 });
 	
 var initSocket = function() {

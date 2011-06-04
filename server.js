@@ -27,16 +27,13 @@ console.log("Kaboom! web server running on " + config.gameServer.host + ":" + co
 
 /* don't trust this entirely yet... */
 var socket = io.listen(server);
-socket.on("message", function(data)
-	{
+socket.on("connection", function(client) {
+	client.on("message", function(data) {
 		// assuming it's a join right now, but we'll need to parse this later on...	
-		fs.readFile("level.txt", "binary", function(err, file)
-			{
+		fs.readFile("level.txt", "binary", function(err, file) {
 			 // assuming no errors!
-			 socket.broadcast(
-				 {"type":"welcome"},
-				 {"level":file}
-			 );
+			var msg = JSON.stringify({type: "welcome", level: file});
+			client.send(msg);
 		});
-	}
-);
+	});	
+});
