@@ -79,6 +79,14 @@ Level = function () {
 		
 		if (row.length > 0)
 			this.rows.push(row);
+		console.log(this.spawns);
+	}
+
+	this.getFirstEmptySpawnPoint = function()
+	{
+		for(var i = 0; i < this.spawns.length; i++) {
+			if (spawn.player == null) return(spawn);
+		}
 	}
 }
 
@@ -90,4 +98,5 @@ function Tile (solid, tileType) { // more shit to add
 function Spawn (num, x, y) {
 	this.number = num;
 	this.position = new Position(x,y);
+	this.player = null;
 }
