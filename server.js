@@ -1,9 +1,16 @@
-require.paths.unshift('./lib');
 
-var config = require('config').config
 var express = require('express');
 var io = require("socket.io");
 var fs = require("fs");
+
+try {
+  var configJSON = fs.readFileSync(__dirname + '/server/config.json');
+} catch(e) {
+  console.error('config.json not found');
+}
+
+var config = JSON.parse(configJSON.toString());
+
  
 var server = express.createServer(express.logger());
 
@@ -14,7 +21,7 @@ server.get('/', function(request, response) {
 });
 
 server.get('/level', function(request, response) {
-	fs.readFile("level.txt", "binary", function(err, file)
+	fs.readFile("data/level.txt", "binary", function(err, file)
 		{
 			response.send({"level":file});
 		}
