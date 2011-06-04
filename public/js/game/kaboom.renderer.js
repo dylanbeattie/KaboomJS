@@ -22,18 +22,51 @@ function KaboomRenderer(target, game) {
     
     // create players
     for (var player = 0; player < game.players.length; player++) {
-      this.createPlayer(player + 1, target.playerLayer);
+      this.createPlayer(player + 1);
     }
   };
   
   this.createPlayer = function(num) {
     var playerDiv = $('<div id="player_' + num + '" class="player" />');
     
-    target.playerLayer.append(playerDiv);
+    target.holding.append(playerDiv);
+  };
+  
+  this.updatePlayerLocations = function() {
+    for (var i = 0; i < game.players.length; i++) {
+      var player = game.players[i];
+      
+      if (player != null) {
+        var playerDiv = $('#player_' + (i + 1));
+      
+        target.playerLayer.append(playerDiv);
+        playerDiv.css({
+          position: 'absolute',
+          top: player.position.y + 'px',
+          left: player.position.x + 'px'
+        });
+      }
+    }
+  };
+  
+  this.updateItems = function() {
+    for (var rowIndex = 0; rowIndex < game.level.rows.length; rowIndex++) {
+      for (var tileIndex = 0; tileIndex < game.level.rows[rowIndex].length; tileIndex++) {
+        var tile = game.level.rows[rowIndex][tileIndex];
+        var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
+        
+        if (tile.item == null) {
+          tileDiv.css('background', 'url(images/blank.png)');
+        } else {
+    			tileDiv.css('background', 'url(' + tile.item.image + ')');
+    		}
+      }
+    }
   };
   
   this.update = function() {
-    
+    this.updatePlayerLocations();
+    this.updateItems();
   };
   
   this.initialise();

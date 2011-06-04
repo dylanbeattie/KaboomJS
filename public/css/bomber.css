@@ -15,7 +15,7 @@ body {
 	z-index: 0;
 }
 
-#arena {
+#arena, #playerLayer {
 	position: absolute;
 	width: 816px; 
 	height: 624px;
@@ -23,6 +23,10 @@ body {
 }
 
 #playerLayer {
+  z-index: 20;
+}
+
+#holding {
   position: absolute;
   left: 860px;
   width: 48px;
@@ -31,17 +35,18 @@ body {
 }
 
 .row {
-	background: green;
+	background: beige;
 }
 
 .tile {
-	background: green;
+	background: transparent;
 }
 
 .player {
   float: left;
   width: 36px;
   height: 72px;
+  z-index: 40;
 }
 
 #player_1 {
