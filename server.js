@@ -57,7 +57,7 @@ function setSocketHandlers() {
 				return;
 			};
 			
-			msg = JSON.stringify({type: "welcome", game: runningGame, player: runningGame.createPlayer()});
+			msg = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
 			client.send(msg);
 		});
 	});	

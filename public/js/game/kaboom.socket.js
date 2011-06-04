@@ -46,10 +46,10 @@ KaboomSocket.prototype = {
 		if (msg.type) {
 			switch (msg.type) {
 				case "welcome":
-					this.client.gameSuccessfullyJoined(msg.game, msg.player);
+					this.client.gameSuccessfullyJoined(msg.gameState, msg.playerState);
 					break;
 				case "player_changed_direction":
-					this.client.playerChangedDirection(msg.player);
+					this.client.playerChangedDirection(msg.playerState);
 					break;
 			};
 		};
