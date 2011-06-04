@@ -2,6 +2,10 @@ function Level () {
 	this.rows = 13;
 	this.cols = 17;
 	this.tileSize = 48;
+
+    this.pixelToTiles = function (x,y) {
+        /* TODO: translate a pixel location into tile co-ordinates */
+    }
 	
 	this.rows = [];
 	
