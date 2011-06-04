@@ -30,12 +30,13 @@ var initSocket = function() {
 	// WebSocket disconnection
 	socket.on("disconnect", function() {
 		console.log("Disconnected");
-
 	});
 
 	// WebSocket message received
 	socket.on("message", function(data) {
 		var msg = JSON.parse(data);
+		
+		console.log(msg);
 		
 		if (msg.type) {
 			switch (msg.type) {
@@ -47,4 +48,9 @@ var initSocket = function() {
 	});
 	
 	socket.connect();
+};
+
+playerChangeDirection() {
+	var msg = JSON.stringify({type: "player_changed_direction", time: new Date().getTime()})
+	socket.send()
 };
