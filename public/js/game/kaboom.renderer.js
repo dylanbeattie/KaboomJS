@@ -1,8 +1,8 @@
 function KaboomRenderer(target, game) {
-  this.initialise = function() {
-	var itemImages = ["images/solid-block.png", 
+	this.itemImages = ["images/solid-block.png", 
 						"images/destroyable-block.png",
 						"images/blank.png" ];
+  this.initialise = function() {
     var level = game.level;
     
     // create tiles
@@ -13,8 +13,8 @@ function KaboomRenderer(target, game) {
     		var tile = level.rows[row][tileIndex];
     		var tileDiv = $('<div id="tile_' + row + '_' + tileIndex + '" class="tile" style="position:absolute;height:' + tile.height + 'px;width:'+tile.width+'px;top:0;left:'+tileIndex * tile.width+'px" />');
 
-    		if (tile.item != null) {
-  				tileDiv.css('background', 'url(' + itemImage[tile.tileType] + ')');
+    		if (tile != null) {
+  				tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
     		}
 
     		rowDiv.append(tileDiv);
@@ -58,10 +58,10 @@ function KaboomRenderer(target, game) {
         var tile = game.level.rows[rowIndex][tileIndex];
         var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
         
-        if (tile.item == null) {
+        if (tile == null) {
           tileDiv.css('background', 'url(images/blank.png)');
         } else {
-    			tileDiv.css('background', 'url(' + tile.item.image + ')');
+    			tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
     		}
       }
     }
