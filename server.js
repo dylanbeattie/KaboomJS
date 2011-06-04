@@ -45,19 +45,22 @@ setSocketHandlers();
 function setSocketHandlers() {
 	socket.on("connection", function(client) {
 		client.on("message", function(data) {
-		// assuming it's a join right now, but we'll need to parse this later on...	
-			// assuming no errors!
-			var player = runningGame.createPlayer();
-			var msg
-			
-			if (!player) {
-				msg = JSON.stringify({type: "game_full"});
-				client.send(msg);
-				return;
+			var msg = JSON.parse(data);
+			if (msg.type) {
+				switch (msg.type) {
+					case "join":
+						var player = runningGame.createPlayer();
+						if (!player) {
+							msg = JSON.stringify({type: "game_full"});
+							client.send(msg);
+							return;
+						};
+
+						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
+						client.send(output);
+						break;
+				};
 			};
-			
-			msg = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
-			client.send(msg);
 		});
 	});	
 };
