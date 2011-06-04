@@ -1,17 +1,20 @@
 function KaboomRenderer(target, game) {
+	this.itemImages = ["images/solid-block.png", 
+						"images/destroyable-block.png",
+						"images/blank.png" ];
   this.initialise = function() {
     var level = game.level;
     
     // create tiles
     for (var row = 0; row < level.rows.length; row++) {
-    	var rowDiv = $('<div class="row" style="position:absolute;top:'+row*level.tileSize+'px;height:'+level.tileSize+'px;width:'+level.tileSize*level.rows[row].length+'px" />');
+    	var rowDiv = $('<div class="row" style="position:absolute;top:'+row*game.tileSize+'px;height:'+game.tileSize+'px;width:'+game.tileSize*level.rows[row].length+'px" />');
 
     	for (var tileIndex = 0; tileIndex < level.rows[row].length; tileIndex++) {
     		var tile = level.rows[row][tileIndex];
-    		var tileDiv = $('<div id="tile_' + row + '_' + tileIndex + '" class="tile" style="position:absolute;height:' + tile.height + 'px;width:'+tile.width+'px;top:0;left:'+tileIndex * tile.width+'px" />');
+    		var tileDiv = $('<div id="tile_' + row + '_' + tileIndex + '" class="tile" style="position:absolute;height:' + game.tileSize + 'px;width:'+game.tileSize+'px;top:0;left:'+tileIndex * game.tileSize+'px" />');
 
-    		if (tile.item != null) {
-    			tileDiv.css('background', 'url(' + tile.item.image + ')');
+    		if (tile != null) {
+  				tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
     		}
 
     		rowDiv.append(tileDiv);
@@ -55,10 +58,10 @@ function KaboomRenderer(target, game) {
         var tile = game.level.rows[rowIndex][tileIndex];
         var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
         
-        if (tile.item == null) {
+        if (tile == null) {
           tileDiv.css('background', 'url(images/blank.png)');
         } else {
-    			tileDiv.css('background', 'url(' + tile.item.image + ')');
+    			tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
     		}
       }
     }

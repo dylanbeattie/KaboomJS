@@ -10,6 +10,7 @@ KaboomGame = function (level) {
     this.level = level;
     this.players = [];
     this.DISTANCE = 5;
+    this.tileSize = 48;
 }
 
 KaboomGame.prototype = {
@@ -27,7 +28,6 @@ KaboomGame.prototype = {
     removePlayer: function(player) {
         /* TODO: Find and free the player slot used by the specified player */
     },
-
 
     update: function() {
 		var game = this;
