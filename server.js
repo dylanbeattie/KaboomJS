@@ -55,16 +55,18 @@ function setSocketHandlers() {
 							client.send(msg);
 							return;
 						};
-
-						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
+						
+						//console.log(client.sessionId);
+						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: player});
 						client.send(output);
 						break;
-					case "player_changed_direction":
+					case "player_changed_velocity":
 
                        if (msg.player )
                        {
+							console.log(msg);
 							runningGame.playerChangedVelocity(msg.player);
-							var output = JSON.stringify({type: "player_changed_direction",  playerState: msg.player });
+							var output = JSON.stringify({type: "player_changed_velocity",  playerState: msg.player });
 							
 							client.broadcast( output );			
 						}
