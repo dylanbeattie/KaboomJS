@@ -3,13 +3,14 @@ function KaboomClient(config) {
     this.fps = config.fps || 30;
 	this.player = null;
 	this.levelData = null;
+	this.socket = null;
 }
 
 KaboomClient.prototype = {
 
     init: function() {
 		var that = this;
-//		this.player = new Player("Player 1");
+		
 		
 		/*
 		setInterval(function(){
@@ -47,8 +48,6 @@ KaboomClient.prototype = {
 		    playerChanged = player.goDown();
 		}
 		
-		
-		
 	},
 
 	onKeyUp : function(event){
@@ -71,33 +70,25 @@ KaboomClient.prototype = {
 		this.socket.playerChangedDirection(player);
 	},
 
-	receiveData : function(data){
-		
-		var msg = JSON.parse(data);
-
-		if (msg.type) {
-			switch (msg.type) {
-				case "welcome":
-					this.levelData = msg.level;
-					break;
-			};
-		};
-	},
-
 	draw : function(){
 		this.player.draw();
 	},
 	
 	
 	join: function(){
+		console.log('Joining...');
 		this.socket = new KaboomSocket();
-		this.socket.init(client);
+		this.socket.init(this);
 		this.socket.join();
+		
 	},
 	
-	gameSuccessfullyJoined : function(player, game){
-		window.player = player;
-		window.game = game;
+	gameSuccessfullyJoined : function(gameState, playerState){
+		console.log('Creating game...');
+		window.player = new KaboomPlayer();
+		window.player.copyStateFrom(playerState);
+		window.game = new KaboomGame();
+		window.game.copyStateFrom(gameState);
 	}
 };
 
@@ -125,3 +116,4 @@ Function.bind = function () {
 	var args = Array.prototype.slice.call(arguments);
 	return Function.prototype.bind.apply(args.shift(), args);
 }
+

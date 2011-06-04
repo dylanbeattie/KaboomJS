@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-KaboomPlayer = function(name, position, velocity) {
+var KaboomPlayer = function(name, position, velocity) {
     /* Player.name must be unique and can be used to determine equality */
     this.name = name;
     this.position = position || new Position(0,0);
@@ -54,3 +54,7 @@ KaboomPlayer.prototype = {
 	
 }
 
+if (typeof exports == "object") {
+	exports.KaboomPlayer = KaboomPlayer;
+	exports.Position = Position;
+};
