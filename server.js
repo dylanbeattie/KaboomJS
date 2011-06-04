@@ -6,13 +6,9 @@ var Game = require(__dirname+"/public/js/game/kaboom.game").KaboomGame;
 var Player = require(__dirname+"/public/js/game/kaboom.player").KaboomPlayer;
 
 var runningGame;
-fs.readFile("data/level.txt", "binary", function(err, file) {
- 	runningGame = new Game(file);
-	console.log(runningGame);
-
-	socket = io.listen(server);
-	setSocketHandlers();
-});
+var file = fs.readFileSync("data/level.txt", "binary");
+runningGame = new Game(file);
+console.log(runningGame);
 
 try {
   var configJSON = fs.readFileSync(__dirname + '/server/config.json');
@@ -43,22 +39,28 @@ server.listen(config.gameServer.port, config.gameServer.host);
 
 console.log("Kaboom! web server running on " + config.gameServer.host + ":" + config.gameServer.port);
 
+socket = io.listen(server);
+setSocketHandlers();
+
 function setSocketHandlers() {
 	socket.on("connection", function(client) {
 		client.on("message", function(data) {
-		// assuming it's a join right now, but we'll need to parse this later on...	
-			// assuming no errors!
-			var player = runningGame.createPlayer();
-			var msg
-			
-			if (!player) {
-				msg = JSON.stringify({type: "game_full"});
-				client.send(msg);
-				return;
+			var msg = JSON.parse(data);
+			if (msg.type) {
+				switch (msg.type) {
+					case "join":
+						var player = runningGame.createPlayer();
+						if (!player) {
+							msg = JSON.stringify({type: "game_full"});
+							client.send(msg);
+							return;
+						};
+
+						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
+						client.send(output);
+						break;
+				};
 			};
-			
-			msg = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
-			client.send(msg);
 		});
 	});	
 };
