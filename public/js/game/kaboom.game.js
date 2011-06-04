@@ -14,6 +14,17 @@ KaboomGame = function (level) {
 }
 
 KaboomGame.prototype = {
+    
+
+    copyStateFrom : function(gameState) {
+        this.DISTANCE = gameState.DISTANCE;
+        this.TILE_SIZE = gameState.TILE_SIZE;
+        this.level.copyStateFrom(gameState.level);
+        for (var i = 0; i < gameState.players.length; i++) {
+            this.findPlayer(gameState.players[i]).copyStateFrom(gameState.players[i]);
+        }
+    },
+
         playerChangedVelocity : function(player) {
             /* TODO: find the GAME player matching the supplied player and
                update their position and velocity with those from the
@@ -42,6 +53,7 @@ KaboomGame.prototype = {
         var pixelY = position.y * TILE_SIZE;
         var p = new Position(pixelX, pixelY)
     },
+
 
     update: function() {
 		var game = this;
