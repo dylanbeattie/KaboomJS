@@ -24,6 +24,31 @@ function Velocity(dx, dy) {
 }
 
 KaboomPlayer.prototype = {
+	
+	goLeft: function(){
+		this.velocity.dx = -1;
+	},
+	
+	goRight: function(){
+		this.velocity.dx = 1;
+	},
+	
+	goUp: function(){
+		this.velocity.dy = -1;
+	},
+	
+	goDown: function(){
+		this.velocity.dy = 1;
+	},
+	
+	horizontalStop: function(){
+		this.velocity.dx = 0;
+	},
+	
+	verticalStop: function(){
+		this.velocity.dy = 0;
+	},
+
     copyStateFrom : function(that) {
         this.name = that.name;
         this.position = new Position(that.position.x, that.position.y);
