@@ -24,6 +24,33 @@ function Velocity(dx, dy) {
 }
 
 KaboomPlayer.prototype = {
-
+    position : new Position(0,0),
+    velocity : new Velocity(0,0),
+	
+	goLeft: function(){
+		this.velocity.dx = -1;
+	},
+	
+	goRight: function(){
+		this.velocity.dx = 1;
+	},
+	
+	goUp: function(){
+		this.velocity.dy = -1;
+	},
+	
+	goDown: function(){
+		this.velocity.dy = 1;
+	},
+	
+	horizontalStop: function(){
+		this.velocity.dx = 0;
+	},
+	
+	verticalStop: function(){
+		this.velocity.dy = 0;
+	}
+	
+	
 }
 

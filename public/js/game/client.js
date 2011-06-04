@@ -9,46 +9,66 @@ KaboomClient.prototype = {
 
     init: function() {
 		var that = this;
-		this.player = new Player("Player 1");
+//		this.player = new Player("Player 1");
 		
-		
+		/*
 		setInterval(function(){
-			that.update();
-			that.draw();
+			game.update();
+			that.draw(game);
 		}, 1000/this.fps);
+		*/		
 		
-		
-		socket = new io.Socket("localhost", {port: 5678, transports: ["websocket", "flashsocket"]});
-
-		// EVENTS
-		// connect, connecting, connect_failed, message, close,
-		// disconnect, reconnect, reconnecting, reconnect_failed
-
-		// WebSocket connection successful
-		socket.on("connect", function() {
-			console.log("Connected");
-		});
-
-		// WebSocket connection failed
-		socket.on("connect_failed", function() {
-			console.log("Connect failed");
-
-		});
-
-		// WebSocket disconnection
-		socket.on("disconnect", function() {
-			console.log("Disconnected");
-
-		});
-
-		// WebSocket message received
-		socket.on("message", function(data) {
-			that.receiveData(data);
-		});
-
-		socket.connect();
+		$(document).bind('keydown', this.onKeyDown.bind(this));
+		$(document).bind('keyup', this.onKeyUp.bind(this));
 		
     },
+
+
+	onKeyDown : function(event){
+		var player = window.player;
+		
+		var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
+		
+		var playerChanged = false;
+		
+		if (key == 'left') {
+		    playerChanged = player.goLeft();
+		}
+
+		if (key == 'right') {
+		    playerChanged = player.goRight();
+		}
+
+		if (key == 'up') {
+			playerChanged = player.goUp();
+		}
+
+		if (key == 'down') {
+		    playerChanged = player.goDown();
+		}
+		
+		
+		
+	},
+
+	onKeyUp : function(){
+		var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
+
+		switch (key){
+			case 'left':
+			case 'right':
+				player.horizontalStop();
+				break
+			case 'up':
+			case 'down':
+				player.verticalStop();
+				break;
+		}
+	},
+	
+	notifyPlayerChanged: function(){
+		this.socket.playerChangedDirection(player);
+	},
 
 	receiveData : function(data){
 		
@@ -61,54 +81,49 @@ KaboomClient.prototype = {
 					break;
 			};
 		};
-		
-		
-		if (!keydown.left || keydown.right)
-			this.player.x = parseInt(data);
 	},
 
-	update : function(){
-		  if (keydown.left) {
-		    this.player.x -= 5;
-		  }
-
-		  if (keydown.right) {
-		    this.player.x += 5;
-		  }
-
-		  if (keydown.up) {
-		    this.player.y -= 5;
-		  }
-
-		  if (keydown.down) {
-		    this.player.y += 5;
-		  }
-
-		if (this.player.x < 0) this.player.x = 0;
-	},
-	
 	draw : function(){
 		this.player.draw();
 	},
 	
-	join : function(){
-		var msg = JSON.stringify({type: "join"});
-		socket.send(msg);
+	
+	join: function(){
+		this.socket = new KaboomSocket();
+		this.socket.init(client);
+		this.socket.join();
+	},
+	
+	
+	gameSuccessfullyJoined : function(player, game){
+		window.player = player;
+		window.game = game;
 	}
 
 };
 
 
 
+Function.prototype.bind = function () {
 
-function Player(name){
-	this.name = name;
-	this.x = 0;
-	this.y = 0;
+	if (arguments.length < 2 && arguments[0] === undefined) {
+		return this;
+	}
+
+	var thisObj = this,
+
+    args = Array.prototype.slice.call(arguments),
+
+    obj = args.shift();
+
+	return function () {
+		return thisObj.apply(obj, args.concat(Array.prototype.slice.call(arguments)));
+	};
+};
+
+
+
+Function.bind = function () {
+	var args = Array.prototype.slice.call(arguments);
+	return Function.prototype.bind.apply(args.shift(), args);
 }
-
-Player.prototype = {
-	draw : function(){
-		console.log("x: " + this.x + " y:" +this.y);
-	}
-};
