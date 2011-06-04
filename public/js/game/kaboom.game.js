@@ -30,7 +30,16 @@ KaboomGame.prototype = {
 
 
     update: function() {
-        /* TODO: For each player, assume they have moved DISTANCE in their own velocity
-         * Update the player's position after checking for wall/bomb collisions, etc. */
+		var game = this;
+		/* For each player, assume they have moved DISTANCE in their own velocity */
+		this.players.forEach(function(p, idx)
+		{
+			if (p != null)
+			{
+				p.position.x += game.DISTANCE * p.velocity.dx;
+				p.position.y += game.DISTANCE * p.velocity.dy;
+			}
+		});
+        /* TODO: check for wall/bomb collisions, etc. */
     }
 }
