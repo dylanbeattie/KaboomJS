@@ -55,6 +55,12 @@ function KaboomRenderer(target, game) {
           });
           playerDiv.data('x', player.position.x);
           playerDiv.data('y', player.position.y);
+		  
+		  if(player.velocity != null && player.velocity.dx > 0){		
+			playerDiv.css({background: 'url(images/walk-down-sprite.png)'});
+			playerDiv.sprite({fps: 4, no_of_frames: 2});
+		  }
+		  
         }
       }
     }
