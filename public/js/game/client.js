@@ -51,7 +51,8 @@ KaboomClient.prototype = {
 		
 	},
 
-	onKeyUp : function(){
+	onKeyUp : function(event){
+		var player = window.player;
 		var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
 
 		switch (key){
@@ -94,14 +95,11 @@ KaboomClient.prototype = {
 		this.socket.join();
 	},
 	
-	
 	gameSuccessfullyJoined : function(player, game){
 		window.player = player;
 		window.game = game;
 	}
-
 };
-
 
 
 Function.prototype.bind = function () {
