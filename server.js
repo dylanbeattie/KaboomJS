@@ -1,3 +1,6 @@
+require.paths.unshift('./lib');
+
+var config = require('config').config
 var http = require('http');
  
 var server = http.createServer(function (req, res) {
@@ -5,4 +8,4 @@ var server = http.createServer(function (req, res) {
   res.end("There's supposed to be an earth-shattering kaboom...\n");
 });
  
-server.listen(process.env.PORT || 80);
+server.listen(config.gameServer.port, config.gameServer.host);
