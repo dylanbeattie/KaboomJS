@@ -89,6 +89,5 @@ function Tile (solid, tileType) { // more shit to add
 
 function Spawn (num, x, y) {
 	this.number = num;
-	this.x = x;
-	this.y = y;
+	this.position = new Position(x,y);
 }
