@@ -9,6 +9,9 @@ Level = function () {
 	this.cols = 17;*/
 
 	this.rows = [];
+    this.copyStateFrom = function(that) {
+        // TODO: what goes here?
+    }
 
 	this.parseLevel = function(file) {
 		var r, c;

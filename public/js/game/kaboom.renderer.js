@@ -41,13 +41,21 @@ function KaboomRenderer(target, game) {
       
       if (player != null) {
         var playerDiv = $('#player_' + (i + 1));
-      
-        target.playerLayer.append(playerDiv);
-        playerDiv.css({
-          position: 'absolute',
-          top: player.position.y + 'px',
-          left: player.position.x + 'px'
-        });
+        
+        if (!playerDiv.data('isInPlay')) {
+          target.playerLayer.append(playerDiv);
+          playerDiv.data('isInPlay', true);
+        }
+        
+        if (playerDiv.data('y') != player.position.y && playerDiv.data('x') != player.position.x) {
+          playerDiv.css({
+            position: 'absolute',
+            top: player.position.y + 'px',
+            left: player.position.x + 'px'
+          });
+          playerDiv.data('x', player.position.x);
+          playerDiv.data('y', player.position.y);
+        }
       }
     }
   };
@@ -58,12 +66,18 @@ function KaboomRenderer(target, game) {
         var tile = game.level.rows[rowIndex][tileIndex];
         var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
         
-        if (tile == null) {
-          tileDiv.css('background', 'url(images/blank.png)');
+        var url = null;
+		    
+		    if (tile == null) {
+          url = 'url(images/blank.png)';
         } else {
-    			tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
+    		  url = 'url(' + this.itemImages[tile.tileType] + ')';
     		}
-      }
+    		
+        if (tileDiv.data('background') != url)
+			    tileDiv.css('background', url);
+			    tileDiv.data('background', url);
+       }
     }
   };
   

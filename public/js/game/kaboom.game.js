@@ -19,12 +19,30 @@ var KaboomGame = function (level) {
 };
 
 KaboomGame.prototype = {
-    playerChangedVelocity : function(player) {
-        /* TODO: find the GAME player matching the supplied player and
-           update their position and velocity with those from the
-           supplied player.
-            */
+    
+
+    copyStateFrom : function(gameState) {
+        this.DISTANCE = gameState.DISTANCE;
+        this.TILE_SIZE = gameState.TILE_SIZE;
+        this.level.copyStateFrom(gameState.level);
+        for (var i = 0; i < gameState.players.length; i++) {
+            this.findPlayer(gameState.players[i]).copyStateFrom(gameState.players[i]);
+        }
     },
+
+    /* Finds the player instance within THIS game representing the same player as the supplied player */
+    findPlayer : function(player) {
+        for(var i = 0; i < this.players; i++) {
+            if (this.players[i].name == player.name) return(this.players[i]);
+        }
+    },
+
+        playerChangedVelocity : function(player) {
+            /* TODO: find the GAME player matching the supplied player and
+               update their position and velocity with those from the
+               supplied player.
+                */
+        },
 
     addPlayer : function(player) {
         /* TODO: find the first empty spawn point and put the supplied player in it. */
@@ -54,6 +72,7 @@ KaboomGame.prototype = {
         var pixelY = position.y * this.TILE_SIZE;
         var p = new Position(pixelX, pixelY)
     },
+
 
     update: function() {
 		var game = this;
