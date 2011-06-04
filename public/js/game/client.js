@@ -19,8 +19,6 @@ KaboomClient.prototype = {
 		}, 1000/this.fps);
 		*/		
 		
-		$(document).bind('keydown', this.onKeyDown.bind(this));
-		$(document).bind('keyup', this.onKeyUp.bind(this));
 		
     },
 
@@ -48,6 +46,9 @@ KaboomClient.prototype = {
 		    playerChanged = player.goDown();
 		}
 		
+		if (playerChanged)
+			this.notifyPlayerChanged();
+		
 	},
 
 	onKeyUp : function(event){
@@ -64,6 +65,9 @@ KaboomClient.prototype = {
 				player.verticalStop();
 				break;
 		}
+		
+		this.notifyPlayerChanged();
+		
 	},
 	
 	notifyPlayerChanged: function(){
@@ -89,6 +93,10 @@ KaboomClient.prototype = {
 		window.player.copyStateFrom(playerState);
 		window.game = new KaboomGame();
 		window.game.copyStateFrom(gameState);
+		
+		$(document).bind('keydown', this.onKeyDown.bind(this));
+		$(document).bind('keyup', this.onKeyUp.bind(this));
+		
 	}
 };
 
