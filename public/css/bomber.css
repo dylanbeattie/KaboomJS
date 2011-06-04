@@ -8,8 +8,8 @@ body {
 
 #container {
 	position: absolute; 
-	width: 564px; 
-	height: 436px;
+	width: 816px; 
+	height: 624px;
 	margin: 5px;
 	padding: 10px;
 	z-index: 0;
@@ -20,4 +20,12 @@ body {
 	width: 544px;
 	height: 416px;
 	z-index: 10;
+}
+
+.row {
+	background: green;
+}
+
+.tile {
+	background: green;
 }
