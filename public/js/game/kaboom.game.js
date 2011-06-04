@@ -8,7 +8,7 @@
 
 KaboomGame = function (level) {
     this.level = level;
-    this.players = new Array();
+    this.players = [];
     this.DISTANCE = 5;
 }
 

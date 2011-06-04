@@ -11,7 +11,6 @@ Level = function () {
 	this.rows = [];
 
 	this.parseLevel = function(file) {
-		console.log('Parsing...');
 		var r, c;
 		var entry;
 		var index;
@@ -80,8 +79,6 @@ Level = function () {
 		
 		if (row.length > 0)
 			this.rows.push(row);
-		//console.log(this.rows);
-		console.log(this.spawns);
 	}
 }
 
