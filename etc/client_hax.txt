@@ -1,0 +1,8 @@
+
+
+window.kaboomClient = the CLIENT INSTANCE that's running your game.
+
+
+$(function() {
+       $("document".bind("keydown", window.kaboomClient.handleKeyDown.bind(window
+}

@@ -15,17 +15,52 @@ body {
 	z-index: 0;
 }
 
-#canvas {
+#arena, #playerLayer {
 	position: absolute;
-	width: 544px;
-	height: 416px;
+	width: 816px; 
+	height: 624px;
 	z-index: 10;
 }
 
+#playerLayer {
+  z-index: 20;
+}
+
+#holding {
+  position: absolute;
+  left: 860px;
+  width: 48px;
+  height: 624px;
+  z-index: 20;
+}
+
 .row {
-	background: green;
+	background: beige;
 }
 
 .tile {
-	background: green;
+	background: transparent;
+}
+
+.player {
+  float: left;
+  width: 36px;
+  height: 72px;
+  z-index: 40;
+}
+
+#player_1 {
+  background: url(../images/player-1.png);
+}
+
+#player_2 {
+  background: url(../images/player-2.png);
+}
+
+#player_3 {
+  background: url(../images/player-3.png);
+}
+
+#player_4 {
+  background: url(../images/player-4.png);
 }

@@ -4,11 +4,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/bomber.css" media="screen" />
 	<script type="text/javascript" src="js/game/level.js"></script>
-	<script type="text/javascript" src="js/game/renderer.js"></script>
+	<script type="text/javascript" src="js/game/kaboom.game.js"></script>
+	<script type="text/javascript" src="js/game/kaboom.renderer.js"></script>
+	<script type="text/javascript" src="js/game/kaboom.player.js"></script>
 </head>
 <body>
 	<div id="container">
-		<div id="canvas"></div>
+		<div id="arena"></div>
+		<div id="playerLayer"></div>
+		<div id="holding"></div>
 	</div>
 <script type="text/javascript" src="js/libs/jquery-1.6.1.js"></script>
 <script type="text/javascript">
@@ -28,11 +32,30 @@ $(document).ready(function() {
 				'*4 ----------- 2*\n' +
 				'*****************';
 				
-				console.log(Level);
 	var level = new Level();
 	level.parseLevel(levelMap);
-
-  var renderer = new Renderer($('#canvas'), level);
+				
+	game = new KaboomGame(level);
+	
+	var p1 = new KaboomPlayer('Player 1');
+	p1.position = new Position(100, 20);
+	
+	var p2 = new KaboomPlayer('Player 2');
+	p2.position = new Position(200, 50);
+	
+  game.players.push(p1);
+  game.players.push(p2);
+	
+	var renderingTargets = {
+	  arena: $('#arena'),
+	  playerLayer: $('#playerLayer'),
+	  holding: $('#holding')
+	};
+  var renderer = new KaboomRenderer(renderingTargets, game);
+  
+  setInterval(function(){
+		renderer.update();
+	}, 1000/30);
 });
 </script>
 </body>
