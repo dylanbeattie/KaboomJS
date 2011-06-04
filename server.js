@@ -59,6 +59,17 @@ function setSocketHandlers() {
 						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
 						client.send(output);
 						break;
+					case "player_changed_direction":
+
+                       if (msg.player )
+                       {
+							runningGame.playerChangedVelocity(msg.player);
+							var output = JSON.stringify({type: "player_changed_direction",  playerState: msg.player });
+							
+							client.broadcast( output );			
+						}
+
+						break;
 				};
 			};
 		});
