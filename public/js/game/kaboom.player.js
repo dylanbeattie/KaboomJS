@@ -13,7 +13,7 @@ KaboomPlayer = function(name, position, velocity) {
     this.velocity = velocity || new Velocity(0,0);
 }
 
-function Position(x, y) {
+Position = function(x, y) {
     this.x = x;
     this.y = y;
 }

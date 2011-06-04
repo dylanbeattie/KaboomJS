@@ -38,9 +38,15 @@ KaboomGame.prototype = {
     },
 
     tilesToPixels : function(position) {
-        var pixelX = position.x * TILE_SIZE;
-        var pixelY = position.y * TILE_SIZE;
-        var p = new Position(pixelX, pixelY)
+        var pixelX = position.x * this.TILE_SIZE;
+        var pixelY = position.y * this.TILE_SIZE;
+        return new Position(pixelX, pixelY);
+    },
+
+    pixelsToTiles : function(position) {
+        var tileX = Math.floor(position.x/this.TILE_SIZE);
+        var tileY = Math.floor(position.y/this.TILE_SIZE);
+        return new Position(tileX, tileY);
     },
 
     update: function() {
@@ -50,10 +56,15 @@ KaboomGame.prototype = {
 		{
 			if (p != null)
 			{
-				p.position.x += game.DISTANCE * p.velocity.dx;
-				p.position.y += game.DISTANCE * p.velocity.dy;
+				var newPos = new Position(
+					p.position.x + game.DISTANCE * p.velocity.dx,
+					p.position.y + game.DISTANCE * p.velocity.dy);
+				var tilePos = game.pixelsToTiles(newPos);
+				var tile = game.level.rows[tilePos.y][tilePos.x];
+				console.log(tilePos);
+				if (!tile.solid)
+					p.position = newPos;
 			}
 		});
-        /* TODO: check for wall/bomb collisions, etc. */
     }
 }
