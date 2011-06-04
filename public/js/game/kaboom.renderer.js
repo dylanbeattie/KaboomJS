@@ -11,7 +11,7 @@ function KaboomRenderer(target, game) {
 
     	for (var tileIndex = 0; tileIndex < level.rows[row].length; tileIndex++) {
     		var tile = level.rows[row][tileIndex];
-    		var tileDiv = $('<div id="tile_' + row + '_' + tileIndex + '" class="tile" style="position:absolute;height:' + tile.height + 'px;width:'+tile.width+'px;top:0;left:'+tileIndex * tile.width+'px" />');
+    		var tileDiv = $('<div id="tile_' + row + '_' + tileIndex + '" class="tile" style="position:absolute;height:' + game.tileSize + 'px;width:'+game.tileSize+'px;top:0;left:'+tileIndex * game.tileSize+'px" />');
 
     		if (tile != null) {
   				tileDiv.css('background', 'url(' + this.itemImages[tile.tileType] + ')');
