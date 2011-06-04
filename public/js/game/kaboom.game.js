@@ -90,19 +90,33 @@ KaboomGame.prototype = {
 		{
 			if (p != null)
 			{
+				/* hacky "looks right for the image we've got values */
+				var width = 43;
+				var height = 38;
+
 				var newPos = new Position(
 					p.position.x + game.DISTANCE * p.velocity.dx,
 					p.position.y + game.DISTANCE * p.velocity.dy);
-				var tilePos = game.pixelsToTiles(newPos);
-				var tile = game.level.rows[tilePos.y][tilePos.x];
+
+				function goodPos(position)
+				{
+					var tilePos = game.pixelsToTiles(position);
+					var tile = game.level.rows[tilePos.y][tilePos.x];
+					
+					try {
+						if (!tile.solid)
+							return true;
+						}
+					catch (ex) {
+					  console.log(tilePos);
+					  return false;
+					}
+				}
 				
-				try {
-				if (!tile.solid)
+				var rightPos = new Position(newPos.x + width, newPos.y);
+				var downPos = new Position(newPos.x, newPos.y + height);
+				if (goodPos(newPos) && goodPos(rightPos) && goodPos(downPos))
 					p.position = newPos;
-				}
-				catch (ex) {
-				  console.log(tilePos);
-				}
 			}
 		});
     }
