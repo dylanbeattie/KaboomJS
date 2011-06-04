@@ -70,12 +70,12 @@ function KaboomRenderer(target, game) {
 				  
 				  
 				  if (player.velocity.dx < 0){		
-					playerDiv.css({background: 'url(images/walk-right-sprite.png)'});
+					playerDiv.css({background: 'url(images/walk-left-sprite.png)'});
 					playerDiv.sprite({fps: 4, no_of_frames: 2});
 				  }
 				  
 				  if (player.velocity.dx > 0){		
-					playerDiv.css({background: 'url(images/walk-left-sprite.png)'});
+					playerDiv.css({background: 'url(images/walk-right-sprite.png)'});
 					playerDiv.sprite({fps: 4, no_of_frames: 2});
 				  }	
 				}
