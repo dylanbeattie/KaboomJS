@@ -24,7 +24,9 @@ KaboomGame.prototype = {
     copyStateFrom : function(gameState) {
         this.DISTANCE = gameState.DISTANCE;
         this.TILE_SIZE = gameState.TILE_SIZE;
-        this.level.copyStateFrom(gameState.level);
+        if (this.level && gameState.level && this.level.copyStateFrom) {
+            this.level.copyStateFrom(gameState.level);
+        }
         for (var i = 0; i < gameState.players.length; i++) {
             this.findPlayer(gameState.players[i]).copyStateFrom(gameState.players[i]);
         }
