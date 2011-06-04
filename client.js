@@ -33,7 +33,7 @@ var initSocket = function() {
 
 	// WebSocket message received
 	socket.on("message", function(data) {
-		var msg = .parse(data);
+		var msg = JSON.parse(data);
 		
 		if (msg.type) {
 			switch (msg.type) {
