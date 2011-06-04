@@ -10,7 +10,7 @@ var server = express.createServer(express.logger());
 server.use(express.static(__dirname + '/public'));
 
 server.get('/', function(request, response) {
-	response.send("There's supposed to be an earth-shattering kaboom...\n");
+	response.redirect('/index.html');
 });
 
 server.get('/level', function(request, response) {
