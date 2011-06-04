@@ -27,8 +27,6 @@ KaboomClient.prototype = {
 		// WebSocket connection successful
 		socket.on("connect", function() {
 			console.log("Connected");
-			var msg = JSON.stringify({type: "join"});
-			socket.send(msg);
 		});
 
 		// WebSocket connection failed
@@ -94,7 +92,8 @@ KaboomClient.prototype = {
 	},
 	
 	join : function(){
-		//
+		var msg = JSON.stringify({type: "join"});
+		socket.send(msg);
 	}
 
 };
