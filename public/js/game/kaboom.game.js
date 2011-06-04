@@ -36,7 +36,7 @@ KaboomGame.prototype = {
 
     /* Finds the player instance within THIS game representing the same player as the supplied player */
     findPlayer : function(player) {
-        for(var i = 0; i < this.players; i++) {
+        for(var i = 0; i < this.players.length; i++) {
             if (this.players[i].name == player.name) return(this.players[i]);
         }
     },
@@ -59,13 +59,8 @@ KaboomGame.prototype = {
     },
 
     createPlayer : function() {
-        //var spawn = level.getFirstEmptySpawnPoint();
+        var spawn = this.level.getFirstEmptySpawnPoint();
 		var that=this;
-		var spawn = {
-			position: new Position(0,0),
-			number: 1
-		};
-		console.log(spawn);
         if (spawn == null) return(null);
         var player = new KaboomPlayer("Player " + spawn.number, that.tilesToPixels(spawn.position));
 		console.log(player);
@@ -83,6 +78,7 @@ KaboomGame.prototype = {
     pixelsToTiles : function(position) {
         var tileX = Math.floor(position.x/this.TILE_SIZE);
         var tileY = Math.floor(position.y/this.TILE_SIZE);
+        
         return new Position(tileX, tileY);
     },
 
@@ -99,9 +95,14 @@ KaboomGame.prototype = {
 					p.position.y + game.DISTANCE * p.velocity.dy);
 				var tilePos = game.pixelsToTiles(newPos);
 				var tile = game.level.rows[tilePos.y][tilePos.x];
-				console.log(tilePos);
+				
+				try {
 				if (!tile.solid)
 					p.position = newPos;
+				}
+				catch (ex) {
+				  console.log(tilePos);
+				}
 			}
 		});
     }
@@ -210,6 +211,7 @@ function Level(initialTileMap) {
 	this.getFirstEmptySpawnPoint = function()
 	{
 		for(var i = 0; i < this.spawns.length; i++) {
+		  var spawn = this.spawns[i];
 			if (spawn.player == null) return(spawn);
 		}
 	}
