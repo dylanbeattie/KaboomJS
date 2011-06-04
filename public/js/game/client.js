@@ -115,6 +115,12 @@ KaboomClient.prototype = {
 		if (player) {
 			player.copyStateFrom(playerState);
 		};
+	},
+	
+	playerJoined : function(playerState) {
+		console.log(playerState);
+		window.game.addPlayer(new KaboomPlayer().copyStateFrom(playerState));
+		console.log(window.game.players);
 	}
 };
 

@@ -59,12 +59,15 @@ function setSocketHandlers() {
 						//console.log(client.sessionId);
 						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: player});
 						client.send(output);
+						
+						var playerJoinedMessage = JSON.stringify({type: "player_joined", playerState: player});
+						client.broadcast(playerJoinedMessage);
+						
 						break;
 					case "player_changed_velocity":
 
                        if (msg.player )
                        {
-							console.log(msg);
 							runningGame.playerChangedVelocity(msg.player);
 							var output = JSON.stringify({type: "player_changed_velocity",  playerState: msg.player });
 							

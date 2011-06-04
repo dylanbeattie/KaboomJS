@@ -51,6 +51,9 @@ KaboomSocket.prototype = {
 				case "player_changed_velocity":
 					this.client.playerChangedVelocity(msg.playerState);
 					break;
+				case "player_joined":
+					this.client.playerJoined(msg.playerState);
+					break;
 			};
 		};
 	},
