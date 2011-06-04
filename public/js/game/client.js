@@ -12,12 +12,8 @@ KaboomClient.prototype = {
 		var that = this;
 		
 		
-		/*
-		setInterval(function(){
-			game.update();
-			that.draw(game);
-		}, 1000/this.fps);
-		*/		
+		
+			
 		
 		
     },
@@ -96,6 +92,21 @@ KaboomClient.prototype = {
 		
 		$(document).bind('keydown', this.onKeyDown.bind(this));
 		$(document).bind('keyup', this.onKeyUp.bind(this));
+
+		var renderingTargets = {
+		  arena: $('#arena'),
+		  playerLayer: $('#playerLayer'),
+		  holding: $('#holding')
+		};
+		
+	  var renderer = new KaboomRenderer(renderingTargets, window.game);
+
+		setInterval(function(){
+			window.game.update();
+			renderer.update();
+		}, 1000/this.fps);
+
+
 		
 	}
 };
