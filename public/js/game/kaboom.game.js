@@ -10,6 +10,7 @@ KaboomGame = function (level) {
     this.level = level;
     this.players = [];
     this.DISTANCE = 5;
+    this.TILE_SIZE = 48;
 }
 
 KaboomGame.prototype = {
@@ -26,6 +27,20 @@ KaboomGame.prototype = {
 
     removePlayer: function(player) {
         /* TODO: Find and free the player slot used by the specified player */
+        /* TODO: remember to set the corresponding spawn point.player back to null */
+    },
+
+    createPlayer : function() {
+        var spawn = level.getFirstEmptySpawnPoint();
+        if (spawn == null) return(null);
+        var player = new KaboomPlayer("Player " + spawn.number, tilesToPixels(spawn.position));
+        return(player);
+    },
+
+    tilesToPixels : function(position) {
+        var pixelX = position.x * TILE_SIZE;
+        var pixelY = position.y * TILE_SIZE;
+        var p = new Position(pixelX, pixelY)
     },
 
 

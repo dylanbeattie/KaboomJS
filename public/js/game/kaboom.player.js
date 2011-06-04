@@ -6,14 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-KaboomPlayer = function(name) {
+KaboomPlayer = function(name, position, velocity) {
     /* Player.name must be unique and can be used to determine equality */
     this.name = name;
-    this.position = new Position(0,0);
-    this.velocity = new Velocity(0,0);
+    this.position = position || new Position(0,0);
+    this.velocity = velocity || new Velocity(0,0);
 }
 
-Position = function (x, y) {
+function Position(x, y) {
     this.x = x;
     this.y = y;
 }
@@ -24,5 +24,6 @@ function Velocity(dx, dy) {
 }
 
 KaboomPlayer.prototype = {
+
 }
 
