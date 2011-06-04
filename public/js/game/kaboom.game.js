@@ -8,23 +8,23 @@
 
 if (typeof require == "function") {
 	var KaboomPlayer = require("./kaboom.player").KaboomPlayer;
+	var Position = require("./kaboom.player").Position;
 };
 
-function KaboomGame(level) {
-KaboomGame = function (level) {
+var KaboomGame = function (level) {
     this.level = level;
     this.players = [];
     this.DISTANCE = 5;
     this.TILE_SIZE = 48;
-}
+};
 
 KaboomGame.prototype = {
-        playerChangedVelocity : function(player) {
-            /* TODO: find the GAME player matching the supplied player and
-               update their position and velocity with those from the
-               supplied player.
-                */
-        },
+    playerChangedVelocity : function(player) {
+        /* TODO: find the GAME player matching the supplied player and
+           update their position and velocity with those from the
+           supplied player.
+            */
+    },
 
     addPlayer : function(player) {
         /* TODO: find the first empty spawn point and put the supplied player in it. */
@@ -36,15 +36,22 @@ KaboomGame.prototype = {
     },
 
     createPlayer : function() {
-        var spawn = level.getFirstEmptySpawnPoint();
+        //var spawn = level.getFirstEmptySpawnPoint();
+		var that=this;
+		var spawn = {
+			position: new Position(0,0),
+			number: 1
+		};
+		console.log(spawn);
         if (spawn == null) return(null);
-        var player = new KaboomPlayer("Player " + spawn.number, tilesToPixels(spawn.position));
-        return(player);
+        var player = new KaboomPlayer("Player " + spawn.number, that.tilesToPixels(spawn.position));
+		console.log(player);
+        return player;
     },
 
     tilesToPixels : function(position) {
-        var pixelX = position.x * TILE_SIZE;
-        var pixelY = position.y * TILE_SIZE;
+        var pixelX = position.x * this.TILE_SIZE;
+        var pixelY = position.y * this.TILE_SIZE;
         var p = new Position(pixelX, pixelY)
     },
 

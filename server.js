@@ -48,7 +48,16 @@ function setSocketHandlers() {
 		client.on("message", function(data) {
 		// assuming it's a join right now, but we'll need to parse this later on...	
 			// assuming no errors!
-			var msg = JSON.stringify({type: "welcome", game: runningGame, player: runningGame.createPlayer()});
+			var player = runningGame.createPlayer();
+			var msg
+			
+			if (!player) {
+				msg = JSON.stringify({type: "game_full"});
+				client.send(msg);
+				return;
+			};
+			
+			msg = JSON.stringify({type: "welcome", game: runningGame, player: runningGame.createPlayer()});
 			client.send(msg);
 		});
 	});	

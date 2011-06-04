@@ -60,18 +60,18 @@ KaboomSocket.prototype = {
 		this.socket.send(msg);
 	},
 	
-	playerChangedDirection : function() {
-		var msg = JSON.stringify({type: "player_changed_direction", player: this.player});
+	playerChangedDirection : function(player) {
+		var msg = JSON.stringify({type: "player_changed_direction", player: player});
 		this.socket.send(msg);
 	},
 	
-	playerDroppedBomb : function() {
-		var msg = JSON.stringify({type: "player_dropped_bomb", player: this.player});
+	playerDroppedBomb : function(player) {
+		var msg = JSON.stringify({type: "player_dropped_bomb", player: player});
 		this.socket.msg();
 	},
 	
-	playerDied : function() {
-		var msg = JSON.stringify({type: "player_died", player: this.player});
+	playerDied : function(player) {
+		var msg = JSON.stringify({type: "player_died", player: player});
 		this.socket.msg();
 	}
 	
