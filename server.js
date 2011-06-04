@@ -1,3 +1,6 @@
+require.paths.unshift('./lib');
+
+var config = require('config').config
 var express = require('express');
 var fs = require("fs");
  
@@ -15,4 +18,6 @@ server.get('/level', function(request, response) {
 	);
 });
 
-server.listen(process.env.PORT || 80);
+server.listen(config.gameServer.port, config.gameServer.host);
+
+console.log("Kaboom! web server running on " + config.gameServer.host + ":" + config.gameServer.port);
