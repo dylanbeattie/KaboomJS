@@ -33,7 +33,10 @@ socket.on("message", function(data)
 		fs.readFile("level.txt", "binary", function(err, file)
 			{
 			 // assuming no errors!
-			 socket.broadcast({"level":file});
+			 socket.broadcast(
+				 {"type":"welcome"},
+				 {"level":file}
+			 );
 		});
 	}
 );
