@@ -41,13 +41,21 @@ function KaboomRenderer(target, game) {
       
       if (player != null) {
         var playerDiv = $('#player_' + (i + 1));
-      
-        target.playerLayer.append(playerDiv);
-        playerDiv.css({
-          position: 'absolute',
-          top: player.position.y + 'px',
-          left: player.position.x + 'px'
-        });
+        
+        if (!playerDiv.data('isInPlay')) {
+          target.playerLayer.append(playerDiv);
+          playerDiv.data('isInPlay', true);
+        }
+        
+        if (playerDiv.data('y') != player.position.y && playerDiv.data('x') != player.position.x) {
+          playerDiv.css({
+            position: 'absolute',
+            top: player.position.y + 'px',
+            left: player.position.x + 'px'
+          });
+          playerDiv.data('x', player.position.x);
+          playerDiv.data('y', player.position.y);
+        }
       }
     }
   };
@@ -59,13 +67,16 @@ function KaboomRenderer(target, game) {
         var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
         
         var url = null;
-		if (tile == null) {
+		    
+		    if (tile == null) {
           url = 'url(images/blank.png)';
         } else {
-    		url = 'url(' + this.itemImages[tile.tileType] + ')';
+    		  url = 'url(' + this.itemImages[tile.tileType] + ')';
     		}
-          if (tileDiv.css('background') != url)
-			  tileDiv.css('background', url);
+    		
+        if (tileDiv.data('background') != url)
+			    tileDiv.css('background', url);
+			    tileDiv.data('background', url);
        }
     }
   };
