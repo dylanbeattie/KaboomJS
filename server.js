@@ -7,6 +7,9 @@ var fs = require("fs");
  
 var server = express.createServer(express.logger());
 
+server.use(express.static(__dirname + '/js'));
+server.use(express.static(__dirname + '/css'));
+
 server.get('/', function(request, response) {
 	response.send("There's supposed to be an earth-shattering kaboom...\n");
 });
