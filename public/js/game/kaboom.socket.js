@@ -1,9 +1,12 @@
 function KaboomSocket() {
+	this.client = null;
 	this.socket = null;
 };
 
 KaboomSocket.prototype = {
-	init : function() {
+	init : function(client) {
+		var that = this;
+		this.client = client;
 		this.socket = new io.Socket("localhost", {port: 5678, transports: ["websocket", "flashsocket"]});
 
 		// EVENTS
@@ -11,37 +14,42 @@ KaboomSocket.prototype = {
 		// disconnect, reconnect, reconnecting, reconnect_failed
 
 		// WebSocket connection successful
-		socket.on("connect", function() {
+		this.socket.on("connect", function() {
 			console.log("Connected");
 		});
 
 		// WebSocket connection failed
-		socket.on("connect_failed", function() {
+		this.socket.on("connect_failed", function() {
 			console.log("Connect failed");
 
 		});
 
 		// WebSocket disconnection
-		socket.on("disconnect", function() {
+		this.socket.on("disconnect", function() {
 			console.log("Disconnected");
 
 		});
 
 		// WebSocket message received
-		socket.on("message", function(data) {
+		this.socket.on("message", function(data) {
 			that.receiveData(data);
 		});
 
-		socket.connect();
+		this.socket.connect();
 	},
 	
 	receiveData : function(data){		
 		var msg = JSON.parse(data);
+		
+		console.log(msg);
 
 		if (msg.type) {
 			switch (msg.type) {
 				case "welcome":
-					this.levelData = msg.level;
+					this.client.gameSuccessfullyJoined(msg.game, msg.player);
+					break;
+				case "player_changed_direction":
+					this.client.playerChangedDirection(msg.player);
 					break;
 			};
 		};
@@ -49,22 +57,22 @@ KaboomSocket.prototype = {
 	
 	join : function(){
 		var msg = JSON.stringify({type: "join"});
-		socket.send(msg);
+		this.socket.send(msg);
 	},
 	
 	playerChangedDirection : function() {
 		var msg = JSON.stringify({type: "player_changed_direction", player: this.player});
-		socket.send(msg);
+		this.socket.send(msg);
 	},
 	
 	playerDroppedBomb : function() {
 		var msg = JSON.stringify({type: "player_dropped_bomb", player: this.player});
-		socket.msg();
+		this.socket.msg();
 	},
 	
 	playerDied : function() {
 		var msg = JSON.stringify({type: "player_died", player: this.player});
-		socket.msg();
+		this.socket.msg();
 	}
 	
 };

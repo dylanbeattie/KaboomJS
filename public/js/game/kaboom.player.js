@@ -26,3 +26,6 @@ KaboomPlayer.prototype = {
     velocity : new Velocity(0,0)
 }
 
+if (typeof exports == "object") {
+	exports.KaboomPlayer = KaboomPlayer;
+};
