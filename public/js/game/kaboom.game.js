@@ -106,8 +106,8 @@ KaboomGame.prototype = {
             verticalHitTestRect.width -= 16;
 
             var horizontalHitTestRect = playerRect.contract(4);
-            horizontalHitTestRect.left += 8;
-            horizontalHitTestRect.width -= 16;
+            horizontalHitTestRect.top += 8;
+            horizontalHitTestRect.height -= 16;
 
             var canMoveVertically = true;
             var canMoveHorizontally = true;
