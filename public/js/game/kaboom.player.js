@@ -74,6 +74,7 @@ KaboomPlayer.prototype = {
         this.name = that.name;
         this.position = new Position(that.position.x, that.position.y);
         this.velocity = new Velocity(that.velocity.dx, that.velocity.dy);
+		return this;
     }
 };
 

@@ -48,8 +48,11 @@ KaboomSocket.prototype = {
 				case "welcome":
 					this.client.gameSuccessfullyJoined(msg.gameState, msg.playerState);
 					break;
-				case "player_changed_direction":
-					this.client.playerChangedDirection(msg.playerState);
+				case "player_changed_velocity":
+					this.client.playerChangedVelocity(msg.playerState);
+					break;
+				case "player_joined":
+					this.client.playerJoined(msg.playerState);
 					break;
 			};
 		};
@@ -60,8 +63,8 @@ KaboomSocket.prototype = {
 		this.socket.send(msg);
 	},
 	
-	playerChangedDirection : function(player) {
-		var msg = JSON.stringify({type: "player_changed_direction", player: player});
+	playerChangedVelocity : function(player) {
+		var msg = JSON.stringify({type: "player_changed_velocity", player: player});
 		this.socket.send(msg);
 	},
 	

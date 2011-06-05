@@ -47,8 +47,8 @@ KaboomClient.prototype = {
 		    playerChanged = player.goDown();
 		}
 		
-		if (playerChanged){
-			this.notifyPlayerChanged();
+		if (playerChanged) {
+			this.notifyPlayerChanged(player);
 		}
 		
 		return !handled;	
@@ -72,13 +72,12 @@ KaboomClient.prototype = {
 				break;
 		}
 		
-		this.notifyPlayerChanged();
+		this.notifyPlayerChanged(player);
 		return !handled;			
 	},
 	
-	
-	notifyPlayerChanged: function(){
-		this.socket.playerChangedDirection(player);
+	notifyPlayerChanged: function(player){
+		this.socket.playerChangedVelocity(player);
 	},
 
 	draw : function(){
@@ -116,13 +115,19 @@ KaboomClient.prototype = {
 		}, 1000/this.fps);
 	},
 	
+	playerChangedVelocity : function(playerState) {
+		var game = window.game;
+		var player = game.findPlayer(playerState);
+		if (player) {
+			player.copyStateFrom(playerState);
+		};
+	},
+	
 	playerJoined: function(playerState){
 		var newPlayer = new KaboomPlayer();
 		newPlayer.copyStateFrom(playerState);
 		window.game.addPlayer(newPlayer);
 	}
-	
-	
 };
 
 
