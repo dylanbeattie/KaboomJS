@@ -34,6 +34,12 @@ Tile.prototype.showBoundingBox = function(layer, game) {
     } else {
         boundingBox.removeClass('intersecting');
     }
+    
+    if (this.candidate) {
+        boundingBox.addClass('candidate');
+    } else {
+        boundingBox.removeClass('candidate');
+    }
 };
 
 function KaboomRenderer(opts) {

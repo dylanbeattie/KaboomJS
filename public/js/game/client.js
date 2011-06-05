@@ -36,7 +36,6 @@ KaboomClient.prototype = {
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
         var playerActuallyChanged = window.player.go(key);
         if (playerActuallyChanged) this.notifyPlayerChanged();
-        console.log("KEY_DOWN" + window.player.toString());
         return (this.sendKeyToBrowser(key));
     },
 
@@ -49,7 +48,6 @@ KaboomClient.prototype = {
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
         window.player.stop(key);
         this.notifyPlayerChanged();
-        console.log("KEY_UP" + window.player.toString());
         return (this.sendKeyToBrowser(key));
     },
     notifyPlayerChanged: function() {

@@ -87,40 +87,38 @@ KaboomGame.prototype = {
 
     update: function() {
         var game = this;
-        /* For each player, assume they have moved DISTANCE in their own velocity */
+        var tryMove = function(pos, delta) {
+            var newPos = pos.translate(delta);
+            var chosen = newPos;
+            
+            game.level.forEachTile(function(tile) {
+                var bounds = tile.getBounds(game);
+                
+                tile.candidate = false;
+                tile.isIntersecting = false;
+
+                if (bounds.intersects(newPos.contract(4))) {
+                    if (tile.solid) {
+                        tile.isIntersecting = true;
+                        chosen = pos;
+                        return;
+                    }
+                }
+            });
+            
+            return chosen;
+        };
+        
         this.players.forEach(function(p, idx) {
             if (!p) return;
             if (p.velocity.dx == 0 && p.velocity.dy == 0) return;
             
-            var playerRect = p
-                .getBounds(game)
-                .translate({
-                    x: game.DISTANCE * p.velocity.dx,
-                    y: game.DISTANCE * p.velocity.dy
-                });
-
-            // We need to handle horizontal and vertical collision detection separately
-            // so that Marvin can run ALONG walls but not run THROUGH them
-            var verticalHitTestRect = playerRect.contract(4);
-            verticalHitTestRect.left += 8;
-            verticalHitTestRect.width -= 16;
-
-            var horizontalHitTestRect = playerRect.contract(4);
-            horizontalHitTestRect.top += 8;
-            horizontalHitTestRect.height -= 16;
-
-            var canMoveVertically = true;
-            var canMoveHorizontally = true;
-        
-            game.level.forEachIntersectingTile(verticalHitTestRect, game, function(tile) {
-                if (tile.solid) canMoveVertically = false;
-            });
-
-             game.level.forEachIntersectingTile(horizontalHitTestRect, game, function(tile) {
-                if (tile.solid) canMoveHorizontally = false;
-            });
-            if (canMoveHorizontally) p.position.x = playerRect.x;
-            if (canMoveVertically) p.position.y = playerRect.y;
+            var bounds = p.getBounds(game);
+            
+            bounds = tryMove(bounds, { x: game.DISTANCE * p.velocity.dx, y: 0 });
+            bounds = tryMove(bounds, { x: 0, y: game.DISTANCE * p.velocity.dy });
+            
+            p.position = bounds.topLeft;
         });
     }
 };
@@ -162,19 +160,14 @@ function KaboomLevel(initialTileMap) {
         });
         this.spawns = that.spawns;
     }
-
-    this.forEachIntersectingTile = function(rect, game, callback) {
-        $(this.rows).each(function(ri, row) {
-            $(row).each(function(ti, tile) {
-                tile.isIntersecting = false;
-                var bounds = tile.getBounds(game);
-                if (bounds.intersects(rect)) {
-                    tile.isIntersecting = true;
-                    callback(tile);
-                }
-            });
-        });
-    };
+    
+    this.forEachTile = function(callback) {
+        for (var ri = 0; ri < this.rows.length; ri++) {
+            for (var ti = 0; ti < this.rows[ri].length; ti++) {
+                callback(this.rows[ri][ti]);
+            }
+        }
+    },
 
     this.parseLevel = function(tileMap) {
         var r, c;
@@ -275,7 +268,7 @@ function Spawn(num, x, y) {
     this.number = num;
     this.position = new Position(x, y);
     this.player = null;
-}
+};
 
 function Rectangle(x, y, width, height) {
     this.x = this.left = x;
@@ -292,8 +285,8 @@ function Rectangle(x, y, width, height) {
 
 Rectangle.prototype = {
     pointIntersects: function(point) {
-        return point.x > this.left && point.x < this.right &&
-               point.y > this.top  && point.y < this.bottom;
+        return point.x >= this.left && point.x <= this.right &&
+               point.y >= this.top  && point.y <= this.bottom;
     },
     
     intersects: function(that) {
