@@ -42,10 +42,15 @@ KaboomGame.prototype = {
     },
 
     playerChangedVelocity : function(player) {
-        /* TODO: find the GAME player matching the supplied player and
+    	
+        /* find the GAME player matching the supplied player and
          update their position and velocity with those from the
          supplied player.
          */
+        var affectedPlayer = this.findPlayer(player);
+        affectedPlayer.position = player.position;
+	    affectedPlayer.velocity = player.velocity;
+
     },
 
     addPlayer : function(player) {
