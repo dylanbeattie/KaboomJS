@@ -89,21 +89,17 @@ KaboomGame.prototype = {
         var game = this;
         /* For each player, assume they have moved DISTANCE in their own velocity */
         this.players.forEach(function(p, idx) {
-            if (p != null) {
-                var newPos = new Position(
-                    p.position.x + game.DISTANCE * p.velocity.dx,
-                    p.position.y + game.DISTANCE * p.velocity.dy
-                );
-            
-                //var playerRect = new Rectangle(newPos.x, newPos.y, 48, 48);
-                var playerRect = p.getBounds(game).translate({
-                    x: game.DISTANCE * p.velocity.dx,
-                    y: game.DISTANCE * p.velocity.dy
-                });
-                playerRect.drawToScreen();
+            if (p) {
+                var playerRect = p
+                    .getBounds(game)
+                    .translate({
+                        x: game.DISTANCE * p.velocity.dx,
+                        y: game.DISTANCE * p.velocity.dy
+                    });
+                var hitTestRect = playerRect.contract(4);
                 var canMove = true;
             
-                game.level.forEachIntersectingTile(playerRect, game, function(tile) {
+                game.level.forEachIntersectingTile(hitTestRect, game, function(tile) {
                     if (tile.solid) {
                         canMove = false;
                     }
@@ -290,6 +286,10 @@ Rectangle.prototype = {
     
     translate: function(point) {
         return new Rectangle(this.x + point.x, this.y + point.y, this.width, this.height);
+    },
+    
+    contract: function(amount) {
+        return new Rectangle(this.x + amount, this.y + amount, this.width - (amount * 2), this.height - (amount * 2));
     },
     
     // debug function to display a rect on the screen as a green div
