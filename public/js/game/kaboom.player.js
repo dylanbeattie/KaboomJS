@@ -12,6 +12,7 @@ var KaboomPlayer = function(id, name, position, velocity) {
     this.name = name;
     this.position = position || new Position(0, 0);
     this.velocity = velocity || new Velocity(0, 0);
+    this.direction = "";
 };
 
 Position = function(x, y) {
@@ -26,8 +27,8 @@ function Velocity(dx, dy) {
 
 KaboomPlayer.prototype = {
 
-    go: function(direction) {
-        switch (direction) {
+    go: function(whichWay) {
+        switch (whichWay) {
             case 'left':
                 return(this.goLeft());
             case 'right':
@@ -38,22 +39,41 @@ KaboomPlayer.prototype = {
                 return(this.goDown());
         }
     },
-    stop: function(direction) {
-        switch (direction) {
+    stop: function(whichWay) {
+        switch (whichWay) {
             case 'up':
             case 'down':
                 this.verticalStop();
+                this.updateDirection();
                 break;
             case 'left':
             case 'right':
                 this.horizontalStop();
+                this.updateDirection();
                 break;
         }
+    },
+
+    updateDirection: function() {
+        var nsComponent, ewComponent;
+        nsComponent = (this.velocity.dy < 0 ? "North" : (this.velocity.dy > 0 ? "South" : ""));
+        ewComponent = (this.velocity.dx < 0 ? "West" : (this.velocity.dx > 0 ? "East" : ""));
+        var direction = nsComponent + ewComponent;
+        if (direction) this.direction = direction;
+    },
+
+    getDirection : function() {
+        return(Direction[this.direction] || 0);
+    },
+
+    isMoving : function() {
+        return(! (this.velocity.dx == 0 && this.velocity.dy == 0));
     },
 
     goLeft: function() {
         if (this.velocity.dx != -1) {
             this.velocity.dx = -1;
+            this.updateDirection();
             return true;
         }
         return false;
@@ -62,6 +82,7 @@ KaboomPlayer.prototype = {
     goRight: function() {
         if (this.velocity.dx != 1) {
             this.velocity.dx = 1;
+            this.updateDirection();
             return true;
         }
         return false;
@@ -70,6 +91,7 @@ KaboomPlayer.prototype = {
     goUp: function() {
         if (this.velocity.dy != -1) {
             this.velocity.dy = -1;
+            this.updateDirection();
             return true;
         }
         return false;
@@ -78,6 +100,7 @@ KaboomPlayer.prototype = {
     goDown: function() {
         if (this.velocity.dy != 1) {
             this.velocity.dy = 1;
+            this.updateDirection();
             return true;
         }
         return false;

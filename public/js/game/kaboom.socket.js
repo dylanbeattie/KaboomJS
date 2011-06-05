@@ -91,9 +91,7 @@ KaboomSocket.prototype = {
                     this.client.playerChangedDirection(msg.playerState);
                     break;
             }
-            ;
         }
-        ;
     },
 
     join : function() {

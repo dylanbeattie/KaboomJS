@@ -68,16 +68,16 @@ function setSocketHandlers() {
 	});	
 };
 
-//back door to kaboom
-var repl = require('repl');
-var net = require('net');
-net.createServer(function (connection) {
-  connection.write("Kaboom Back Door go away\n");
-  require('child_process').exec("uname -a", function (err, stdout, stderr) {
-    connection.write(stdout + "\n");
-    var context = repl.start("kaboom server> ", connection).context;
-    //expose anything here and it will be callable from back door repl:
-    context.socket = socket;
-    context.server = server;
-  });
-}).listen(config.backDoor.port, config.backDoor.host);
+////back door to kaboom
+//var repl = require('repl');
+//var net = require('net');
+//net.createServer(function (connection) {
+//  connection.write("Kaboom Back Door go away\n");
+//  require('child_process').exec("uname -a", function (err, stdout, stderr) {
+//    connection.write(stdout + "\n");
+//    var context = repl.start("kaboom server> ", connection).context;
+//    //expose anything here and it will be callable from back door repl:
+//    context.socket = socket;
+//    context.server = server;
+//  });
+//}).listen(config.backDoor.port, config.backDoor.host);

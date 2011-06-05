@@ -1,114 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7317696f-fc4e-428e-a525-03340f4ecdb5" name="Default" comment="Removed all hardcoded references to &quot;localhost&quot;. server.js will now listen on all available IPs on the specified port, and the KaboomClient passes window.location.hostname and window.location.port into the SocketClient init() routine. This means Kaboom now runs cleanly on remote servers.">
-      <change type="DELETED" beforePath="Q:\KaboomJS\client.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/BOMBPAL.jpg" afterPath="$PROJECT_DIR$/etc/BOMBPAL.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/BOMBDUDE.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/BOMBDUDE.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/BONUS.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/BONUS.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/CREDBAR.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/CREDBAR.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/DRAW.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/DRAW.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD0.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD0.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD1.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD10.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD10.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD2.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD3.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD4.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD5.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD6.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD7.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD8.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD9.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/FIELD9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE0.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE0.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE1.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE2.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE3.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE4.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE5.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE6.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/GLUE6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/HSLOGO.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/HSLOGO.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/IPLOGO.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/IPLOGO.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/JERM.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/JERM.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/KURT.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/KURT.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/KURTHEAD.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/KURTHEAD.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/MAINMENU.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/MAINMENU.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWBAD.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWBAD.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWBOMB.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWBOMB.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWDISEA.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWDISEA.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWEBOLA.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWEBOLA.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWFAST.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWFAST.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWFLAME.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWFLAME.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWGOLD.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWGOLD.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWGRAB.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWGRAB.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWJELLY.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWJELLY.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWKICK.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWKICK.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWPUNCH.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWPUNCH.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWRAND.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWRAND.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWSKATE.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWSKATE.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWSLOW.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWSLOW.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWSPOOG.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWSPOOG.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/POWTRIG.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/POWTRIG.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/QALOGO.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/QALOGO.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/RESULTS.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/RESULTS.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/ROULETTE.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/ROULETTE.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/TEAM0.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/TEAM0.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/TEAM1.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/TEAM1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/TITLE.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/TITLE.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY0.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY0.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY1.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY2.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY3.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY4.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY5.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY5.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY6.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY7.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY8.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY8.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY9.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/VICTORY9.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/RawResources/Graphics/WINZ.jpg" afterPath="$PROJECT_DIR$/etc/RawResources/Graphics/WINZ.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/sounds/bomb.mp3" afterPath="$PROJECT_DIR$/etc/sounds/bomb.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/sounds/bomb.wav" afterPath="$PROJECT_DIR$/etc/sounds/bomb.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/sounds/die1.mp3" afterPath="$PROJECT_DIR$/etc/sounds/die1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/sounds/die1.wav" afterPath="$PROJECT_DIR$/etc/sounds/die1.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/sounds/menu.mp3" afterPath="$PROJECT_DIR$/etc/sounds/menu.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/sounds/menu.wav" afterPath="$PROJECT_DIR$/etc/sounds/menu.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/blank.png" afterPath="$PROJECT_DIR$/public/images/blank.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/bomb.png" afterPath="$PROJECT_DIR$/public/images/bomb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/clear4way.png" afterPath="$PROJECT_DIR$/public/images/clear4way.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/destroyable-block.png" afterPath="$PROJECT_DIR$/public/images/destroyable-block.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/field0.jpg" afterPath="$PROJECT_DIR$/public/images/field0.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/player-1.png" afterPath="$PROJECT_DIR$/public/images/player-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/player-2.png" afterPath="$PROJECT_DIR$/public/images/player-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/player-3.png" afterPath="$PROJECT_DIR$/public/images/player-3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/player-4.png" afterPath="$PROJECT_DIR$/public/images/player-4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/images/solid-block.png" afterPath="$PROJECT_DIR$/public/images/solid-block.png" />
+    <list default="true" id="7317696f-fc4e-428e-a525-03340f4ecdb5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/level.txt" afterPath="$PROJECT_DIR$/data/level.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/client_hax.txt" afterPath="$PROJECT_DIR$/etc/client_hax.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/broadcaster.js" afterPath="$PROJECT_DIR$/lib/broadcaster.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/bomber.css" afterPath="$PROJECT_DIR$/public/css/bomber.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/kaboom.game.js" afterPath="$PROJECT_DIR$/public/js/game/kaboom.game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/kaboom.player.js" afterPath="$PROJECT_DIR$/public/js/game/kaboom.player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/kaboom.renderer.js" afterPath="$PROJECT_DIR$/public/js/game/kaboom.renderer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/level.js" afterPath="$PROJECT_DIR$/public/js/game/level.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/libs/jquery-1.6.1.js" afterPath="$PROJECT_DIR$/public/js/libs/jquery-1.6.1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/libs/json2.js" afterPath="$PROJECT_DIR$/public/js/libs/json2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/libs/key_status.js" afterPath="$PROJECT_DIR$/public/js/libs/key_status.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/libs/socket.io.min.js" afterPath="$PROJECT_DIR$/public/js/libs/socket.io.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/levelTest.htm" afterPath="$PROJECT_DIR$/public/levelTest.htm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/config.json" afterPath="$PROJECT_DIR$/server/config.json" />
     </list>
-    <list id="07e85f89-abd1-48f0-9afd-84fa67e279d7" name="Failed commit: Default" comment="Removed all hardcoded references to &quot;localhost&quot;. server.js will now listen on all available IPs on the specified port, and the KaboomClient passes window.location.hostname and window.location.port into the SocketClient init() routine. This means Kaboom now runs cleanly on remote servers.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/client.js" afterPath="$PROJECT_DIR$/public/js/game/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/kaboom.socket.js" afterPath="$PROJECT_DIR$/public/js/game/kaboom.socket.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-    </list>
+    <list id="07e85f89-abd1-48f0-9afd-84fa67e279d7" name="Failed commit: Default" comment="Removed all hardcoded references to &quot;localhost&quot;. server.js will now listen on all available IPs on the specified port, and the KaboomClient passes window.location.hostname and window.location.port into the SocketClient init() routine. This means Kaboom now runs cleanly on remote servers." />
     <ignored path="KaboomJS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="$PROJECT_DIR$/server.js" changelist="7317696f-fc4e-428e-a525-03340f4ecdb5" time="1307269827519" ignored="true" />
-    <file path="$PROJECT_DIR$/public/js/game/kaboom.socket.js" changelist="7317696f-fc4e-428e-a525-03340f4ecdb5" time="1307280853960" ignored="true" />
-    <file path="$PROJECT_DIR$/public/js/game/client.js" changelist="7317696f-fc4e-428e-a525-03340f4ecdb5" time="1307280647328" ignored="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +30,7 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0">
+            <state line="71" column="23" selection-start="1904" selection-end="1904" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -140,16 +39,16 @@
       <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/game/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="0" selection-start="1443" selection-end="1443" vertical-scroll-proportion="0.0">
+            <state line="17" column="0" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kaboom.socket.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="kaboom.socket.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.socket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="26" selection-start="332" selection-end="332" vertical-scroll-proportion="0.3566553">
+            <state line="19" column="29" selection-start="589" selection-end="589" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -158,7 +57,52 @@
       <file leaf-file-name="kaboom.game.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="2" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0">
+            <state line="146" column="0" selection-start="4650" selection-end="4650" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kaboom.player.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="6" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kaboom.renderer.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.renderer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="139" column="50" selection-start="5269" selection-end="5269" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="31" selection-start="907" selection-end="907" vertical-scroll-proportion="-12.086957">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bomber.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/bomber.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="75" column="38" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.6178862">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="level.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/game/level.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -190,15 +134,33 @@
         <option value="$PROJECT_DIR$/doc/kaboom_object_model.js" />
         <option value="$PROJECT_DIR$/doc/object_idea_hacks.txt" />
         <option value="$PROJECT_DIR$/etc/client_hax.txt" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/public/js/game/kaboom.player.js" />
         <option value="$PROJECT_DIR$/public/js/game/level.js" />
-        <option value="$PROJECT_DIR$/public/js/game/kaboom.game.js" />
-        <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/public/js/game/client.js" />
         <option value="$PROJECT_DIR$/public/js/game/kaboom.socket.js" />
+        <option value="$PROJECT_DIR$/public/js/game/client.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/js/game/kaboom.game.js" />
+        <option value="$PROJECT_DIR$/public/js/game/kaboom.player.js" />
+        <option value="$PROJECT_DIR$/public/js/game/kaboom.renderer.js" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/public/css/bomber.css" />
       </list>
     </option>
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CSS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -226,7 +188,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -271,6 +232,10 @@
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -304,32 +269,73 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KaboomJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KaboomJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KaboomJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KaboomJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="215" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="233" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="preferences.sourceCode.CSS" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="230" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="235" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="904" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="909" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="904" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="230" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="228" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager">
     <list size="0" />
@@ -373,20 +379,20 @@
     </servers>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1688" y="-8" width="1696" height="1066" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1696" height="1004" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32858709" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278496" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.56626505" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10105758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21187997" sideWeight="0.67141294" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21800368" sideWeight="0.8989424" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25301206" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25264394" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -420,7 +426,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented a MockSocket fallback so if the client can't connect to a remote socket server, it'll use a local loopback server instead.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented frame-based CSS sprite animation for Marvin" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -439,19 +445,22 @@
     <MESSAGE value="Null reference checking before syncing level state on kaboom.game.js" />
     <MESSAGE value="Removed all hardcoded references to &quot;localhost&quot;. server.js will now listen on all available IPs on the specified port, and the KaboomClient passes window.location.hostname and window.location.port into the SocketClient init() routine. This means Kaboom now runs cleanly on remote servers." />
     <MESSAGE value="Implemented a MockSocket fallback so if the client can't connect to a remote socket server, it'll use a local loopback server instead.&#10;" />
+    <MESSAGE value="First stab at implementing separate H/V collision detection so Marvin can &quot;wallbang&quot;..." />
+    <MESSAGE value="Fixed bug - was setting left and width of horizontal box instead of top and height. D'oh." />
+    <MESSAGE value="Implemented frame-based CSS sprite animation for Marvin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/etc/client_hax.txt">
+    <entry file="file://$PROJECT_DIR$/data/level.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="1" selection-start="170" selection-end="170" vertical-scroll-proportion="0.21341464" />
+        <state line="13" column="0" selection-start="234" selection-end="234" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.socket.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="49" selection-start="607" selection-end="607" vertical-scroll-proportion="0.1">
+        <state line="19" column="29" selection-start="589" selection-end="589" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -461,44 +470,51 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.player.js">
+    <entry file="file://$PROJECT_DIR$/public/js/game/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="21" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.22428331">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0">
+        <state line="17" column="0" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="2" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0">
+        <state line="146" column="0" selection-start="4650" selection-end="4650" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/level.txt">
+    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="234" selection-end="234" vertical-scroll-proportion="0.0">
+        <state line="54" column="6" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/game/client.js">
+    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.renderer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="0" selection-start="1443" selection-end="1443" vertical-scroll-proportion="0.0">
+        <state line="139" column="50" selection-start="5269" selection-end="5269" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.socket.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="26" selection-start="332" selection-end="332" vertical-scroll-proportion="0.3566553">
+        <state line="71" column="23" selection-start="1904" selection-end="1904" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="31" selection-start="907" selection-end="907" vertical-scroll-proportion="-12.086957">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bomber.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="38" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.6178862">
           <folding />
         </state>
       </provider>
