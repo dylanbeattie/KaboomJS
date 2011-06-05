@@ -12,7 +12,7 @@ if (typeof require == "function") {
 };
 
 var KaboomGame = function (levelMap) {
-    this.level = new Level(levelMap);
+    this.level = new KaboomLevel(levelMap);
     this.players = [];
     this.DISTANCE = 5;
     this.TILE_SIZE = 48;
@@ -23,7 +23,7 @@ KaboomGame.prototype = {
     copyStateFrom : function(gameState) {
         this.DISTANCE = gameState.DISTANCE;
         this.TILE_SIZE = gameState.TILE_SIZE;
-        this.level = this.level || new Level();
+        this.level = this.level || new KaboomLevel();
         this.level.copyStateFrom(gameState.level);
         for (var i = 0; i < gameState.players.length; i++) {
             var sourcePlayer = gameState.players[i];
@@ -99,18 +99,28 @@ KaboomGame.prototype = {
                     y: game.DISTANCE * p.velocity.dy
                 });
 
-            var hitTestRect = playerRect.contract(4);
-            var canMove = true;
+            // We need to handle horizontal and vertical collision detection separately
+            // so that Marvin can run ALONG walls but not run THROUGH them
+            var verticalHitTestRect = playerRect.contract(4);
+            verticalHitTestRect.left += 8;
+            verticalHitTestRect.width -= 16;
+
+            var horizontalHitTestRect = playerRect.contract(4);
+            horizontalHitTestRect.left += 8;
+            horizontalHitTestRect.width -= 16;
+
+            var canMoveVertically = true;
+            var canMoveHorizontally = true;
         
-            game.level.forEachIntersectingTile(hitTestRect, game, function(tile) {
-                if (tile.solid) {
-                    canMove = false;
-                }
+            game.level.forEachIntersectingTile(verticalHitTestRect, game, function(tile) {
+                if (tile.solid) canMoveVertically = false;
             });
-        
-            if (canMove) {
-                p.position = playerRect.topLeft;
-            }
+
+             game.level.forEachIntersectingTile(horizontalHitTestRect, game, function(tile) {
+                if (tile.solid) canMoveHorizontally = false;
+            });
+            if (canMoveHorizontally) p.position.x = playerRect.x;
+            if (canMoveVertically) p.position.y = playerRect.y;
         });
     }
 };
@@ -125,7 +135,7 @@ TileType = {
     Blank: 2
 };
 
-function Level(initialTileMap) {
+function KaboomLevel(initialTileMap) {
 
     /*this.rows = 13;
      this.cols = 17;*/
@@ -246,7 +256,7 @@ function Tile (solid, tileType, row, col) {
     this.tileType = tileType;
     this.row = row;
     this.col = col;
-};
+}
 
 Tile.prototype = {
     getBounds: function(game) {
@@ -289,7 +299,7 @@ Rectangle.prototype = {
     translate: function(point) {
         return new Rectangle(this.x + point.x, this.y + point.y, this.width, this.height);
     },
-    
+
     contract: function(amount) {
         return new Rectangle(this.x + amount, this.y + amount, this.width - (amount * 2), this.height - (amount * 2));
     },

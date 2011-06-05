@@ -38,9 +38,9 @@ Tile.prototype.showBoundingBox = function(layer, game) {
 
 function KaboomRenderer(opts) {
     var game = opts.game;
-    this.itemImages = ["images/solid-block.png",
-        "images/destroyable-block.png",
-        "images/blank.png" ];
+    this.itemImages = ["images/" + game.TILE_SIZE + "/solid-block.png",
+        "images/" + game.TILE_SIZE + "/destroyable-block.png",
+        "images/" + game.TILE_SIZE + "/blank.png" ];
     this.initialise = function() {
         var level = game.level;
 
