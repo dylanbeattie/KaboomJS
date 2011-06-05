@@ -71,7 +71,7 @@ KaboomClient.prototype = {
 	
 	
 	notifyPlayerChanged: function(){
-		this.socket.playerChangedDirection(player);
+        if (this.socket) this.socket.playerChangedDirection(player);
 	},
 
 	draw : function(){
@@ -81,12 +81,17 @@ KaboomClient.prototype = {
 	
 	join: function(){
 		console.log('Joining...');
-		this.socket = new KaboomSocket();
-		this.socket.init(this, window.location.hostname, window.location.port);
-		this.socket.join();
-		
+        try {
+            this.socket = new KaboomSocket();
+            this.socket.init(this, window.location.hostname, window.location.port);
+        } catch(e) {
+            console.log("Socket init failed - using local mode");
+            this.socket = new MockSocket();
+            this.socket.init(this);
+        }
+        this.socket.join();
 	},
-	
+
 	gameSuccessfullyJoined : function(gameState, playerState){
 		console.log('Creating game...');
 		window.game = new KaboomGame();

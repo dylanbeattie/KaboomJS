@@ -1,3 +1,40 @@
+function MockSocket() {
+    this.client = null;
+    this.levelMap = "*****************\n"
+    +"*1 *           4*\n"
+    +"*               *\n"
+    +"*               *\n"
+    +"*               *\n"
+    +"*               *\n"
+    +"*               *\n"
+    +"*   *-* *-*     *\n"
+    +"*               *\n"
+    +"*               *\n"
+    +"*               *\n"
+    +"*****************";
+}
+
+MockSocket.prototype = {
+    init : function(client) {
+        this.client = client;
+    },
+
+    join : function(){
+        var game = new KaboomGame(this.levelMap);
+        var player = game.createPlayer();
+        this.client.gameSuccessfullyJoined(game, player);
+    },
+
+    playerChangedDirection : function(player) {
+    },
+
+    playerDroppedBomb : function(player) {
+    },
+
+    playerDied : function(player) {
+    }
+}
+
 function KaboomSocket() {
 	this.client = null;
 	this.socket = null;
@@ -61,18 +98,20 @@ KaboomSocket.prototype = {
 	},
 	
 	playerChangedDirection : function(player) {
-		var msg = JSON.stringify({type: "player_changed_direction", player: player});
-		this.socket.send(msg);
+		this.sendPlayerUpdate("player_changed_direction", player);
 	},
 	
 	playerDroppedBomb : function(player) {
-		var msg = JSON.stringify({type: "player_dropped_bomb", player: player});
-		this.socket.msg();
+		this.sendPlayerUpdate("player_dropped_bomb", player);
 	},
 	
 	playerDied : function(player) {
-		var msg = JSON.stringify({type: "player_died", player: player});
-		this.socket.msg();
-	}
+        this.sendPlayerUpdate("player_died", player);
+	},
+
+    sendPlayerUpdate : function(type, player) {
+        var msg = JSON.stringify({type: type, player: player});
+        this.socket.send(msg);
+    }
 	
 };
