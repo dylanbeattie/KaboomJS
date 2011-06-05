@@ -10,12 +10,6 @@ KaboomClient.prototype = {
 
     init: function() {
 		var that = this;
-		
-		
-		
-			
-		
-		
     },
 
 
@@ -89,7 +83,7 @@ KaboomClient.prototype = {
 	join: function(){
 		console.log('Joining...');
 		this.socket = new KaboomSocket();
-		this.socket.init(this);
+		this.socket.init(this, window.location.hostname, window.location.port);
 		this.socket.join();
 		
 	},

@@ -4,10 +4,10 @@ function KaboomSocket() {
 };
 
 KaboomSocket.prototype = {
-	init : function(client) {
+	init : function(client, hostname, port) {
 		var that = this;
 		this.client = client;
-		this.socket = new io.Socket("localhost", {port: 5678, transports: ["websocket", "flashsocket"]});
+		this.socket = new io.Socket(hostname, {port: port, transports: ["websocket", "flashsocket"]});
 
 		// EVENTS
 		// connect, connecting, connect_failed, message, close,

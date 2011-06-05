@@ -18,7 +18,6 @@ try {
 
 var config = JSON.parse(configJSON.toString());
 
- 
 var server = express.createServer(express.logger());
 
 server.use(express.static(__dirname + '/public'));
@@ -35,7 +34,8 @@ server.get('/level', function(request, response) {
 	);
 });
 
-server.listen(config.gameServer.port, config.gameServer.host);
+// server.listen(config.gameServer.port, config.gameServer.host);
+server.listen(config.gameServer.port);
 
 console.log("Kaboom! web server running on " + config.gameServer.host + ":" + config.gameServer.port);
 
@@ -55,9 +55,12 @@ function setSocketHandlers() {
 							client.send(msg);
 							return;
 						};
-
-						var output = JSON.stringify({type: "welcome", gameState: runningGame, playerState: runningGame.createPlayer()});
-						client.send(output);
+						var welcomeMessage = JSON.stringify({
+                            type: "welcome",
+                            gameState: runningGame,
+                            playerState: player
+                        });
+						client.send(welcomeMessage);
 						break;
 				};
 			};
