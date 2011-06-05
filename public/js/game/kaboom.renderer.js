@@ -41,6 +41,8 @@ function KaboomRenderer(opts) {
     this.tileClasses = ["solid", "destroyable", "blank"];
     this.initialise();
     var game = opts.game;
+    this.SPRITE_FRAMES = 4; /* How many rows are in the player-X-sprite.png sprite maps? */
+    this.frameIndex = 0;
 }
 
 KaboomRenderer.prototype = {
@@ -79,42 +81,42 @@ KaboomRenderer.prototype = {
 
             if (this.opts.showBoundingBoxes) player.showBoundingBox(this.opts.playerLayer, game);
 
-            var playerDiv = $('#player_' + (i + 1));
+            /* We have a convention of using $foo to indicate the jQuery UI element associated with foo */
+            var $playerDiv = $('#player_' + (i + 1));
 
-            if (!playerDiv.data('isInPlay')) {
-                this.opts.playerLayer.append(playerDiv);
-                playerDiv.data('isInPlay', true);
+            if (!$playerDiv.data('isInPlay')) {
+                this.opts.playerLayer.append($playerDiv);
+                $playerDiv.data('isInPlay', true);
             }
 
-            if (playerDiv.data('y') != player.position.y && playerDiv.data('x') != player.position.x) {
+            if ($playerDiv.data('y') != player.position.y && $playerDiv.data('x') != player.position.x) {
                 var y = player.position.y - 32;
                 var x = player.position.x + 8;
-                playerDiv.css({
+                $playerDiv.css({
                     position: 'absolute',
                     top: y + 'px',
                     left: x + 'px'
                 });
-                playerDiv.data('x', x);
-                playerDiv.data('y', y);
-
-                if (player.velocity != null) {
-                    if (player.velocity.dx != 0 || player.velocity.dy != 0) {
-                        if (player.velocity.dy > 0) {
-                            playerDiv.css({background: 'url(images/walk-down-sprite.png)'});
-                        } else if (player.velocity.dy < 0) {
-                            playerDiv.css({background: 'url(images/walk-up-sprite.png)'});
-                        } else if (player.velocity.dx < 0) {
-                            playerDiv.css({background: 'url(images/walk-left-sprite.png)'});
-                        } else if (player.velocity.dx > 0) {
-                            playerDiv.css({background: 'url(images/walk-right-sprite.png)'});
-                        }
-                        playerDiv.sprite({fps: 2, no_of_frames: 2});
-                    } else {
-                        playerDiv.destroy();
-                    }
-                }
+                $playerDiv.data('x', x);
+                $playerDiv.data('y', y);
+                this.updateSprite(player, $playerDiv);
             }
         }
+    },
+
+    updateSprite : function(player, $player) {
+        /* Sprites are in a 8x4 tile grid, where each tile is 1.5 TILE_SIZE high by 1 TILE_SIZE wide. */
+        /* Sprite COLUMNS representing players facing N, NE, E, SE, S, SW, W, NW from 0 to 7 */
+        var frameIndexX = player.getDirection();
+        var spriteLeftPosition = -1 * (game.TILE_SIZE * frameIndexX);
+        var spriteTopPosition;
+        if(player.isMoving()) {
+            spriteTopPosition = -1.3333 * (game.TILE_SIZE * this.frameIndex);
+        } else {
+            spriteTopPosition = 0;
+        }
+        var cssPosition = spriteLeftPosition + "px " + spriteTopPosition + "px";
+        $player.css({backgroundPosition: cssPosition});
     },
 
     updateItems : function() {
@@ -143,6 +145,7 @@ KaboomRenderer.prototype = {
     },
 
     update : function() {
+       this.frameIndex = (this.frameIndex + 1) % this.SPRITE_FRAMES;
         this.updatePlayerLocations();
         this.updateItems();
     }
