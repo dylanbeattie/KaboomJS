@@ -49,7 +49,7 @@ function setSocketHandlers() {
 			if (msg.type) {
 				switch (msg.type) {
 					case "join":
-						var player = runningGame.createPlayer();
+						var player = runningGame.createPlayer(client.sessionId);
 						if (!player) {
 							msg = JSON.stringify({type: "game_full"});
 							client.send(msg);
@@ -75,8 +75,18 @@ function setSocketHandlers() {
 						}
 
 						break;
+					default:
+					  console.log('unknown message: '+msg);
+					  break;
 				};
 			};
+		});
+		
+		client.on('disconnect', function() {
+		  var player = runningGame.findPlayer({ sessionId: client.sessionId });
+		  
+		  runningGame.removePlayer({ sessionId: client.sessionId });
+		  client.broadcast(JSON.stringify({type: "player_left", playerState: player }));
 		});
 	});	
 };

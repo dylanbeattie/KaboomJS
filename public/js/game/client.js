@@ -106,7 +106,8 @@ KaboomClient.prototype = {
 		  arena: $('#arena'),
 		  playerLayer: $('#playerLayer'),
 		  holding: $('#holding'),
-		  game: game
+		  game: game,
+		  showBoundingBoxes: window.location.search == '?boxes'
 		});
 
 		setInterval(function(){
@@ -127,6 +128,14 @@ KaboomClient.prototype = {
 		var newPlayer = new KaboomPlayer();
 		newPlayer.copyStateFrom(playerState);
 		window.game.addPlayer(newPlayer);
+	},
+	
+	playerLeft: function(playerState){
+	  var player = window.game.findPlayer(playerState);
+	  
+	  if (player) {
+	 	  window.game.removePlayer(player);
+    }
 	}
 };
 

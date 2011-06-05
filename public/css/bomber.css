@@ -71,7 +71,7 @@ body {
   z-index: 100;
 }
 
-.boundingBox.player {
+.boundingBox.playerBoundingBox {
   border: 1px solid green;
 }
 

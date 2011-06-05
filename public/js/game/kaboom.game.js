@@ -35,9 +35,15 @@ KaboomGame.prototype = {
     },
 
     /* Finds the player instance within THIS game representing the same player as the supplied player */
-    findPlayer : function(player) {
-        for(var i = 0; i < this.players.length; i++) {
-            if (this.players[i].name == player.name) return(this.players[i]);
+    findPlayer : function(player) {      
+        for (var i = 0; i < this.players.length; i++) {
+          if (this.players[i] == null) {
+            continue;
+          }
+          
+          if (this.players[i].name === player.name || this.players[i].sessionId === player.sessionId) {
+            return this.players[i];
+          }
         }
     },
 
@@ -56,13 +62,26 @@ KaboomGame.prototype = {
     removePlayer: function(player) {
         /* TODO: Find and free the player slot used by the specified player */
         /* TODO: remember to set the corresponding spawn point.player back to null */
+        var spawnPoint = null;
+        
+        for (var i = 0; i < this.players.length; i++) {
+  	      if (this.players[i] && (this.players[i].name === player.name || this.players[i].sessionId === player.sessionId)) {
+    	      spawnPoint = this.players[i].id;
+    	      console.log(this.players[i].name+' left')
+    	      this.players[i] = null;
+    	    }
+    	  }
+    	  
+    	  if (spawnPoint) {
+    	    this.level.releaseSpawnPoint(spawnPoint);
+  	    }
     },
 
-    createPlayer : function() {
+    createPlayer : function(sessionId) {
         var spawn = this.level.getFirstEmptySpawnPoint();
 		    var that=this;
         if (spawn == null) return(null);
-        var player = new KaboomPlayer(spawn.number, "Player " + spawn.number, that.tilesToPixels(spawn.position));
+        var player = new KaboomPlayer(sessionId, spawn.number, "Player " + spawn.number, that.tilesToPixels(spawn.position));
 		console.log(player);
         this.players[spawn.number - 1] = player;
 		console.log(spawn.number, this.players);
@@ -234,6 +253,14 @@ function Level(initialTileMap) {
 		  var spawn = this.spawns[i];
 			if (spawn.player == null) return(spawn);
 		}
+	}
+	
+	this.releaseSpawnPoint = function(num) {
+	  for (var i = 0; i < this.spawns.length; i++) {
+	    if (this.spawns[i].number === num) {
+	      this.spawns[i].player = null;
+	    }
+	  }
 	}
 }
 

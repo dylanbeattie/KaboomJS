@@ -54,6 +54,9 @@ KaboomSocket.prototype = {
 				case "player_joined":
 					this.client.playerJoined(msg.playerState);
 					break;
+				case "player_left":
+				  this.client.playerLeft(msg.playerState);
+				  break;
 			};
 		};
 	},

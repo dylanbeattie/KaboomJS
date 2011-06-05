@@ -1,7 +1,7 @@
 KaboomPlayer.prototype.showBoundingBox = function(layer, game) {
   var boundingBox = $('#player_'+this.id+'_boundingBox');
   if (boundingBox.length == 0) {
-    boundingBox = $('<div id="player_'+this.id+'_boundingBox" class="boundingBox player" />');
+    boundingBox = $('<div id="player_'+this.id+'_boundingBox" class="boundingBox playerBoundingBox" />');
     layer.append(boundingBox);
   }
   
@@ -75,10 +75,13 @@ function KaboomRenderer(opts) {
   };
   
   this.updatePlayerLocations = function() {
+    var playerDivs = $('.player');
+    var activePlayers = [];
+    
     for (var i = 0; i < game.players.length; i++) {
       var player = game.players[i];
       
-      if (player != null) {
+      if (player) {
         if (opts.showBoundingBoxes) {
           player.showBoundingBox(opts.playerLayer, game);
         }
@@ -101,8 +104,13 @@ function KaboomRenderer(opts) {
           playerDiv.data('x', x);
           playerDiv.data('y', y);
         }
+        
+        activePlayers.push(playerDiv[0]);
       }
     }
+    
+    // move inactive players back to holding
+    opts.holding.append(playerDivs.not(activePlayers));
   };
   
   this.updateItems = function() {
