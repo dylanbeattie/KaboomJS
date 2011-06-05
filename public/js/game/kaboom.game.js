@@ -106,7 +106,7 @@ KaboomGame.prototype = {
                 });
             
                 if (canMove) {
-                    p.position = newPos;
+                    p.position = playerRect.topLeft;
                 }
             }
         });
