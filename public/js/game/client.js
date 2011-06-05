@@ -11,9 +11,8 @@ KaboomClient.prototype = {
     init: function() {
 		var that = this;
     },
-
-
-	onKeyDown : function(event){
+    
+    onKeyDown : function(event){
 		var player = window.player;
 		
 		var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();

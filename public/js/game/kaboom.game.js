@@ -65,6 +65,8 @@ KaboomGame.prototype = {
         var player = new KaboomPlayer(spawn.number, "Player " + spawn.number, that.tilesToPixels(spawn.position));
 		console.log(player);
         this.players[spawn.number - 1] = player;
+		console.log(spawn.number, this.players);
+		spawn.player = player;
         return player;
     },
 
