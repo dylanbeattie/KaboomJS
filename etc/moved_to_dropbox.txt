@@ -1,0 +1,1 @@
+all the binaries, sounds, images, etc. that were in here have been moved to DropBox so we're not deploying them to the Joyent no.de smart machine.

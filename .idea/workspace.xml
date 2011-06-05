@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7317696f-fc4e-428e-a525-03340f4ecdb5" name="Default" comment="Fixed bug - was setting left and width of horizontal box instead of top and height. D'oh.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/bomber.css" afterPath="$PROJECT_DIR$/public/css/bomber.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/client.js" afterPath="$PROJECT_DIR$/public/js/game/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/kaboom.game.js" afterPath="$PROJECT_DIR$/public/js/game/kaboom.game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/game/kaboom.renderer.js" afterPath="$PROJECT_DIR$/public/js/game/kaboom.renderer.js" />
-    </list>
+    <list default="true" id="7317696f-fc4e-428e-a525-03340f4ecdb5" name="Default" comment="" />
     <list id="07e85f89-abd1-48f0-9afd-84fa67e279d7" name="Failed commit: Default" comment="Removed all hardcoded references to &quot;localhost&quot;. server.js will now listen on all available IPs on the specified port, and the KaboomClient passes window.location.hostname and window.location.port into the SocketClient init() routine. This means Kaboom now runs cleanly on remote servers." />
     <ignored path="KaboomJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,7 +54,7 @@
       <file leaf-file-name="kaboom.game.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
+            <state line="146" column="0" selection-start="4650" selection-end="4650" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -71,7 +63,7 @@
       <file leaf-file-name="kaboom.player.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="21" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.0">
+            <state line="54" column="6" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -80,7 +72,7 @@
       <file leaf-file-name="kaboom.renderer.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.renderer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="13" selection-start="3003" selection-end="3003" vertical-scroll-proportion="0.025745258">
+            <state line="141" column="17" selection-start="5358" selection-end="5358" vertical-scroll-proportion="0.5365854">
               <folding />
             </state>
           </provider>
@@ -89,7 +81,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="31" selection-start="907" selection-end="907" vertical-scroll-proportion="-19.826086">
+            <state line="30" column="31" selection-start="907" selection-end="907" vertical-scroll-proportion="-12.086957">
               <folding />
             </state>
           </provider>
@@ -98,7 +90,7 @@
       <file leaf-file-name="bomber.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/bomber.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="27" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0">
+            <state line="71" column="51" selection-start="1014" selection-end="1014" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -139,14 +131,14 @@
         <option value="$PROJECT_DIR$/doc/kaboom_object_model.js" />
         <option value="$PROJECT_DIR$/doc/object_idea_hacks.txt" />
         <option value="$PROJECT_DIR$/etc/client_hax.txt" />
-        <option value="$PROJECT_DIR$/public/js/game/kaboom.player.js" />
         <option value="$PROJECT_DIR$/public/js/game/level.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/public/js/game/kaboom.socket.js" />
-        <option value="$PROJECT_DIR$/public/css/bomber.css" />
-        <option value="$PROJECT_DIR$/public/js/game/kaboom.game.js" />
         <option value="$PROJECT_DIR$/public/js/game/client.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/css/bomber.css" />
+        <option value="$PROJECT_DIR$/public/js/game/kaboom.game.js" />
+        <option value="$PROJECT_DIR$/public/js/game/kaboom.player.js" />
         <option value="$PROJECT_DIR$/public/js/game/kaboom.renderer.js" />
       </list>
     </option>
@@ -385,7 +377,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1004" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278496" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -394,7 +386,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10105758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21800368" sideWeight="0.8989424" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21800368" sideWeight="0.8989424" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25264394" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -431,7 +423,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug - was setting left and width of horizontal box instead of top and height. D'oh." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented frame-based CSS sprite animation for Marvin" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -452,6 +444,7 @@
     <MESSAGE value="Implemented a MockSocket fallback so if the client can't connect to a remote socket server, it'll use a local loopback server instead.&#10;" />
     <MESSAGE value="First stab at implementing separate H/V collision detection so Marvin can &quot;wallbang&quot;..." />
     <MESSAGE value="Fixed bug - was setting left and width of horizontal box instead of top and height. D'oh." />
+    <MESSAGE value="Implemented frame-based CSS sprite animation for Marvin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -479,30 +472,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="21" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/game/level.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/bomber.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="27" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/game/client.js">
@@ -512,16 +484,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bomber.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="51" selection-start="1014" selection-end="1014" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="31" selection-start="907" selection-end="907" vertical-scroll-proportion="-19.826086">
+        <state line="30" column="31" selection-start="907" selection-end="907" vertical-scroll-proportion="-12.086957">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="0" selection-start="4650" selection-end="4650" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="6" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/game/kaboom.renderer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="13" selection-start="3003" selection-end="3003" vertical-scroll-proportion="0.025745258">
+        <state line="141" column="17" selection-start="5358" selection-end="5358" vertical-scroll-proportion="0.5365854">
           <folding />
         </state>
       </provider>
