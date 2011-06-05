@@ -1,46 +1,47 @@
 <!doctype html>
 
 <html>
-	<head>
-		<title>KaboomJS</title>
-	<link rel="stylesheet" type="text/css" href="css/bomber.css" media="screen" />
-	</head>
-	
-	<body>
-		<a id="join" href="#">Join</a>
-		
-		<div id="container">
-			<div id="arena"></div>
-			<div id="playerLayer"></div>
-			<div id="holding"></div>
-		</div>
-		
-		
-		
-		<script src="js/libs/jquery-1.6.1.js"></script>
-		<script src="js/libs/socket.io.min.js"></script>
-		<script src="js/libs/jquery.hotkeys.js"></script>
-		<script src="js/libs/key_status.js"></script>
-		<script src="js/libs/json2.js"></script>
-		<script src="js/game/client.js"></script>
-		<script src="js/game/kaboom.socket.js"></script>
-		<script src="js/game/kaboom.game.js"></script>
-		<script src="js/game/kaboom.player.js"></script>
-		<script src="js/game/kaboom.renderer.js"></script>
-		<script src="js/game/level.js"></script>
-		<script type="text/javascript">
-		$(function(){
-			var client = new KaboomClient({fps: 30});
-			client.init();
+<head>
+    <title>KaboomJS</title>
+    <link rel="stylesheet" type="text/css" href="css/bomber.css" media="screen"/>
+</head>
 
-			$('#join').click(function(){
-				client.join();
-			});	
-			
-		});
-		
-		
-		</script>
-		
-	</body>
+<body>
+<a id="join" href="#">Join</a>
+
+<div id="container">
+    <div id="arena"></div>
+    <div id="playerLayer"></div>
+    <div id="holding"></div>
+</div>
+
+
+<script src="js/libs/jquery-1.6.1.js"></script>
+<script src="js/libs/socket.io.min.js"></script>
+<script src="js/libs/jquery.hotkeys.js"></script>
+<script src="js/libs/key_status.js"></script>
+<script src="js/libs/json2.js"></script>
+<script src="js/game/client.js"></script>
+<script src="js/game/kaboom.socket.js"></script>
+<script src="js/game/kaboom.game.js"></script>
+<script src="js/game/kaboom.player.js"></script>
+<script src="js/game/kaboom.renderer.js"></script>
+<script src="js/game/level.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var client = new KaboomClient({fps: 30});
+        client.init();
+
+        $('#join').click(function() {
+            client.join();
+        });
+
+        $("html").bind('keydown', client.onKeyDown.tie(client));
+        $("html").bind('keyup', client.onKeyUp.tie(client));
+    });
+
+
+</script>
+
+</body>
 </html>
