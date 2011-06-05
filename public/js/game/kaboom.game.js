@@ -91,19 +91,24 @@ KaboomGame.prototype = {
         this.players.forEach(function(p, idx) {
             if (p != null) {
                 var newPos = new Position(
-                        p.position.x + game.DISTANCE * p.velocity.dx,
-                        p.position.y + game.DISTANCE * p.velocity.dy
+                    p.position.x + game.DISTANCE * p.velocity.dx,
+                    p.position.y + game.DISTANCE * p.velocity.dy
                 );
-
-                var playerRect = new Rectangle(newPos.y, newPos.x, 48, 48);
+            
+                //var playerRect = new Rectangle(newPos.x, newPos.y, 48, 48);
+                var playerRect = p.getBounds(game).translate({
+                    x: game.DISTANCE * p.velocity.dx,
+                    y: game.DISTANCE * p.velocity.dy
+                });
+                playerRect.drawToScreen();
                 var canMove = true;
-
+            
                 game.level.forEachIntersectingTile(playerRect, game, function(tile) {
                     if (tile.solid) {
                         canMove = false;
                     }
                 });
-
+            
                 if (canMove) {
                     p.position = newPos;
                 }
@@ -115,7 +120,6 @@ KaboomGame.prototype = {
 if (typeof exports == "object") {
     exports.KaboomGame = KaboomGame;
 }
-;
 
 TileType = {
     Solid: 0,
@@ -144,7 +148,8 @@ function Level(initialTileMap) {
         $(this.rows).each(function(ri, row) {
             $(row).each(function(ti, tile) {
                 tile.isIntersecting = false;
-                if (rect.intersects(tile.getBounds(game))) {
+                var bounds = tile.getBounds(game);
+                if (bounds.intersects(rect)) {
                     tile.isIntersecting = true;
                     callback(tile);
                 }
@@ -238,16 +243,18 @@ function Level(initialTileMap) {
     }
 }
 
-function Tile(solid, tileType, row, col) {
+function Tile (solid, tileType, row, col) {
     this.solid = solid;
     this.tileType = tileType;
     this.row = row;
     this.col = col;
-    this.getBounds = function(game) {
+};
+
+Tile.prototype = {
+    getBounds: function(game) {
         return new Rectangle(this.col * game.TILE_SIZE, this.row * game.TILE_SIZE, game.TILE_SIZE, game.TILE_SIZE);
     }
-}
-;
+};
 
 function Spawn(num, x, y) {
     this.number = num;
@@ -256,23 +263,50 @@ function Spawn(num, x, y) {
 }
 
 function Rectangle(x, y, width, height) {
-    this.x = x;
-    this.y = y;
+    this.x = this.left = x;
+    this.y = this.top = y;
     this.width = width;
     this.height = height;
-    this.left = x;
-    this.top = y;
     this.right = this.left + width;
     this.bottom = this.top + height;
-    this.pointIntersects = function(point) {
-        return point.x >= this.left && point.x < this.right &&
-                point.y >= this.top && point.y < this.bottom;
-    };
-    this.intersects = function(that) {
-        return this.pointIntersects({x: that.top,    y: that.left}) ||
-                this.pointIntersects({x: that.top,    y: that.right}) ||
-                this.pointIntersects({x: that.bottom, y: that.left}) ||
-                this.pointIntersects({x: that.bottom, y: that.right});
-    };
-}
-;
+    this.topLeft = { x: this.left, y: this.top };
+    this.topRight = { x: this.right, y: this.top};
+    this.bottomLeft = { x: this.left, y: this.bottom };
+    this.bottomRight = { x: this.right, y: this.bottom};
+};
+
+Rectangle.prototype = {
+    pointIntersects: function(point) {
+        return point.x > this.left && point.x < this.right &&
+               point.y > this.top  && point.y < this.bottom;
+    },
+    
+    intersects: function(that) {
+        return this.pointIntersects(that.topLeft)    ||
+               this.pointIntersects(that.topRight)   ||
+               this.pointIntersects(that.bottomLeft) ||
+               this.pointIntersects(that.bottomRight);
+    },
+    
+    translate: function(point) {
+        return new Rectangle(this.x + point.x, this.y + point.y, this.width, this.height);
+    },
+    
+    // debug function to display a rect on the screen as a green div
+    drawToScreen: function() {
+        var div = window.DEBUG_RECTANGLE || null;
+        
+        if (div == null) {
+            div = window.DEBUG_RECTANGLE = $('<div style="background: rgba(0, 255, 0, 0.5)" />');
+            $('#playerLayer').append(div);
+        }
+        
+        div.css({
+            position: 'absolute',
+            top: this.top + 'px',
+            left: this.left + 'px',
+            width: this.width + 'px',
+            height: this.height + 'px'
+        });
+    }
+};

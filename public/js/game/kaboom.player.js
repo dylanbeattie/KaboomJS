@@ -12,9 +12,6 @@ var KaboomPlayer = function(id, name, position, velocity) {
     this.name = name;
     this.position = position || new Position(0, 0);
     this.velocity = velocity || new Velocity(0, 0);
-    this.getBounds = function(game) {
-        return new Rectangle(this.position.x, this.position.y, game.TILE_SIZE, game.TILE_SIZE);
-    };
 };
 
 Position = function(x, y) {
@@ -25,8 +22,7 @@ Position = function(x, y) {
 function Velocity(dx, dy) {
     this.dx = dx;
     this.dy = dy;
-}
-;
+};
 
 KaboomPlayer.prototype = {
 
@@ -101,6 +97,10 @@ KaboomPlayer.prototype = {
         this.position = new Position(that.position.x, that.position.y);
         this.velocity = new Velocity(that.velocity.dx, that.velocity.dy);
         return this;
+    },
+  
+    getBounds: function(game) {
+        return new Rectangle(this.position.x, this.position.y, game.TILE_SIZE, game.TILE_SIZE);
     }
 };
 
@@ -108,4 +108,3 @@ if (typeof exports == "object") {
     exports.KaboomPlayer = KaboomPlayer;
     exports.Position = Position;
 }
-;

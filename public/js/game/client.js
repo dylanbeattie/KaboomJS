@@ -85,7 +85,8 @@ KaboomClient.prototype = {
             arena: $('#arena'),
             playerLayer: $('#playerLayer'),
             holding: $('#holding'),
-            game: game
+            game: game,
+            showBoundingBoxes: window.location.search == '?boxes'
         });
 
         setInterval(function() {
