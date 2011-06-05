@@ -1,80 +1,91 @@
-
 body {
-	font-family: helvetica;
-	font-size: 1.5em;
-	background: black;
-	color: #ccc;
+    font-family: helvetica;
+    font-size: 1.5em;
+    background: black;
+    color: #ccc;
 }
 
 #container {
-	position: absolute; 
-	width: 816px; 
-	height: 624px;
-	margin: 5px;
-	padding: 10px;
-	z-index: 0;
+    position: absolute;
+    width: 816px;
+    height: 624px;
+    margin: 5px;
+    padding: 10px;
+    z-index: 0;
 }
 
 #arena, #playerLayer {
-	position: absolute;
-	width: 816px; 
-	height: 624px;
-	z-index: 10;
+    position: absolute;
+    width: 816px;
+    height: 624px;
+    z-index: 10;
 }
 
 #playerLayer {
-  z-index: 20;
+    z-index: 20;
 }
 
 #holding {
-  position: absolute;
-  left: 860px;
-  width: 48px;
-  height: 624px;
-  z-index: 20;
+    position: absolute;
+    left: 860px;
+    width: 48px;
+    height: 624px;
+    z-index: 20;
 }
 
 .row {
-	background: beige;
+    background: beige;
+    position: absolute;
 }
+
 
 .tile {
-	background: transparent;
+    background: transparent;
+    width: 48px;
+    height: 48px;
+    position: absolute;
 }
 
+.tile.solid {
+    background-color: #999;
+}
+
+.tile.destroyable {
+    background-color: #ccc;
+}
 .player {
-  float: left;
-  width: 36px;
-  height: 72px;
-  z-index: 40;
+    position: absolute;
+    width: 36px;
+    height: 72px;
+    z-index: 40;
 }
 
 #player_1 {
-  background: url(../images/player-1.png);
+    background: url(../images/player-1.png);
 }
 
 #player_2 {
-  background: url(../images/player-2.png);
+    background: url(../images/player-2.png);
 }
 
 #player_3 {
-  background: url(../images/player-3.png);
+    background: url(../images/player-3.png);
 }
 
 #player_4 {
-  background: url(../images/player-4.png);
+    background: url(../images/player-4.png);
 }
 
 .boundingBox {
-  border: 1px solid red;
-  position: absolute;
-  z-index: 100;
+    border: 1px solid red;
+    position: absolute;
+    z-index: 100;
 }
 
 .boundingBox.player {
-  border: 1px solid green;
+    border: 1px solid green;
 }
 
 .intersecting {
-  background: rgba(0, 0, 255, 0.5);
+    background: rgba(0, 0, 255, 0.5);
 }

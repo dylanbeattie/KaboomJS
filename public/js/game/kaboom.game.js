@@ -231,11 +231,7 @@ function KaboomLevel(initialTileMap) {
 
             row.push(new Tile(solid, tileType, this.rows.length, row.length));
         }
-        ;
-
-        if (row.length > 0) {
-            this.rows.push(row);
-        }
+        if (row.length) this.rows.push(row);
     }
 
 

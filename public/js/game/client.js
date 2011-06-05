@@ -14,7 +14,6 @@ function KaboomClient(config) {
 KaboomClient.prototype = {
 
     init: function() {
-        var that = this;
     },
 
     /**
