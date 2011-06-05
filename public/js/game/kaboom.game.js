@@ -89,25 +89,27 @@ KaboomGame.prototype = {
         var game = this;
         /* For each player, assume they have moved DISTANCE in their own velocity */
         this.players.forEach(function(p, idx) {
-            if (p) {
-                var playerRect = p
-                    .getBounds(game)
-                    .translate({
-                        x: game.DISTANCE * p.velocity.dx,
-                        y: game.DISTANCE * p.velocity.dy
-                    });
-                var hitTestRect = playerRect.contract(4);
-                var canMove = true;
+            if (!p) return;
+            if (p.velocity.dx == 0 && p.velocity.dy == 0) return;
             
-                game.level.forEachIntersectingTile(hitTestRect, game, function(tile) {
-                    if (tile.solid) {
-                        canMove = false;
-                    }
+            var playerRect = p
+                .getBounds(game)
+                .translate({
+                    x: game.DISTANCE * p.velocity.dx,
+                    y: game.DISTANCE * p.velocity.dy
                 });
-            
-                if (canMove) {
-                    p.position = playerRect.topLeft;
+
+            var hitTestRect = playerRect.contract(4);
+            var canMove = true;
+        
+            game.level.forEachIntersectingTile(hitTestRect, game, function(tile) {
+                if (tile.solid) {
+                    canMove = false;
                 }
+            });
+        
+            if (canMove) {
+                p.position = playerRect.topLeft;
             }
         });
     }
