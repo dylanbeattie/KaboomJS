@@ -60,9 +60,9 @@ KaboomGame.prototype = {
 
     createPlayer : function() {
         var spawn = this.level.getFirstEmptySpawnPoint();
-		var that=this;
+		    var that=this;
         if (spawn == null) return(null);
-        var player = new KaboomPlayer("Player " + spawn.number, that.tilesToPixels(spawn.position));
+        var player = new KaboomPlayer(spawn.number, "Player " + spawn.number, that.tilesToPixels(spawn.position));
 		console.log(player);
         this.players[spawn.number - 1] = player;
         return player;
@@ -86,37 +86,25 @@ KaboomGame.prototype = {
     update: function() {
 		var game = this;
 		/* For each player, assume they have moved DISTANCE in their own velocity */
-		this.players.forEach(function(p, idx)
-		{
-			if (p != null)
-			{
-				/* hacky "looks right for the image we've got values */
-				var width = 43;
-				var height = 38;
-
+		this.players.forEach(function(p, idx) {
+			if (p != null) {
 				var newPos = new Position(
 					p.position.x + game.DISTANCE * p.velocity.dx,
-					p.position.y + game.DISTANCE * p.velocity.dy);
-
-				function goodPos(position)
-				{
-					var tilePos = game.pixelsToTiles(position);
-					var tile = game.level.rows[tilePos.y][tilePos.x];
-					
-					try {
-						if (!tile.solid)
-							return true;
-						}
-					catch (ex) {
-					  console.log(tilePos);
-					  return false;
-					}
-				}
+					p.position.y + game.DISTANCE * p.velocity.dy
+				);
 				
-				var rightPos = new Position(newPos.x + width, newPos.y);
-				var downPos = new Position(newPos.x, newPos.y + height);
-				if (goodPos(newPos) && goodPos(rightPos) && goodPos(downPos))
+				var playerRect = new Rectangle(newPos.y, newPos.x, 48, 48);
+				var canMove = true;
+				
+				game.level.forEachIntersectingTile(playerRect, game, function(tile) {
+				  if (tile.solid) {
+				    canMove = false;
+				  }
+				});
+				
+				if (canMove) {
 					p.position = newPos;
+				}
 			}
 		});
     }
@@ -141,9 +129,25 @@ function Level(initialTileMap) {
     this.spawns = [];
 
     this.copyStateFrom = function(that) {
-        this.rows = that.rows;
+        this.rows = that.rows.map(function(row) {
+          return row.map(function(cell) {
+            return new Tile(cell.solid, cell.tileType, cell.row, cell.col);
+          });
+        });
         this.spawns = that.spawns;
     }
+  
+  this.forEachIntersectingTile = function(rect, game, callback) {
+    $(this.rows).each(function(ri, row) {
+      $(row).each(function(ti, tile) {
+        tile.isIntersecting = false;
+        if (rect.intersects(tile.getBounds(game))) {
+          tile.isIntersecting = true;
+          callback(tile);
+        }
+      });
+    });
+  };
 
 	this.parseLevel = function(tileMap) {
 		var r, c;
@@ -153,15 +157,16 @@ function Level(initialTileMap) {
 		var solid, tileType;
 
 		var row = [];
+    
+    for (var i = 0; i < tileMap.length; i++) {
+      var tileChar = tileMap[i];
 
-		for (r = 0; r < tileMap.length; r++) {
-			entry = tileMap[r];
-			switch (entry) {
-				case "\n":
-					this.rows.push(row);
-					row = [];
-					continue;
-				case "*":
+      switch (tileChar) {
+        case '\n':
+          this.rows.push(row);
+          row = [];
+          continue;
+        case "*":
 					tileType = TileType.Solid;
 					solid = true;
 					spawn = false;
@@ -202,19 +207,18 @@ function Level(initialTileMap) {
 					break;
 				default:
 					console.log(entry);
-
-			}
-			if (spawn)
-			{
+      }
+      
+      if (spawn) {
 				this.spawns.push(new Spawn(spawnNum, row.length, this.rows.length));
 			}
-			var tile = new Tile(solid, tileType);
-			row.push(tile);
-		}
+			
+			row.push(new Tile(solid, tileType, this.rows.length, row.length));
+    };
 
-		if (row.length > 0)
+		if (row.length > 0) {
 			this.rows.push(row);
-		console.log(this.spawns);
+		}
 	}
 
 
@@ -231,13 +235,39 @@ function Level(initialTileMap) {
 	}
 }
 
-function Tile (solid, tileType) { // more shit to add
+function Tile (solid, tileType, row, col) {
 	this.solid = solid;
 	this.tileType = tileType;
-}
+	this.row = row;
+	this.col = col;
+  this.getBounds = function(game) {
+    return new Rectangle(this.col * game.TILE_SIZE, this.row * game.TILE_SIZE, game.TILE_SIZE, game.TILE_SIZE);
+  }
+};
 
 function Spawn (num, x, y) {
 	this.number = num;
 	this.position = new Position(x,y);
 	this.player = null;
 }
+
+function Rectangle(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.left = x;
+  this.top = y;
+  this.right = this.left + width;
+  this.bottom = this.top + height;
+  this.pointIntersects = function(point) {
+    return point.x >= this.left && point.x < this.right &&
+           point.y >= this.top  && point.y < this.bottom;
+  };
+  this.intersects = function(that) {
+    return this.pointIntersects({x: that.top,    y: that.left})  ||
+           this.pointIntersects({x: that.top,    y: that.right}) ||
+           this.pointIntersects({x: that.bottom, y: that.left})  ||
+           this.pointIntersects({x: that.bottom, y: that.right});
+  };
+};

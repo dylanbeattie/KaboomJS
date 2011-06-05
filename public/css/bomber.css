@@ -64,3 +64,17 @@ body {
 #player_4 {
   background: url(../images/player-4.png);
 }
+
+.boundingBox {
+  border: 1px solid red;
+  position: absolute;
+  z-index: 100;
+}
+
+.boundingBox.player {
+  border: 1px solid green;
+}
+
+.intersecting {
+  background: rgba(0, 0, 255, 0.5);
+}

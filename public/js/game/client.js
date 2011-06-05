@@ -103,13 +103,12 @@ KaboomClient.prototype = {
 		$(document).bind('keydown', this.onKeyDown.tie(this));
 		$(document).bind('keyup', this.onKeyUp.tie(this));
 
-		var renderingTargets = {
+	  var renderer = new KaboomRenderer({
 		  arena: $('#arena'),
 		  playerLayer: $('#playerLayer'),
-		  holding: $('#holding')
-		};
-		
-	  var renderer = new KaboomRenderer(renderingTargets, window.game);
+		  holding: $('#holding'),
+		  game: game
+		});
 
 		setInterval(function(){
 			window.game.update();

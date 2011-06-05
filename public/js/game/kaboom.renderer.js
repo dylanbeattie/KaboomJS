@@ -1,4 +1,43 @@
-function KaboomRenderer(target, game) {
+KaboomPlayer.prototype.showBoundingBox = function(layer, game) {
+  var boundingBox = $('#player_'+this.id+'_boundingBox');
+  if (boundingBox.length == 0) {
+    boundingBox = $('<div id="player_'+this.id+'_boundingBox" class="boundingBox player" />');
+    layer.append(boundingBox);
+  }
+  
+  var bounds = this.getBounds(game);
+  boundingBox.css({
+    top: bounds.top + 'px',
+    left: bounds.left + 'px',
+    width: bounds.width + 'px',
+    height: bounds.height + 'px'
+  });
+};
+
+Tile.prototype.showBoundingBox = function(layer, game) {
+  var boundingBox = $('#tile_'+this.row+'x'+this.col+'_boundingBox');
+  if (boundingBox.length == 0) {
+    boundingBox = $('<div id="tile_'+this.row+'x'+this.col+'_boundingBox" class="boundingBox" />');
+    layer.append(boundingBox);
+  }
+  
+  var bounds = this.getBounds(game);
+  boundingBox.css({
+    top: bounds.top + 'px',
+    left: bounds.left + 'px',
+    width: bounds.width + 'px',
+    height: bounds.height + 'px'
+  });
+  
+  if (this.isIntersecting) {
+    boundingBox.addClass('intersecting');
+  } else {
+    boundingBox.removeClass('intersecting');
+  }
+};
+
+function KaboomRenderer(opts) {
+  var game = opts.game;
 	this.itemImages = ["images/solid-block.png", 
 						"images/destroyable-block.png",
 						"images/blank.png" ];
@@ -20,7 +59,7 @@ function KaboomRenderer(target, game) {
     		rowDiv.append(tileDiv);
     	}
 
-    	target.arena.append(rowDiv);
+    	opts.arena.append(rowDiv);
     }
     
     // create players
@@ -32,7 +71,7 @@ function KaboomRenderer(target, game) {
   this.createPlayer = function(num) {
     var playerDiv = $('<div id="player_' + num + '" class="player" />');
     
-    target.holding.append(playerDiv);
+    opts.holding.append(playerDiv);
   };
   
   this.updatePlayerLocations = function() {
@@ -40,10 +79,14 @@ function KaboomRenderer(target, game) {
       var player = game.players[i];
       
       if (player != null) {
+        if (opts.showBoundingBoxes) {
+          player.showBoundingBox(opts.playerLayer, game);
+        }
+        
         var playerDiv = $('#player_' + (i + 1));
         
         if (!playerDiv.data('isInPlay')) {
-          target.playerLayer.append(playerDiv);
+          opts.playerLayer.append(playerDiv);
           playerDiv.data('isInPlay', true);
         }
         
@@ -76,10 +119,15 @@ function KaboomRenderer(target, game) {
     		  url = 'url(' + this.itemImages[tile.tileType] + ')';
     		}
     		
-        if (tileDiv.data('background') != url)
+        if (tileDiv.data('background') != url) {
 			    tileDiv.css('background', url);
 			    tileDiv.data('background', url);
-       }
+        }
+        
+        if (opts.showBoundingBoxes) {
+          tile.showBoundingBox(opts.playerLayer, game);
+        }
+      }
     }
   };
   
