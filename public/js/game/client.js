@@ -14,7 +14,6 @@ function KaboomClient(config) {
 KaboomClient.prototype = {
 
     init: function() {
-        var that = this;
     },
 
     /**
@@ -37,6 +36,7 @@ KaboomClient.prototype = {
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
         var playerActuallyChanged = window.player.go(key);
         if (playerActuallyChanged) this.notifyPlayerChanged();
+        console.log("KEY_DOWN" + window.player.toString());
         return (this.sendKeyToBrowser(key));
     },
 
@@ -49,6 +49,7 @@ KaboomClient.prototype = {
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
         window.player.stop(key);
         this.notifyPlayerChanged();
+        console.log("KEY_UP" + window.player.toString());
         return (this.sendKeyToBrowser(key));
     },
     notifyPlayerChanged: function() {
@@ -61,14 +62,9 @@ KaboomClient.prototype = {
             this.socket = new KaboomSocket();
             this.socket.init(this, window.location.hostname, window.location.port);
         } catch(e) {
-        	try {
-        	  this.socket = new KaboomSocket();
-              this.socket.init(this, "localhost", "5678");
-            }  catch(e) {
-               console.log("Socket init failed - using local mode");
-               this.socket = new MockSocket();
-               this.socket.init(this);
-           }
+            console.log("Socket init failed - using local mode");
+            this.socket = new MockSocket();
+            this.socket.init(this);
         }
         this.socket.join();
     },
