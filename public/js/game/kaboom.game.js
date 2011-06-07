@@ -16,6 +16,7 @@ var KaboomGame = function (levelMap) {
     this.players = [];
     this.DISTANCE = 5;
     this.TILE_SIZE = 48;
+    this.COLLISION_RANGE = 1;
 };
 
 KaboomGame.prototype = {
@@ -84,29 +85,38 @@ KaboomGame.prototype = {
         return new Position(tileX, tileY);
     },
 
-
     update: function() {
         var game = this;
         var tryMove = function(pos, delta) {
             var newPos = pos.translate(delta);
-            var chosen = newPos;
+            var gridPos = {
+                topLeft: game.pixelsToTiles(newPos.topLeft),
+                bottomRight: game.pixelsToTiles(newPos.bottomRight)
+            };
+            var collisionRange = {
+                xStart: Math.max(gridPos.topLeft.x - game.COLLISION_RANGE, 0),
+                xEnd: Math.min(gridPos.bottomRight.x + game.COLLISION_RANGE, 16), // TODO: un-hardcode this
+                yStart: Math.max(gridPos.topLeft.y - game.COLLISION_RANGE, 0),
+                yEnd: Math.min(gridPos.bottomRight.y + game.COLLISION_RANGE, 12)  // TODO: un-hardcode this
+            };
             
-            game.level.forEachTile(function(tile) {
-                var bounds = tile.getBounds(game);
-                
-                tile.candidate = false;
-                tile.isIntersecting = false;
+            for (var x = collisionRange.xStart; x <= collisionRange.xEnd; x++) {
+                for (var y = collisionRange.yStart; y <= collisionRange.yEnd; y++) {
+                    var tile = game.level.rows[y][x];
+                    var bounds = tile.getBounds(game);
+                    
+                    tile.isIntersecting = false;
 
-                if (bounds.intersects(newPos.contract(4))) {
-                    if (tile.solid) {
+                    if (bounds.intersects(newPos.contract(4))) {
                         tile.isIntersecting = true;
-                        chosen = pos;
-                        return;
+                        if (tile.solid) {
+                            return pos;
+                        }
                     }
                 }
-            });
+            }
             
-            return chosen;
+            return newPos;
         };
         
         this.players.forEach(function(p, idx) {
