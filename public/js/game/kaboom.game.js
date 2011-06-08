@@ -91,11 +91,16 @@ KaboomGame.prototype = {
             if (delta.y == 0 && delta.x == 0) return pos;
             
             var newPos = pos.translate(delta);
+            var bbox = newPos.contract(4);
             var gridPos = {
                 topLeft:     game.pixelsToTiles(newPos.topLeft),
                 topRight:    game.pixelsToTiles(newPos.topRight),
                 bottomLeft:  game.pixelsToTiles(newPos.bottomLeft),
                 bottomRight: game.pixelsToTiles(newPos.bottomRight)
+            };
+            var tileBlocking = function(tile) {
+                                   // this makes the player get stuck in the wall!
+                return tile.solid; // && tile.getBounds(game).intersects(newPos.contract(4));
             };
             
             game.level.forEachTile(function(tile) {
@@ -107,46 +112,66 @@ KaboomGame.prototype = {
                 // moving right
                 var tile1 = game.level.rows[gridPos.topRight.y][gridPos.topRight.x];
                 var tile2 = game.level.rows[gridPos.bottomRight.y][gridPos.bottomRight.x];
+                var tile1Bounds = tile1.getBounds(game);
+                var tile2Bounds = tile2.getBounds(game);
                 
-                if (tile1.solid && tile2.solid) {
+                if (tileBlocking(tile1) && tileBlocking(tile2)) {
                     // both tiles ahead are solid, don't move
                     tile1.isIntersecting = true;
                     tile2.isIntersecting = true;
                     return pos;
                 }
-                if (tile1.solid) {
+                if (tileBlocking(tile1)) {
                     // tile to the top right of us is solid but the one to the bottom right is not
                     // move down a bit
                     tile1.isIntersecting = true;
-                    return pos.translate({ x: vel.dx, y: 1 });
+                    if (tile1Bounds.bottomLeft.y - bbox.y <= 18) {
+                        return pos.translate({ x: delta.x, y: game.DISTANCE });
+                    } else {
+                        return pos;
+                    }
                 }
-                if (tile2.solid) {
+                if (tileBlocking(tile2)) {
                     // tile to the bottom right is solid, top right is not
                     // move up a bit
-                    return pos.translate({ x: vel.dx, y: -1 });
+                    if (bbox.y - tile1Bounds.topLeft.y <= 18) {
+                        return pos.translate({ x: delta.x, y: -game.DISTANCE });
+                    } else {
+                        return pos;
+                    }
                 }
             } else if (vel.dx == -1) {
                 // moving left
                 var tile1 = game.level.rows[gridPos.topLeft.y][gridPos.topLeft.x];
                 var tile2 = game.level.rows[gridPos.bottomLeft.y][gridPos.bottomLeft.x];
+                var tile1Bounds = tile1.getBounds(game);
+                var tile2Bounds = tile2.getBounds(game);
                 
-                if (tile1.solid && tile2.solid) {
+                if (tileBlocking(tile1) && tileBlocking(tile2)) {
                     // both tiles ahead are solid, don't move
                     tile1.isIntersecting = true;
                     tile2.isIntersecting = true;
                     return pos;
                 }
-                if (tile1.solid) {
+                if (tileBlocking(tile1)) {
                     // tile to the top left of us is solid but the one to the bottom left is not
                     // move down a bit
                     tile1.isIntersecting = true;
-                    return pos.translate({ x: vel.dx, y: 1 });
+                    if (tile1Bounds.bottomRight.y - bbox.y <= 18) {
+                        return pos.translate({ x: delta.x, y: game.DISTANCE });
+                    } else {
+                        return pos;
+                    }
                 }
-                if (tile2.solid) {
+                if (tileBlocking(tile2)) {
                     // tile to the bottom left is solid, top left is not
                     // move up a bit
                     tile2.isIntersecting = true;
-                    return pos.translate({ x: vel.dx, y: -1 });
+                    if (bbox.y - tile1Bounds.topRight.y <= 18) {
+                        return pos.translate({ x: delta.x, y: -game.DISTANCE });
+                    } else {
+                        return pos;
+                    }
                 }
             }
             
@@ -154,47 +179,68 @@ KaboomGame.prototype = {
                 // moving down
                 var tile1 = game.level.rows[gridPos.bottomLeft.y][gridPos.bottomLeft.x];
                 var tile2 = game.level.rows[gridPos.bottomRight.y][gridPos.bottomRight.x];
+                var tile1Bounds = tile1.getBounds(game);
+                var tile2Bounds = tile2.getBounds(game);
                 
-                if (tile1.solid && tile2.solid) {
+                if (tileBlocking(tile1) && tileBlocking(tile2)) {
                     // both tiles ahead are solid, don't move
                     tile1.isIntersecting = true;
                     tile2.isIntersecting = true;
                     return pos;
                 }
-                if (tile1.solid) {
+                if (tileBlocking(tile1)) {
                     // tile to the bottom left of us is solid but the one to the bottom right is not
                     // move right a bit
                     tile1.isIntersecting = true;
-                    return pos.translate({ x: 1, y: vel.dy });
+                    if (tile1Bounds.topRight.x - bbox.x <= 18) {
+                        return pos.translate({ x: game.DISTANCE, y: delta.y });
+                    } else {
+                        return pos;
+                    }
                 }
-                if (tile2.solid) {
-                    // tile to the bottom left is solid, bottom right is not
+                if (tileBlocking(tile2)) {
+                    // tile to the bottom right is solid, bottom left is not
                     // move left a bit
                     tile2.isIntersecting = true;
-                    return pos.translate({ x: -1, y: vel.dy });
+                    if (bbox.x - tile1Bounds.topLeft.x <= 18) {
+                        return pos.translate({ x: -game.DISTANCE, y: delta.y });
+                    } else {
+                        return pos;
+                    }
                 }
             } else if (vel.dy == -1) {
                 // moving up
                 var tile1 = game.level.rows[gridPos.topLeft.y][gridPos.topLeft.x];
                 var tile2 = game.level.rows[gridPos.topRight.y][gridPos.topRight.x];
+                var tile1Bounds = tile1.getBounds(game);
+                var tile2Bounds = tile2.getBounds(game);
                 
-                if (tile1.solid && tile2.solid) {
+                if (tileBlocking(tile1) && tileBlocking(tile2)) {
                     // both tiles ahead are solid, don't move
                     tile1.isIntersecting = true;
                     tile2.isIntersecting = true;
                     return pos;
                 }
-                if (tile1.solid) {
+                if (tileBlocking(tile1)) {
                     // tile to the top left of us is solid but the one to the top right is not
                     // move right a bit
                     tile1.isIntersecting = true;
+                    if (tile1Bounds.bottomRight.x - bbox.x <= 18) {
+                        return pos.translate({ x: game.DISTANCE, y: delta.y });
+                    } else {
+                        return pos;
+                    }
                     return pos.translate({ x: 1, y: vel.dy });
                 }
-                if (tile2.solid) {
-                    // tile to the top left is solid, top right is not
+                if (tileBlocking(tile2)) {
+                    // tile to the top right is solid, top left is not
                     // move left a bit
                     tile2.isIntersecting = true;
-                    return pos.translate({ x: -1, y: vel.dy });
+                    if (bbox.x - tile1Bounds.bottomLeft.x <= 18) {
+                        return pos.translate({ x: -game.DISTANCE, y: delta.y });
+                    } else {
+                        return pos;
+                    }
                 }
             }
             

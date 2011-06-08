@@ -96,8 +96,8 @@ KaboomRenderer.prototype = {
             }
 
             if ($playerDiv.data('y') != player.position.y && $playerDiv.data('x') != player.position.x) {
-                var y = player.position.y - 32;
-                var x = player.position.x + 8;
+                var y = player.position.y - 8;
+                var x = player.position.x + 4;
                 $playerDiv.css({
                     position: 'absolute',
                     top: y + 'px',
