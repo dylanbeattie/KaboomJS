@@ -87,31 +87,51 @@ KaboomGame.prototype = {
 
     update: function() {
         var game = this;
-        var tryMove = function(pos, delta) {
+        var tryMove = function(pos, delta, vel) {
             var newPos = pos.translate(delta);
             var gridPos = {
                 topLeft: game.pixelsToTiles(newPos.topLeft),
+                topRight: game.pixelsToTiles(newPos.topRight),
+                bottomLeft: game.pixelsToTiles(newPos.bottomLeft),
                 bottomRight: game.pixelsToTiles(newPos.bottomRight)
             };
+            
             var collisionRange = {
-                xStart: Math.max(gridPos.topLeft.x - game.COLLISION_RANGE, 0),
-                xEnd: Math.min(gridPos.bottomRight.x + game.COLLISION_RANGE, 16), // TODO: un-hardcode this
-                yStart: Math.max(gridPos.topLeft.y - game.COLLISION_RANGE, 0),
-                yEnd: Math.min(gridPos.bottomRight.y + game.COLLISION_RANGE, 12)  // TODO: un-hardcode this
+                xStart: Math.max(gridPos.topLeft.x + vel.dx, 0),
+                xEnd: Math.min(gridPos.bottomRight.x + vel.dx, 16), // TODO: un-hardcode this
+                yStart: Math.max(gridPos.topLeft.y + vel.dy, 0),
+                yEnd: Math.min(gridPos.bottomRight.y + vel.dy, 12)  // TODO: un-hardcode this
             };
+
+            game.level.forEachTile(function(tile) {
+                tile.candidate = false;
+            });
+            
+            var coordsToCheck = [
+                gridPos.topLeft,
+                gridPos.topRight,
+                gridPos.bottomLeft,
+                gridPos.bottomRight
+            ];
             
             for (var x = collisionRange.xStart; x <= collisionRange.xEnd; x++) {
                 for (var y = collisionRange.yStart; y <= collisionRange.yEnd; y++) {
-                    var tile = game.level.rows[y][x];
-                    var bounds = tile.getBounds(game);
-                    
-                    tile.isIntersecting = false;
+                    coordsToCheck.push({ x: x, y: y });
+                }
+            }
+            
+            for (var i = 0; i < coordsToCheck.length; i++) {
+                var coords = coordsToCheck[i];
+                var tile = game.level.rows[coords.y][coords.x];
+                var bounds = tile.getBounds(game);
+                
+                tile.isIntersecting = false;
+                tile.candidate = true;
 
-                    if (bounds.intersects(newPos.contract(4))) {
-                        tile.isIntersecting = true;
-                        if (tile.solid) {
-                            return pos;
-                        }
+                if (bounds.intersects(newPos.contract(4))) {
+                    tile.isIntersecting = true;
+                    if (tile.solid) {
+                        return pos;
                     }
                 }
             }
@@ -125,8 +145,8 @@ KaboomGame.prototype = {
             
             var bounds = p.getBounds(game);
             
-            bounds = tryMove(bounds, { x: game.DISTANCE * p.velocity.dx, y: 0 });
-            bounds = tryMove(bounds, { x: 0, y: game.DISTANCE * p.velocity.dy });
+            bounds = tryMove(bounds, { x: game.DISTANCE * p.velocity.dx, y: 0 }, p.velocity);
+            bounds = tryMove(bounds, { x: 0, y: game.DISTANCE * p.velocity.dy }, p.velocity);
             
             p.position = bounds.topLeft;
         });
