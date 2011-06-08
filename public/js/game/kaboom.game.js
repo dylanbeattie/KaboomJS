@@ -88,51 +88,113 @@ KaboomGame.prototype = {
     update: function() {
         var game = this;
         var tryMove = function(pos, delta, vel) {
+            if (delta.y == 0 && delta.x == 0) return pos;
+            
             var newPos = pos.translate(delta);
             var gridPos = {
-                topLeft: game.pixelsToTiles(newPos.topLeft),
-                topRight: game.pixelsToTiles(newPos.topRight),
-                bottomLeft: game.pixelsToTiles(newPos.bottomLeft),
+                topLeft:     game.pixelsToTiles(newPos.topLeft),
+                topRight:    game.pixelsToTiles(newPos.topRight),
+                bottomLeft:  game.pixelsToTiles(newPos.bottomLeft),
                 bottomRight: game.pixelsToTiles(newPos.bottomRight)
             };
             
-            var collisionRange = {
-                xStart: Math.max(gridPos.topLeft.x + vel.dx, 0),
-                xEnd: Math.min(gridPos.bottomRight.x + vel.dx, 16), // TODO: un-hardcode this
-                yStart: Math.max(gridPos.topLeft.y + vel.dy, 0),
-                yEnd: Math.min(gridPos.bottomRight.y + vel.dy, 12)  // TODO: un-hardcode this
-            };
-
             game.level.forEachTile(function(tile) {
                 tile.candidate = false;
+                tile.isIntersecting = false;
             });
             
-            var coordsToCheck = [
-                gridPos.topLeft,
-                gridPos.topRight,
-                gridPos.bottomLeft,
-                gridPos.bottomRight
-            ];
-            
-            for (var x = collisionRange.xStart; x <= collisionRange.xEnd; x++) {
-                for (var y = collisionRange.yStart; y <= collisionRange.yEnd; y++) {
-                    coordsToCheck.push({ x: x, y: y });
+            if (vel.dx == 1) {
+                // moving right
+                var tile1 = game.level.rows[gridPos.topRight.y][gridPos.topRight.x];
+                var tile2 = game.level.rows[gridPos.bottomRight.y][gridPos.bottomRight.x];
+                
+                if (tile1.solid && tile2.solid) {
+                    // both tiles ahead are solid, don't move
+                    tile1.isIntersecting = true;
+                    tile2.isIntersecting = true;
+                    return pos;
+                }
+                if (tile1.solid) {
+                    // tile to the top right of us is solid but the one to the bottom right is not
+                    // move down a bit
+                    tile1.isIntersecting = true;
+                    return pos.translate({ x: vel.dx, y: 1 });
+                }
+                if (tile2.solid) {
+                    // tile to the bottom right is solid, top right is not
+                    // move up a bit
+                    return pos.translate({ x: vel.dx, y: -1 });
+                }
+            } else if (vel.dx == -1) {
+                // moving left
+                var tile1 = game.level.rows[gridPos.topLeft.y][gridPos.topLeft.x];
+                var tile2 = game.level.rows[gridPos.bottomLeft.y][gridPos.bottomLeft.x];
+                
+                if (tile1.solid && tile2.solid) {
+                    // both tiles ahead are solid, don't move
+                    tile1.isIntersecting = true;
+                    tile2.isIntersecting = true;
+                    return pos;
+                }
+                if (tile1.solid) {
+                    // tile to the top left of us is solid but the one to the bottom left is not
+                    // move down a bit
+                    tile1.isIntersecting = true;
+                    return pos.translate({ x: vel.dx, y: 1 });
+                }
+                if (tile2.solid) {
+                    // tile to the bottom left is solid, top left is not
+                    // move up a bit
+                    tile2.isIntersecting = true;
+                    return pos.translate({ x: vel.dx, y: -1 });
                 }
             }
             
-            for (var i = 0; i < coordsToCheck.length; i++) {
-                var coords = coordsToCheck[i];
-                var tile = game.level.rows[coords.y][coords.x];
-                var bounds = tile.getBounds(game);
+            if (vel.dy == 1) {
+                // moving down
+                var tile1 = game.level.rows[gridPos.bottomLeft.y][gridPos.bottomLeft.x];
+                var tile2 = game.level.rows[gridPos.bottomRight.y][gridPos.bottomRight.x];
                 
-                tile.isIntersecting = false;
-                tile.candidate = true;
-
-                if (bounds.intersects(newPos.contract(4))) {
-                    tile.isIntersecting = true;
-                    if (tile.solid) {
-                        return pos;
-                    }
+                if (tile1.solid && tile2.solid) {
+                    // both tiles ahead are solid, don't move
+                    tile1.isIntersecting = true;
+                    tile2.isIntersecting = true;
+                    return pos;
+                }
+                if (tile1.solid) {
+                    // tile to the bottom left of us is solid but the one to the bottom right is not
+                    // move right a bit
+                    tile1.isIntersecting = true;
+                    return pos.translate({ x: 1, y: vel.dy });
+                }
+                if (tile2.solid) {
+                    // tile to the bottom left is solid, bottom right is not
+                    // move left a bit
+                    tile2.isIntersecting = true;
+                    return pos.translate({ x: -1, y: vel.dy });
+                }
+            } else if (vel.dy == -1) {
+                // moving up
+                var tile1 = game.level.rows[gridPos.topLeft.y][gridPos.topLeft.x];
+                var tile2 = game.level.rows[gridPos.topRight.y][gridPos.topRight.x];
+                
+                if (tile1.solid && tile2.solid) {
+                    // both tiles ahead are solid, don't move
+                    tile1.isIntersecting = true;
+                    tile2.isIntersecting = true;
+                    return pos;
+                }
+                if (tile1.solid) {
+                    // tile to the top left of us is solid but the one to the top right is not
+                    // move right a bit
+                    tile1.isIntersecting = true;
+                    return pos.translate({ x: 1, y: vel.dy });
+                }
+                if (tile2.solid) {
+                    // tile to the top left is solid, top right is not
+                    // move left a bit
+                    tile2.isIntersecting = true;
+                    return pos.translate({ x: -1, y: vel.dy });
                 }
             }
             
