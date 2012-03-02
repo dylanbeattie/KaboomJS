@@ -24,12 +24,19 @@
 //    test.done();
 //}
 
-var expressMock, serverMock, kaboom;
+var expressMock, serverMock, kaboom, socketIoMock;
 module.exports = {
     setUp:function (callback) {
         kaboom = require("../kaboom.server");
         expressMock = require('express');
+        socketIoMock = {
+            listen : function(server) {
+              this.isListeningOnServer = true;
+            }
+        };
+        
         expressMock.serverCreated = false;
+        
         serverMock = {
             listen:function (port) {
                 this.listeningOnPort = port;
@@ -46,7 +53,7 @@ module.exports = {
         callback();
     },
     kaboom_server_calls_express_createServer:function (test) {
-        var kaboomServer = kaboom.createServer(expressMock);
+        var kaboomServer = kaboom.createServer(expressMock, socketIoMock);
         kaboomServer.start();
         test.ok(expressMock.serverCreated, "Kaboom! server should start an express server");
         test.done();
@@ -54,9 +61,16 @@ module.exports = {
 
 
     kaboom_server_starts_listening_on_specified_port:function (test) {
-        var kaboomServer = kaboom.createServer(expressMock);
+        var kaboomServer = kaboom.createServer(expressMock, socketIoMock);
         kaboomServer.start(1234);
         test.ok(serverMock.listeningOnPort == 1234, "Server should be started and listening on specified port");
         test.done();
+    },
+    kaboom_server_opens_websocket_connection : function(test) {
+        var kaboomServer = kaboom.createServer(expressMock, socketIoMock);
+        kaboomServer.start(1234);
+        test.ok(socketIoMock.isListeningOnServer, "SocketIO should be started and listening on express server");
+        test.done();
     }
+
 };
