@@ -34,11 +34,11 @@ module.exports = {
             listen:function (port) {
                 this.listeningOnPort = port;
             }
-        }
+        };
         expressMock.createServer = function (logger) {
             this.serverCreated = true;
             return(serverMock);
-        }
+        };
 
         callback();
     },
@@ -59,6 +59,4 @@ module.exports = {
         test.ok(serverMock.listeningOnPort == 1234, "Server should be started and listening on specified port");
         test.done();
     }
-
-
-}
+};
