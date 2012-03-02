@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd43994b-6f5b-4e35-822c-5cde41e39748" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/KaboomJS.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express/node_modules/connect/lib/public/favicon.ico" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express/node_modules/connect/lib/public/icons/page.png" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/express/node_modules/connect/lib/public/icons/page_add.png" />
@@ -90,13 +89,7 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/.npmignore" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/node_modules/nopt/.npmignore" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/node_modules/slide/nodejs-controlling-flow.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kaboom.server.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/.bin/express.cmd" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/.bin/express" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/.bin/nodeunit.cmd" />
@@ -636,7 +629,8 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nodeunit/test/test-testcase-legacy.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nodeunit/test/test-testcase.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nodeunit/test/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/app_tests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="KaboomJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -658,34 +652,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tap-reader.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/bin/tap-reader.js">
+      <file leaf-file-name="app_tests.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/app_tests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="17" column="26" selection-start="559" selection-end="559" vertical-scroll-proportion="0.55791503">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kaboom.server.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kaboom.server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="0" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1330626953668" expanded="true" signature="268:351" placeholder="{...}" />
-                <marker date="1330626953668" expanded="true" signature="467:484" placeholder="{...}" />
-                <marker date="1330626953668" expanded="true" signature="553:619" placeholder="{...}" />
-                <marker date="1330626953668" expanded="true" signature="660:709" placeholder="{...}" />
+                <element signature="e#0#162#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stringify.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/node_modules/runforcover/node_modules/bunker/node_modules/burrito/node_modules/traverse/examples/stringify.js">
+      <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../KaboomJS.Hack-Day/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="137" selection-end="137" vertical-scroll-proportion="0.3207547">
+            <state line="6" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kaboom.game.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../KaboomJS.Hack-Day/public/js/game/kaboom.game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="325" selection-end="580" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1330626967141" expanded="true" signature="180:951" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="211:401" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="295:347" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="440:724" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="524:580" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="618:670" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="763:833" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="874:902" placeholder="{...}" />
-                <marker date="1330626967141" expanded="true" signature="912:949" placeholder="{...}" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -703,6 +704,16 @@
     <option name="UPDATE_CHANGES_POLICY" value="STASH" />
     <option name="LINE_SEPARATORS_CONVERSION" value="ASK" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$USER_HOME$/node_modules/nodeunit/lib/reporters/windows.js" />
+        <option value="$USER_HOME$/node_modules/nodeunit/lib/reporters/index.js" />
+        <option value="$PROJECT_DIR$/kaboom.server.js" />
+        <option value="$PROJECT_DIR$/tests/app_tests.js" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -716,7 +727,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -748,6 +759,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KaboomJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KaboomJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -756,6 +781,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node JS">
+      <method>
+        <option name="PhingTarget" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -770,11 +807,11 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.52228415" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24373259" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14584655" sideWeight="0.47771588" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14584655" sideWeight="0.7562674" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -843,32 +880,80 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/bin/tap-reader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1330626953668" expanded="true" signature="268:351" placeholder="{...}" />
-            <marker date="1330626953668" expanded="true" signature="467:484" placeholder="{...}" />
-            <marker date="1330626953668" expanded="true" signature="553:619" placeholder="{...}" />
-            <marker date="1330626953668" expanded="true" signature="660:709" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/node_modules/runforcover/node_modules/bunker/node_modules/burrito/node_modules/traverse/examples/stringify.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="137" selection-end="137" vertical-scroll-proportion="0.3207547">
           <folding>
-            <marker date="1330626967141" expanded="true" signature="180:951" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="211:401" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="295:347" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="440:724" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="524:580" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="618:670" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="763:833" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="874:902" placeholder="{...}" />
-            <marker date="1330626967141" expanded="true" signature="912:949" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626967141" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodeunit/node_modules/tap/bin/tap-reader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1330626953668" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626953668" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626953668" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1330626953668" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/node_modules/nodeunit/lib/reporters/windows.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="35" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.6257862">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/node_modules/nodeunit/lib/reporters/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="421" selection-end="421" vertical-scroll-proportion="0.6415094">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kaboom.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#162#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../KaboomJS.Hack-Day/public/js/game/kaboom.game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="325" selection-end="580" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../KaboomJS.Hack-Day/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/app_tests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="26" selection-start="559" selection-end="559" vertical-scroll-proportion="0.55791503">
+          <folding />
         </state>
       </provider>
     </entry>
