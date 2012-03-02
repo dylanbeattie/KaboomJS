@@ -6,19 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var KaboomServer = function (fileSystem) {
-    this.fileSystem = fileSystem;
-    this.config = fileSystem.readFileSync("config.js");
+var KaboomServer = function (express) {
+    this.express = express;
 };
 
 KaboomServer.prototype = {
-
-    helloWorld : function(foo, bar) {
-        // This is how you add functions to an object in an exported JS library.
+    start : function(port) {
+        var server = this.express.createServer(this.express.logger());
+        server.listen(port);
     }
 }
 
 
+var createServer = function(fileSystem) {
+    return(new KaboomServer(fileSystem));
+}
+
 if (typeof exports == "object") {
-    exports.KaboomServer = KaboomServer;
+    exports.createServer = createServer;
 }
