@@ -46,7 +46,7 @@ KaboomSocket.prototype = {
     init : function(client, hostname, port) {
         var that = this;
         this.client = client;
-        this.socket = new io.Socket(hostname, {port: port, transports: ["websocket", "flashsocket"]});
+        this.socket = io.connect(); // new io.Socket(hostname, {port: port, transports: ["websocket", "flashsocket"]});
 
         // EVENTS
         // connect, connecting, connect_failed, message, close,
@@ -74,7 +74,7 @@ KaboomSocket.prototype = {
             that.receiveData(data);
         });
 
-        this.socket.connect();
+        //this.socket.connect();
     },
 
     receiveData : function(data) {
@@ -96,6 +96,7 @@ KaboomSocket.prototype = {
 
     join : function() {
         var msg = JSON.stringify({type: "join"});
+        console.log("Sending " + msg);
         this.socket.send(msg);
     },
 
@@ -113,6 +114,7 @@ KaboomSocket.prototype = {
 
     sendPlayerUpdate : function(type, player) {
         var msg = JSON.stringify({type: type, player: player});
-        this.socket.send(msg);
+        console.log("Sending " + msg);
+      this.socket.send(msg);
     }
 };

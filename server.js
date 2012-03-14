@@ -45,8 +45,10 @@ setSocketHandlers();
 function setSocketHandlers() {
 	socket.on("connection", function(client) {
 		client.on("message", function(data) {
+            console.log("Message from: " + data);
 			var msg = JSON.parse(data);
 			if (msg.type) {
+                console.log("Message type is:  " + msg.type);
 				switch (msg.type) {
 					case "join":
 						var player = runningGame.createPlayer();
@@ -62,6 +64,9 @@ function setSocketHandlers() {
                         });
 						client.send(welcomeMessage);
 						break;
+                    default:
+                        client.send(data);
+                        break;
 				};
 			};
 		});
