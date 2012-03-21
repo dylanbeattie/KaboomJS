@@ -1,4 +1,4 @@
-exports.index = function(res, req) {
+exports.index = function(req, res) {
   res.redirect('/index.html');
 }
 exports.level = function(req, res) {
