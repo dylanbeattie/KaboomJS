@@ -40,7 +40,7 @@ app.get('/level', routes.level);
 
 app.listen(config.gameServer.port);
 
-console.log("Kaboom! web server running on " + config.gameServer.host + ":" + config.gameServer.port);
+console.log("Kaboom! web server running on http://%s:%d in '%s' mode", config.gameServer.host, config.gameServer.port, app.settings.env);
 
 socket = io.listen(app);
 setSocketHandlers();
