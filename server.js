@@ -1,6 +1,7 @@
 var express = require('express');
 var io = require("socket.io");
 var fs = require("fs");
+var routes = require("./routes");
 var socket;
 var Game = require(__dirname+"/public/js/game/kaboom.game").KaboomGame;
 var Player = require(__dirname+"/public/js/game/kaboom.player").KaboomPlayer;
@@ -21,22 +22,22 @@ var config = JSON.parse(configJSON.toString());
 var app = express.createServer();
 app.configure(function() {
   app.use(express.logger());
+  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
-
-app.get('/', function(request, response) {
-	response.redirect('/index.html');
+app.configure('development', function() {
+  app.use(express.errorHandler({
+    dumpExceptions: true,
+    showStack: true
+  }))
+});
+app.configure('production', function() {
+  app.use(express.errorHandler());
 });
 
-app.get('/level', function(request, response) {
-	fs.readFile("data/level.txt", "binary", function(err, file)
-		{
-			response.send({"level":file});
-		}
-	);
-});
+app.get('/', routes.index);
+app.get('/level', routes.level);
 
-// app.listen(config.gameServer.port, config.gameServer.host);
 app.listen(config.gameServer.port);
 
 console.log("Kaboom! web server running on " + config.gameServer.host + ":" + config.gameServer.port);
