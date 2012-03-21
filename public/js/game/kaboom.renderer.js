@@ -34,7 +34,7 @@ Tile.prototype.showBoundingBox = function(layer, game) {
     } else {
         boundingBox.removeClass('intersecting');
     }
-    
+
     if (this.candidate) {
         boundingBox.addClass('candidate');
     } else {
@@ -52,14 +52,14 @@ function KaboomRenderer(opts) {
 }
 
 KaboomRenderer.prototype = {
-    makeTileHtml : function(tile) {
+    makeTileHtml: function(tile) {
         var game = this.opts.game;
         var tileHtmlId = 'tile_' + tile.row + '_' + tile.col;
         var tileCssClass = 'tile ' + this.tileClasses[tile.tileType];
-        return('<div id="' + tileHtmlId + '" class="' + tileCssClass + '" style="top: ' + (tile.row * game.TILE_SIZE) + 'px;left:' + tile.col * game.TILE_SIZE + 'px;" />');
+        return ('<div id="' + tileHtmlId + '" class="' + tileCssClass + '" style="top: ' + (tile.row * game.TILE_SIZE) + 'px;left:' + tile.col * game.TILE_SIZE + 'px;" />');
     },
 
-    initialise : function() {
+    initialise: function() {
         var level = game.level;
         // create tiles
         for (var row = 0; row < level.rows.length; row++) {
@@ -74,12 +74,12 @@ KaboomRenderer.prototype = {
         }
     },
 
-    createPlayer : function(num) {
+    createPlayer: function(num) {
         var playerDiv = $('<div id="player_' + num + '" class="player" />');
         this.opts.holding.append(playerDiv);
     },
 
-    updatePlayerLocations : function() {
+    updatePlayerLocations: function() {
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
 
@@ -110,39 +110,38 @@ KaboomRenderer.prototype = {
         }
     },
 
-    updateSprite : function(player, $player) {
-        /* Sprites are in a 8x4 tile grid, where each tile is 1.5 TILE_SIZE high by 1 TILE_SIZE wide. */
+    updateSprite: function(player, $player) { /* Sprites are in a 8x4 tile grid, where each tile is 1.5 TILE_SIZE high by 1 TILE_SIZE wide. */
         /* Sprite COLUMNS representing players facing N, NE, E, SE, S, SW, W, NW from 0 to 7 */
         var frameIndexX = player.getDirection();
         var spriteLeftPosition = -1 * (game.TILE_SIZE * frameIndexX);
         var spriteTopPosition;
-        if(player.isMoving()) {
+        if (player.isMoving()) {
             spriteTopPosition = -1.3333 * (game.TILE_SIZE * this.frameIndex);
         } else {
             spriteTopPosition = 0;
         }
         var cssPosition = spriteLeftPosition + "px " + spriteTopPosition + "px";
-        $player.css({backgroundPosition: cssPosition});
+        $player.css({
+            backgroundPosition: cssPosition
+        });
     },
 
-    updateItems : function() {
+    updateItems: function() {
         for (var rowIndex = 0; rowIndex < game.level.rows.length; rowIndex++) {
             for (var tileIndex = 0; tileIndex < game.level.rows[rowIndex].length; tileIndex++) {
                 var tile = game.level.rows[rowIndex][tileIndex];
-//                var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
-
-//                var url = null;
-//
-//                if (tile == null) {
-//                    url = 'url(images/blank.png)';
-//                } else {
-//                    url = 'url(' + this.itemImages[tile.tileType] + ')';
-//                }
-//
-//                if (tileDiv.data('background') != url) {
-//                    tileDiv.data('background', url);
-//                }
-
+                //                var tileDiv = $('#tile_' + rowIndex + '_' + tileIndex);
+                //                var url = null;
+                //
+                //                if (tile == null) {
+                //                    url = 'url(images/blank.png)';
+                //                } else {
+                //                    url = 'url(' + this.itemImages[tile.tileType] + ')';
+                //                }
+                //
+                //                if (tileDiv.data('background') != url) {
+                //                    tileDiv.data('background', url);
+                //                }
                 if (this.opts.showBoundingBoxes) {
                     tile.showBoundingBox(this.opts.playerLayer, game);
                 }
@@ -150,10 +149,9 @@ KaboomRenderer.prototype = {
         }
     },
 
-    update : function() {
-       this.frameIndex = (this.frameIndex + 1) % this.SPRITE_FRAMES;
+    update: function() {
+        this.frameIndex = (this.frameIndex + 1) % this.SPRITE_FRAMES;
         this.updatePlayerLocations();
         this.updateItems();
     }
 }
-

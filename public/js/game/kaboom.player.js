@@ -6,14 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var KaboomPlayer = function(id, name, position, velocity) {
-    /* Player.name must be unique and can be used to determine equality */
-    this.id = id;
-    this.name = name;
-    this.position = position || new Position(0, 0);
-    this.velocity = velocity || new Velocity(0, 0);
-    this.direction = "";
-};
+var KaboomPlayer = function(id, name, position, velocity) { /* Player.name must be unique and can be used to determine equality */
+        this.id = id;
+        this.name = name;
+        this.position = position || new Position(0, 0);
+        this.velocity = velocity || new Velocity(0, 0);
+        this.direction = "";
+    };
 
 Position = function(x, y) {
     this.x = x;
@@ -29,28 +28,28 @@ KaboomPlayer.prototype = {
 
     go: function(whichWay) {
         switch (whichWay) {
-            case 'left':
-                return(this.goLeft());
-            case 'right':
-                return(this.goRight());
-            case 'up':
-                return(this.goUp());
-            case 'down':
-                return(this.goDown());
+        case 'left':
+            return (this.goLeft());
+        case 'right':
+            return (this.goRight());
+        case 'up':
+            return (this.goUp());
+        case 'down':
+            return (this.goDown());
         }
     },
     stop: function(whichWay) {
         switch (whichWay) {
-            case 'up':
-            case 'down':
-                this.verticalStop();
-                this.updateDirection();
-                break;
-            case 'left':
-            case 'right':
-                this.horizontalStop();
-                this.updateDirection();
-                break;
+        case 'up':
+        case 'down':
+            this.verticalStop();
+            this.updateDirection();
+            break;
+        case 'left':
+        case 'right':
+            this.horizontalStop();
+            this.updateDirection();
+            break;
         }
     },
 
@@ -62,12 +61,12 @@ KaboomPlayer.prototype = {
         if (direction) this.direction = direction;
     },
 
-    getDirection : function() {
-        return(Direction[this.direction] || 0);
+    getDirection: function() {
+        return (Direction[this.direction] || 0);
     },
 
-    isMoving : function() {
-        return(! (this.velocity.dx == 0 && this.velocity.dy == 0));
+    isMoving: function() {
+        return (!(this.velocity.dx == 0 && this.velocity.dy == 0));
     },
 
     goLeft: function() {
@@ -114,14 +113,14 @@ KaboomPlayer.prototype = {
         this.velocity.dy = 0;
     },
 
-    copyStateFrom : function(that) {
+    copyStateFrom: function(that) {
         this.id = that.id;
         this.name = that.name;
         this.position = new Position(that.position.x, that.position.y);
         this.velocity = new Velocity(that.velocity.dx, that.velocity.dy);
         return this;
     },
-  
+
     getBounds: function(game) {
         return new Rectangle(this.position.x, this.position.y, game.TILE_SIZE, game.TILE_SIZE);
     }
