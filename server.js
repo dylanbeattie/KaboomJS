@@ -3,8 +3,8 @@ var io = require("socket.io");
 var fs = require("fs");
 var routes = require("./routes");
 var socket;
-var Game = require(__dirname+"/public/js/game/kaboom.game").KaboomGame;
-var Player = require(__dirname+"/public/js/game/kaboom.player").KaboomPlayer;
+var Game = require(__dirname + "/public/js/game/kaboom.game").KaboomGame;
+var Player = require(__dirname + "/public/js/game/kaboom.player").KaboomPlayer;
 
 var runningGame;
 var levelMap = fs.readFileSync("data/level.txt", "binary");
@@ -13,7 +13,7 @@ console.log(runningGame);
 
 try {
   var configJSON = fs.readFileSync(__dirname + '/server/config.json');
-} catch(e) {
+} catch (e) {
   console.error('config.json not found');
 }
 
@@ -46,34 +46,36 @@ socket = io.listen(app);
 setSocketHandlers();
 
 function setSocketHandlers() {
-	socket.on("connection", function(client) {
-		client.on("message", function(data) {
-            console.log("Message from: " + data);
-			var msg = JSON.parse(data);
-			if (msg.type) {
-                console.log("Message type is:  " + msg.type);
-				switch (msg.type) {
-					case "join":
-						var player = runningGame.createPlayer();
-						if (!player) {
-							msg = JSON.stringify({type: "game_full"});
-							client.send(msg);
-							return;
-						};
-						var welcomeMessage = JSON.stringify({
-                            type: "welcome",
-                            gameState: runningGame,
-                            playerState: player
-                        });
-						client.send(welcomeMessage);
-						break;
-                    default:
-                        client.send(data);
-                        break;
-				};
-			};
-		});
-	});	
+  socket.on("connection", function(client) {
+    client.on("message", function(data) {
+      console.log("Message from: " + data);
+      var msg = JSON.parse(data);
+      if (msg.type) {
+        console.log("Message type is:  " + msg.type);
+        switch (msg.type) {
+        case "join":
+          var player = runningGame.createPlayer();
+          if (!player) {
+            msg = JSON.stringify({
+              type: "game_full"
+            });
+            client.send(msg);
+            return;
+          };
+          var welcomeMessage = JSON.stringify({
+            type: "welcome",
+            gameState: runningGame,
+            playerState: player
+          });
+          client.send(welcomeMessage);
+          break;
+        default:
+          client.send(data);
+          break;
+        };
+      };
+    });
+  });
 };
 
 ////back door to kaboom
