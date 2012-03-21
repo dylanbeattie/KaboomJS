@@ -18,15 +18,17 @@ try {
 
 var config = JSON.parse(configJSON.toString());
 
-var server = express.createServer(express.logger());
+var app = express.createServer();
+app.configure(function() {
+  app.use(express.logger());
+  app.use(express.static(__dirname + '/public'));
+});
 
-server.use(express.static(__dirname + '/public'));
-
-server.get('/', function(request, response) {
+app.get('/', function(request, response) {
 	response.redirect('/index.html');
 });
 
-server.get('/level', function(request, response) {
+app.get('/level', function(request, response) {
 	fs.readFile("data/level.txt", "binary", function(err, file)
 		{
 			response.send({"level":file});
@@ -34,12 +36,12 @@ server.get('/level', function(request, response) {
 	);
 });
 
-// server.listen(config.gameServer.port, config.gameServer.host);
-server.listen(config.gameServer.port);
+// app.listen(config.gameServer.port, config.gameServer.host);
+app.listen(config.gameServer.port);
 
 console.log("Kaboom! web server running on " + config.gameServer.host + ":" + config.gameServer.port);
 
-socket = io.listen(server);
+socket = io.listen(app);
 setSocketHandlers();
 
 function setSocketHandlers() {
@@ -83,6 +85,6 @@ function setSocketHandlers() {
 //    var context = repl.start("kaboom server> ", connection).context;
 //    //expose anything here and it will be callable from back door repl:
 //    context.socket = socket;
-//    context.server = server;
+//    context.server = app;
 //  });
 //}).listen(config.backDoor.port, config.backDoor.host);
