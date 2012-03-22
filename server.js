@@ -45,12 +45,12 @@ var io = require("socket.io").listen(app);
 setSocketHandlers();
 
 function setSocketHandlers() {
-      console.log("Message from: " + data);
   io.sockets.on("connection", function(socket) {
     socket.on("message", function(data) {
+      console.log("Message from: %s", data);
       var msg = JSON.parse(data);
       if (msg.type) {
-        console.log("Message type is:  " + msg.type);
+        console.log("Message type is: %s", msg.type);
         switch (msg.type) {
         case "join":
           var player = runningGame.createPlayer();
