@@ -42,40 +42,36 @@ app.listen(config.gameServer.port);
 console.log("Kaboom! web server running on http://%s:%d in '%s' mode", config.gameServer.host, config.gameServer.port, app.settings.env);
 
 var io = require("socket.io").listen(app);
-setSocketHandlers();
-
-function setSocketHandlers() {
-  io.sockets.on("connection", function(socket) {
-    socket.on("message", function(data) {
-      console.log("Message from: %s", data);
-      var msg = JSON.parse(data);
-      if (msg.type) {
-        console.log("Message type is: %s", msg.type);
-        switch (msg.type) {
-        case "join":
-          var player = runningGame.createPlayer();
-          if (!player) {
-            msg = JSON.stringify({
-              type: "game_full"
-            });
-            socket.send(msg);
-            return;
-          };
-          var welcomeMessage = JSON.stringify({
-            type: "welcome",
-            gameState: runningGame,
-            playerState: player
+io.sockets.on("connection", function(socket) {
+  socket.on("message", function(data) {
+    console.log("Message from: %s", data);
+    var msg = JSON.parse(data);
+    if (msg.type) {
+      console.log("Message type is: %s", msg.type);
+      switch (msg.type) {
+      case "join":
+        var player = runningGame.createPlayer();
+        if (!player) {
+          msg = JSON.stringify({
+            type: "game_full"
           });
-          socket.send(welcomeMessage);
-          break;
-        default:
-          socket.send(data);
-          break;
+          socket.send(msg);
+          return;
         };
+        var welcomeMessage = JSON.stringify({
+          type: "welcome",
+          gameState: runningGame,
+          playerState: player
+        });
+        socket.send(welcomeMessage);
+        break;
+      default:
+        socket.send(data);
+        break;
       };
-    });
+    };
   });
-};
+});
 
 ////back door to kaboom
 //var repl = require('repl');
