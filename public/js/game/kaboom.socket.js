@@ -30,7 +30,7 @@ KaboomSocket.prototype = {
     init: function(client, hostname, port) {
         var that = this;
         this.client = client;
-        this.socket = io.connect(); // new io.Socket(hostname, {port: port, transports: ["websocket", "flashsocket"]});
+        this.socket = io.connect();
         // EVENTS
         // connect, connecting, connect_failed, message, close,
         // disconnect, reconnect, reconnecting, reconnect_failed
@@ -42,21 +42,17 @@ KaboomSocket.prototype = {
         // WebSocket connection failed
         this.socket.on("connect_failed", function() {
             console.log("Connect failed");
-
         });
 
         // WebSocket disconnection
         this.socket.on("disconnect", function() {
             console.log("Disconnected");
-
         });
 
         // WebSocket message received
         this.socket.on("message", function(data) {
             that.receiveData(data);
         });
-
-        //this.socket.connect();
     },
 
     receiveData: function(data) {
