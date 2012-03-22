@@ -43,33 +43,25 @@ console.log("Kaboom! web server running on http://%s:%d in '%s' mode", config.ga
 
 var io = require("socket.io").listen(app);
 io.sockets.on("connection", function(socket) {
-  socket.on("message", function(data) {
-    console.log("Message from: %s", data);
-    var msg = JSON.parse(data);
-    if (msg.type) {
-      console.log("Message type is: %s", msg.type);
-      switch (msg.type) {
-      case "join":
-        var player = runningGame.createPlayer();
-        if (!player) {
-          msg = JSON.stringify({
-            type: "game_full"
-          });
-          socket.send(msg);
-          return;
-        };
-        var welcomeMessage = JSON.stringify({
-          type: "welcome",
-          gameState: runningGame,
-          playerState: player
-        });
-        socket.send(welcomeMessage);
-        break;
-      default:
-        socket.send(data);
-        break;
-      };
-    };
+  socket.on("join", function(data) {
+    console.info("join: %s", JSON.stringify(data));
+    var player = runningGame.createPlayer();
+    if (!player) {
+      socket.emit("game_full", {});
+      return;
+    }
+    socket.emit("welcome_ack", {
+      gameState: runningGame,
+      playerState: player
+    });
+  });
+  socket.on("player_changed_direction", function(playerState) {
+    console.info("player_changed_direction: %s", JSON.stringify(playerState));
+    var player = runningGame.findPlayer(playerState);
+    if (!player) {
+      return;
+    }
+    // TODO: broadcast player-state to other players
   });
 });
 

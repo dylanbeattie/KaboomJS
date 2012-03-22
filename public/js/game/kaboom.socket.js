@@ -31,73 +31,42 @@ KaboomSocket.prototype = {
         var that = this;
         this.client = client;
         this.socket = io.connect();
-        // EVENTS
-        // connect, connecting, connect_failed, message, close,
-        // disconnect, reconnect, reconnecting, reconnect_failed
-        // WebSocket connection successful
+
         this.socket.on("connect", function() {
-            console.log("Connected");
+            console.info("Connected");
         });
 
-        // WebSocket connection failed
         this.socket.on("connect_failed", function() {
-            console.log("Connect failed");
+            console.info("Connect failed");
         });
 
-        // WebSocket disconnection
         this.socket.on("disconnect", function() {
-            console.log("Disconnected");
+            console.info("Disconnected");
         });
 
-        // WebSocket message received
-        this.socket.on("message", function(data) {
-            that.receiveData(data);
+        this.socket.on("welcome_ack", function(data) {
+            console.info("Rx welcome_ack " + JSON.stringify(data));
+            that.client.gameSuccessfullyJoined(data.gameState, data.playerState);
         });
-    },
 
-    receiveData: function(data) {
-        var msg = JSON.parse(data);
-
-        console.log(msg);
-
-        if (msg.type) {
-            switch (msg.type) {
-            case "welcome":
-                this.client.gameSuccessfullyJoined(msg.gameState, msg.playerState);
-                break;
-            case "player_changed_direction":
-                this.client.playerChangedDirection(msg.playerState);
-                break;
-            }
-        }
+        this.socket.on("player_changed_direction", function(data) {
+            this.client.playerChangedDirection(data.playerState);
+        });
     },
 
     join: function() {
-        var msg = JSON.stringify({
-            type: "join"
-        });
-        console.log("Sending " + msg);
-        this.socket.send(msg);
+        this.socket.emit("join", {});
     },
 
     playerChangedDirection: function(player) {
-        this.sendPlayerUpdate("player_changed_direction", player);
+        this.socket.emit("player_changed_direction", player);
     },
 
     playerDroppedBomb: function(player) {
-        this.sendPlayerUpdate("player_dropped_bomb", player);
+        this.socket.emit("player_dropped_bomb", player);
     },
 
     playerDied: function(player) {
-        this.sendPlayerUpdate("player_died", player);
-    },
-
-    sendPlayerUpdate: function(type, player) {
-        var msg = JSON.stringify({
-            type: type,
-            player: player
-        });
-        console.log("Sending " + msg);
-        this.socket.send(msg);
+        this.socket.emit("player_died", player);
     }
 };
