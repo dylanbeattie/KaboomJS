@@ -98,6 +98,7 @@ KaboomClient.prototype = {
      * @param playerState The new player who has connected to the current game of Kaboom
      */
     playerJoined: function(playerState) {
+        console.info("playerJoined: " + playerState);
         var newPlayer = new KaboomPlayer();
         newPlayer.copyStateFrom(playerState);
         window.game.addPlayer(newPlayer);

@@ -37,8 +37,11 @@ KaboomGame.prototype = {
 
     /* Finds the player instance within THIS game representing the same player as the supplied player */
     findPlayer: function(player) {
+        console.log("finding player in %s", JSON.stringify(this.players));
         for (var i = 0; i < this.players.length; i++) {
-            if (this.players[i].name == player.name) return (this.players[i]);
+            if (this.players[i] != null && this.players[i].name == player.name) {
+                return (this.players[i]);
+            }
         }
     },
 
