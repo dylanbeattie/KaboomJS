@@ -1,0 +1,15 @@
+join
+  broadcast new player to socket
+  reflect new player having joined on other clients' game-state
+
+player_changed_direction
+  shove onto socket; JSON rep of that player's location when they changed direction, and the now-changed-to direction
+  broadcast from server to socket "send" socket.broadcast.socket.send
+    relay message to all clients other than the initiator - who has already updated their own rendered view
+  update own rendered view
+  when client receives player_changed_direction from server
+    should have a JSON message with the player-state, which has the new state of the player that changed
+      update client's internal representation of state
+
+BUG 2
+When join button is clicked more than once, control toggles onto other player and speed is increased (2x messages, then 3x messages, etc)
