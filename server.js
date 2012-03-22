@@ -63,6 +63,8 @@ io.sockets.on("connection", function(socket) {
     if (!player) {
       return;
     }
+    console.info("Found player %d, %s", player.id, JSON.stringify(player));
+    player.copyStateFrom(playerState);
     socket.broadcast.emit("player_changed_direction", playerState);
   });
 });

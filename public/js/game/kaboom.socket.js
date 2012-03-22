@@ -45,7 +45,6 @@ KaboomSocket.prototype = {
         });
 
         this.socket.on("welcome_ack", function(data) {
-            console.info("Rx welcome_ack " + JSON.stringify(data));
             that.client.gameSuccessfullyJoined(data.gameState, data.playerState);
         });
 
@@ -54,7 +53,7 @@ KaboomSocket.prototype = {
         });
 
         this.socket.on("player_changed_direction", function(data) {
-            this.client.playerChangedDirection(data.playerState);
+            that.client.playerChangedDirection(data);
         });
     },
 
