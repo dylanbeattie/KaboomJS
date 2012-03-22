@@ -1,5 +1,4 @@
 var express = require('express');
-var io = require("socket.io");
 var fs = require("fs");
 var routes = require("./routes");
 var socket;
@@ -42,13 +41,13 @@ app.listen(config.gameServer.port);
 
 console.log("Kaboom! web server running on http://%s:%d in '%s' mode", config.gameServer.host, config.gameServer.port, app.settings.env);
 
-socket = io.listen(app);
+var io = require("socket.io").listen(app);
 setSocketHandlers();
 
 function setSocketHandlers() {
-  socket.on("connection", function(client) {
-    client.on("message", function(data) {
       console.log("Message from: " + data);
+  io.sockets.on("connection", function(socket) {
+    socket.on("message", function(data) {
       var msg = JSON.parse(data);
       if (msg.type) {
         console.log("Message type is:  " + msg.type);
@@ -59,7 +58,7 @@ function setSocketHandlers() {
             msg = JSON.stringify({
               type: "game_full"
             });
-            client.send(msg);
+            socket.send(msg);
             return;
           };
           var welcomeMessage = JSON.stringify({
@@ -67,10 +66,10 @@ function setSocketHandlers() {
             gameState: runningGame,
             playerState: player
           });
-          client.send(welcomeMessage);
+          socket.send(welcomeMessage);
           break;
         default:
-          client.send(data);
+          socket.send(data);
           break;
         };
       };
