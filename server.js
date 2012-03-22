@@ -61,7 +61,7 @@ io.sockets.on("connection", function(socket) {
     if (!player) {
       return;
     }
-    // TODO: broadcast player-state to other players
+    socket.broadcast.emit("player_changed_direction", playerState);
   });
 });
 
