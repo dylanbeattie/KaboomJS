@@ -39,7 +39,7 @@ KaboomGame.prototype = {
     findPlayer: function(player) {
         console.log("finding player in %s", JSON.stringify(this.players));
         for (var i = 0; i < this.players.length; i++) {
-            if (this.players[i] != null && this.players[i].name == player.name) {
+            if (this.players[i] && this.players[i].name == player.name) {
                 return (this.players[i]);
             }
         }
