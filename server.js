@@ -44,19 +44,21 @@ console.log("Kaboom! web server running on http://%s:%d in '%s' mode", config.ga
 var io = require("socket.io").listen(app);
 io.sockets.on("connection", function(socket) {
   socket.on("join", function(data) {
-    console.info("join: %s", JSON.stringify(data));
+    console.info("Rx join %s", JSON.stringify(data));
     var player = runningGame.createPlayer();
     if (!player) {
       socket.emit("game_full", {});
       return;
     }
-    socket.emit("welcome_ack", {
+    var ack = {
       gameState: runningGame,
       playerState: player
-    });
+    };
+    socket.emit("welcome_ack", ack);
+    socket.broadcast.emit("player_joined", ack);
   });
   socket.on("player_changed_direction", function(playerState) {
-    console.info("player_changed_direction: %s", JSON.stringify(playerState));
+    console.info("Rx player_changed_direction: %s", JSON.stringify(playerState));
     var player = runningGame.findPlayer(playerState);
     if (!player) {
       return;

@@ -49,6 +49,10 @@ KaboomSocket.prototype = {
             that.client.gameSuccessfullyJoined(data.gameState, data.playerState);
         });
 
+        this.socket.on("player_joined", function(data) {
+            that.client.playerJoined(data.playerState);
+        });
+
         this.socket.on("player_changed_direction", function(data) {
             this.client.playerChangedDirection(data.playerState);
         });
