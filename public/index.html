@@ -7,8 +7,6 @@
 </head>
 
 <body>
-<a id="join" href="#">Join</a>
-
 <div id="container">
     <div id="arena"></div>
     <div id="playerLayer"></div>
@@ -32,11 +30,7 @@
     $(function() {
         var client = new KaboomClient({fps: 30});
         client.init();
-
-        $('#join').click(function() {
-            client.join();
-            $(this).hide();
-        });
+        client.join();
 
         $("html").bind('keydown', client.onKeyDown.tie(client));
         $("html").bind('keyup', client.onKeyUp.tie(client));
@@ -44,6 +38,5 @@
 
 
 </script>
-
 </body>
 </html>
