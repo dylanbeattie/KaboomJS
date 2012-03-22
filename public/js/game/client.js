@@ -1,9 +1,10 @@
 /***
- * Manages the interaction between the keyboard, renderer, socket/IO library and game engine, when running KaboomJS in a web browser.
+ * Manages the interaction between the keyboard, renderer, 
+ * socket/IO library and game engine, when running KaboomJS
+ * in a web browser.
  * @constructor
  * @param config the game configuration data.
  */
-
 function KaboomClient(config) {
     config = config || {};
     this.gameLoopTick = Math.floor(1000 / (config.fps || 30));
@@ -106,7 +107,6 @@ KaboomClient.prototype = {
 /***
  * Wraps this function in another, and locks its execution scope to the object specified as the first argument.
  */
-
 Function.prototype.tie = function() {
     if (arguments.length < 2 && arguments[0] === undefined) return this;
     var thisObj = this,

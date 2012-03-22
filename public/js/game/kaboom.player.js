@@ -6,13 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var KaboomPlayer = function(id, name, position, velocity) { /* Player.name must be unique and can be used to determine equality */
-        this.id = id;
-        this.name = name;
-        this.position = position || new Position(0, 0);
-        this.velocity = velocity || new Velocity(0, 0);
-        this.direction = "";
-    };
+var KaboomPlayer = function(id, name, position, velocity) { 
+    /* Player.name must be unique and can be used to determine equality */
+    this.id = id;
+    this.name = name;
+    this.position = position || new Position(0, 0);
+    this.velocity = velocity || new Velocity(0, 0);
+    this.direction = "";
+};
 
 Position = function(x, y) {
     this.x = x;

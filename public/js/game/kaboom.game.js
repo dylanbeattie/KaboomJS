@@ -12,12 +12,12 @@ if (typeof require == "function") {
 };
 
 var KaboomGame = function(levelMap) {
-        this.level = new KaboomLevel(levelMap);
-        this.players = [];
-        this.DISTANCE = 5;
-        this.TILE_SIZE = 48;
-        this.COLLISION_RANGE = 1;
-    };
+    this.level = new KaboomLevel(levelMap);
+    this.players = [];
+    this.DISTANCE = 5;
+    this.TILE_SIZE = 48;
+    this.COLLISION_RANGE = 1;
+};
 
 KaboomGame.prototype = {
 
@@ -54,7 +54,8 @@ KaboomGame.prototype = {
         return (player);
     },
 
-    removePlayer: function(player) { /* TODO: Find and free the player slot used by the specified player */
+    removePlayer: function(player) { 
+        /* TODO: Find and free the player slot used by the specified player */
         /* TODO: remember to set the corresponding spawn point.player back to null */
     },
 
@@ -407,7 +408,6 @@ function KaboomLevel(initialTileMap) {
         }
         if (row.length) this.rows.push(row);
     }
-
 
     if (initialTileMap) {
         this.parseLevel(initialTileMap);
