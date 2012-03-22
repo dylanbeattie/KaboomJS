@@ -35,6 +35,7 @@
 
         $('#join').click(function() {
             client.join();
+            $(this).hide();
         });
 
         $("html").bind('keydown', client.onKeyDown.tie(client));
