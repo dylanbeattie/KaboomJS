@@ -9,5 +9,9 @@
   },
   "devDependencies": {
     
+  },
+  "engines": {
+    "node": "0.6.x",
+    "npm": "1.1.x"
   }
 }
