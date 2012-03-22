@@ -52,7 +52,9 @@ KaboomClient.prototype = {
         return (this.sendKeyToBrowser(key));
     },
     notifyPlayerChanged: function() {
-        if (this.socket) this.socket.playerChangedDirection(window.player);
+        if (this.socket) {
+            this.socket.playerChangedDirection(window.player);
+        }
     },
 
     join: function() {
