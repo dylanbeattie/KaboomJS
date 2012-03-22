@@ -81,7 +81,7 @@ KaboomClient.prototype = {
         window.game.copyStateFrom(gameState);
 
         window.player = window.game.findPlayer(playerState);
-        var renderer = new KaboomRenderer({
+        window.renderer = new KaboomRenderer({
             arena: $('#arena'),
             playerLayer: $('#playerLayer'),
             holding: $('#holding'),
@@ -91,7 +91,7 @@ KaboomClient.prototype = {
 
         setInterval(function() {
             window.game.update();
-            renderer.update();
+            window.renderer.update();
         }, this.gameLoopTick);
     },
 
@@ -104,6 +104,8 @@ KaboomClient.prototype = {
         var newPlayer = new KaboomPlayer();
         newPlayer.copyStateFrom(playerState);
         window.game.addPlayer(newPlayer);
+        window.renderer.createPlayer(window.game.players.length);
+        console.info("after new player joined: " + JSON.stringify(window.game.players));
     }
 };
 
