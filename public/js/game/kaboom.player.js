@@ -13,6 +13,8 @@ var KaboomPlayer = function(id, name, position, velocity) {
     this.position = position || new Position(0, 0);
     this.velocity = velocity || new Velocity(0, 0);
     this.direction = "";
+    this.allowedBombs = 1;
+    this.bombPower = 1;
 };
 
 Position = function(x, y) {
@@ -39,6 +41,7 @@ KaboomPlayer.prototype = {
             return (this.goDown());
         }
     },
+
     stop: function(whichWay) {
         switch (whichWay) {
         case 'up':
@@ -117,6 +120,8 @@ KaboomPlayer.prototype = {
     copyStateFrom: function(that) {
         this.id = that.id;
         this.name = that.name;
+        this.allowedBombs = that.allowedBombs;
+        this.bombPower = that.bombPower;
         this.position = new Position(that.position.x, that.position.y);
         this.velocity = new Velocity(that.velocity.dx, that.velocity.dy);
         return this;

@@ -25,7 +25,7 @@ KaboomClient.prototype = {
      */
 
     sendKeyToBrowser: function(key) {
-        return (key != 'up' && key != 'down' && key != 'left' && key != 'right');
+        return (key != 'up' && key != 'down' && key != 'left' && key != 'right' && key != 'space');
     },
 
     /***
@@ -35,8 +35,12 @@ KaboomClient.prototype = {
     onKeyDown: function(event) {
         if (!window.player) return (true);
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
-        var playerActuallyChanged = window.player.go(key);
-        if (playerActuallyChanged) this.notifyPlayerChanged();
+        if (key == 'space') {
+            this.playerDropsBomb(window.player);
+        } else {
+            var playerActuallyChanged = window.player.go(key);
+            if (playerActuallyChanged) this.notifyPlayerChanged();
+        }
         return (this.sendKeyToBrowser(key));
     },
 
@@ -47,8 +51,10 @@ KaboomClient.prototype = {
     onKeyUp: function(event) {
         if (!window.player) return (true);
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
-        window.player.stop(key);
-        this.notifyPlayerChanged();
+        if (key != 'space') {
+            window.player.stop(key);
+            this.notifyPlayerChanged();
+        }
         return (this.sendKeyToBrowser(key));
     },
 
@@ -107,6 +113,12 @@ KaboomClient.prototype = {
         console.info("playerChangedDirection: " + JSON.stringify(playerState));
         var player = window.game.findPlayer(playerState);
         player.copyStateFrom(playerState);
+    },
+
+    playerDropsBomb: function(playerState) {
+        if (window.game.playerCanDropBomb(playerState)) {
+            window.game.playerDropBomb(playerState);
+        }
     }
 };
 

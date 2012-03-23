@@ -17,6 +17,7 @@ var KaboomGame = function(levelMap) {
     this.DISTANCE = 5;
     this.TILE_SIZE = 48;
     this.COLLISION_RANGE = 1;
+    this.DEFAULT_FUSE_TIME_MS = 5000;
 };
 
 KaboomGame.prototype = {
@@ -294,6 +295,29 @@ KaboomGame.prototype = {
 
             p.position = bounds.topLeft;
         });
+    },
+
+    playerCanDropBomb: function(player) {
+        var bombs = this.level.findBombsByPlayer(player);
+        if (bombs.length >= player.allowedBombs) {
+            console.info("Cannot drop: player %d has %d bombs laid already; allowed %d", player.id, bombs.length, player.allowedBombs);
+            return false;
+        }
+        if (!this.level.bombCanBeHere(player.position)) {
+            console.info("Cannot drop: level says bomb cannot be here.");
+            return false;
+        }
+        console.info("%d can drop bomb at %d,%d", player.id, player.position.x, player.position.y);
+        return true;
+    },
+
+    playerDropBomb: function(player) {
+        this.level.bombAt(player, this.DEFAULT_FUSE_TIME_MS, this.boom);
+    },
+
+    boom: function(bomb) {
+        console.info("There was supposed to be an earth-shattering KABOOM!");
+        console.info("EARTH-SHATTERING KABOOM! bomb from player %d", bomb.droppedBy.id);
     }
 };
 
@@ -320,11 +344,9 @@ Direction = {
 
 function KaboomLevel(initialTileMap) {
 
-    /*this.rows = 13;
-     this.cols = 17;*/
-
     this.rows = [];
     this.spawns = [];
+    this.bombs = [];
 
     this.copyStateFrom = function(that) {
         this.rows = that.rows.map(function(row) {
@@ -333,6 +355,7 @@ function KaboomLevel(initialTileMap) {
             });
         });
         this.spawns = that.spawns;
+        this.bombs = that.bombs;
     };
 
     this.forEachTile = function(callback) {
@@ -410,7 +433,7 @@ function KaboomLevel(initialTileMap) {
             row.push(new Tile(solid, tileType, this.rows.length, row.length));
         }
         if (row.length) this.rows.push(row);
-    }
+    };
 
     if (initialTileMap) {
         this.parseLevel(initialTileMap);
@@ -421,6 +444,29 @@ function KaboomLevel(initialTileMap) {
             var spawn = this.spawns[i];
             if (spawn.player === null) return (spawn);
         }
+    };
+
+    this.findBombsByPlayer = function(player) {
+        var found = [];
+        for (var i=0; i<this.bombs.length; i++) {
+            console.info("Checking %dth bomb (belongs to player %d)", i, this.bombs[i].droppedBy.id);
+            if (this.bombs[i].droppedBy.id == player.id) {
+                found.push(this.bombs[i]);
+            }
+        }
+        console.info("player %d currently has %d bombs ticking", player.id, found.length);
+        return found;
+    },
+
+    this.bombCanBeHere = function(position) {
+        console.warn("TODO!");
+        return true;
+    };
+
+    this.bombAt = function(player, fuseTimeMs, explosionCallback) {
+        console.info("Player %d is placing bomb at %d,%d", player.id, player.position.x, player.position.y);
+        var bomb = new KaboomBomb(new Position(player.position.x, player.position.y), fuseTimeMs, player, explosionCallback);
+        this.bombs.push(bomb);
     };
 }
 
