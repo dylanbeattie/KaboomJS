@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var KaboomPlayer = function(id, name, position, velocity) { 
+var KaboomPlayer = function(id, name, position, velocity) {
     /* Player.name must be unique and can be used to determine equality */
     this.id = id;
     this.name = name;
@@ -23,7 +23,7 @@ Position = function(x, y) {
 function Velocity(dx, dy) {
     this.dx = dx;
     this.dy = dy;
-};
+}
 
 KaboomPlayer.prototype = {
 
@@ -67,7 +67,7 @@ KaboomPlayer.prototype = {
     },
 
     isMoving: function() {
-        return (!(this.velocity.dx == 0 && this.velocity.dy == 0));
+        return (!(this.velocity.dx === 0 && this.velocity.dy === 0));
     },
 
     goLeft: function() {

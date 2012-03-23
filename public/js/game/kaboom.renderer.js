@@ -1,6 +1,6 @@
 KaboomPlayer.prototype.showBoundingBox = function(layer, game) {
     var boundingBox = $('#player_' + this.id + '_boundingBox');
-    if (boundingBox.length == 0) {
+    if (boundingBox.length === 0) {
         boundingBox = $('<div id="player_' + this.id + '_boundingBox" class="boundingBox player" />');
         layer.append(boundingBox);
     }
@@ -16,7 +16,7 @@ KaboomPlayer.prototype.showBoundingBox = function(layer, game) {
 
 Tile.prototype.showBoundingBox = function(layer, game) {
     var boundingBox = $('#tile_' + this.row + 'x' + this.col + '_boundingBox');
-    if (boundingBox.length == 0) {
+    if (boundingBox.length === 0) {
         boundingBox = $('<div id="tile_' + this.row + 'x' + this.col + '_boundingBox" class="boundingBox" />');
         layer.append(boundingBox);
     }
@@ -65,7 +65,7 @@ KaboomRenderer.prototype = {
         for (var row = 0; row < level.rows.length; row++) {
             for (var tileIndex = 0; tileIndex < level.rows[row].length; tileIndex++) {
                 var tile = level.rows[row][tileIndex];
-                if (tile != null) this.opts.arena.append(this.makeTileHtml(tile));
+                if (tile !== null) this.opts.arena.append(this.makeTileHtml(tile));
             }
         }
         // create players
@@ -83,7 +83,7 @@ KaboomRenderer.prototype = {
         for (var i = 0; i < game.players.length; i++) {
             var player = game.players[i];
 
-            if (player == null) continue;
+            if (player === null) continue;
 
             if (this.opts.showBoundingBoxes) player.showBoundingBox(this.opts.playerLayer, game);
 
@@ -154,4 +154,4 @@ KaboomRenderer.prototype = {
         this.updatePlayerLocations();
         this.updateItems();
     }
-}
+};

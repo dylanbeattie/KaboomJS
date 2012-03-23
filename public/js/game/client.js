@@ -1,5 +1,5 @@
 /***
- * Manages the interaction between the keyboard, renderer, 
+ * Manages the interaction between the keyboard, renderer,
  * socket/IO library and game engine, when running KaboomJS
  * in a web browser.
  * @constructor
@@ -51,6 +51,7 @@ KaboomClient.prototype = {
         this.notifyPlayerChanged();
         return (this.sendKeyToBrowser(key));
     },
+
     notifyPlayerChanged: function() {
         if (this.socket) {
             this.socket.playerChangedDirection(window.player);
@@ -59,14 +60,8 @@ KaboomClient.prototype = {
 
     join: function() {
         console.log('Joining...');
-        //        try {
         this.socket = new KaboomSocket();
         this.socket.init(this, window.location.hostname, window.location.port);
-        //       } catch(e) {
-        //          console.log("Socket init failed - using local mode");
-        //           this.socket = new MockSocket();
-        //            this.socket.init(this);
-        //        }
         this.socket.join();
     },
 
@@ -131,4 +126,4 @@ Function.prototype.tie = function() {
 Function.tie = function() {
     var args = Array.prototype.slice.call(arguments);
     return Function.prototype.tie.apply(args.shift(), args);
-}
+};
