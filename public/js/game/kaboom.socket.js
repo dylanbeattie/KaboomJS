@@ -19,12 +19,12 @@ MockSocket.prototype = {
     playerDroppedBomb: function(player) {},
 
     playerDied: function(player) {}
-}
+};
 
 function KaboomSocket() {
     this.client = null;
     this.socket = null;
-};
+}
 
 KaboomSocket.prototype = {
     init: function(client, hostname, port) {

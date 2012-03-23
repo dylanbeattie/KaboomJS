@@ -9,7 +9,7 @@
 if (typeof require == "function") {
     var KaboomPlayer = require("./kaboom.player").KaboomPlayer;
     var Position = require("./kaboom.player").Position;
-};
+}
 
 var KaboomGame = function(levelMap) {
     this.level = new KaboomLevel(levelMap);
@@ -69,7 +69,7 @@ KaboomGame.prototype = {
     createPlayer: function() {
         var spawn = this.level.getFirstEmptySpawnPoint();
         var that = this;
-        if (spawn == null) return (null);
+        if (spawn === null) return (null);
         var player = new KaboomPlayer(spawn.number, "Player " + spawn.number, that.tilesToPixels(spawn.position));
         console.log(player);
         this.players[spawn.number - 1] = player;
@@ -95,7 +95,7 @@ KaboomGame.prototype = {
     update: function() {
         var game = this;
         var tryMove = function(pos, delta, vel) {
-                if (delta.y == 0 && delta.x == 0) return pos;
+                if (delta.y === 0 && delta.x === 0) return pos;
 
                 var newPos = pos.translate(delta);
                 var bbox = newPos.contract(4);
@@ -283,7 +283,7 @@ KaboomGame.prototype = {
 
         this.players.forEach(function(p, idx) {
             if (!p) return;
-            if (p.velocity.dx == 0 && p.velocity.dy == 0) return;
+            if (p.velocity.dx === 0 && p.velocity.dy === 0) return;
 
             var bounds = p.getBounds(game);
 
@@ -320,7 +320,7 @@ Direction = {
     SouthWest: 5,
     West: 6,
     NorthWest: 7
-}
+};
 
 function KaboomLevel(initialTileMap) {
 
@@ -337,7 +337,7 @@ function KaboomLevel(initialTileMap) {
             });
         });
         this.spawns = that.spawns;
-    }
+    };
 
     this.forEachTile = function(callback) {
         for (var ri = 0; ri < this.rows.length; ri++) {
@@ -372,7 +372,7 @@ function KaboomLevel(initialTileMap) {
             case "-":
                 tileType = TileType.Destroyable;
                 solid = true;
-                spawn = false
+                spawn = false;
                 break;
             case " ":
                 tileType = TileType.Blank;
@@ -423,9 +423,9 @@ function KaboomLevel(initialTileMap) {
     this.getFirstEmptySpawnPoint = function() {
         for (var i = 0; i < this.spawns.length; i++) {
             var spawn = this.spawns[i];
-            if (spawn.player == null) return (spawn);
+            if (spawn.player === null) return (spawn);
         }
-    }
+    };
 
     this.freeSpawnPointWhenPlayerDisconnects = function(player) {
         for (var i = 0; i < this.spawns.length; i++) {
@@ -435,7 +435,7 @@ function KaboomLevel(initialTileMap) {
             }
         }
         return(null);
-    }
+    };
 }
 
 function Tile(solid, tileType, row, col) {
@@ -455,7 +455,7 @@ function Spawn(num, x, y) {
     this.number = num;
     this.position = new Position(x, y);
     this.player = null;
-};
+}
 
 function Rectangle(x, y, width, height) {
     this.x = this.left = x;
@@ -480,7 +480,7 @@ function Rectangle(x, y, width, height) {
         x: this.right,
         y: this.bottom
     };
-};
+}
 
 Rectangle.prototype = {
     pointIntersects: function(point) {
@@ -503,7 +503,7 @@ Rectangle.prototype = {
     drawToScreen: function() {
         var div = window.DEBUG_RECTANGLE || null;
 
-        if (div == null) {
+        if (div === null) {
             div = window.DEBUG_RECTANGLE = $('<div style="background: rgba(0, 255, 0, 0.5)" />');
             $('#playerLayer').append(div);
         }

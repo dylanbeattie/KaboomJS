@@ -13,3 +13,6 @@ player_changed_direction
 
 BUG 2
 When join button is clicked more than once, control toggles onto other player and speed is increased (2x messages, then 3x messages, etc)
+
+BUG 3
+When player is moving, the other players see it, but the moving player's direction isn't rendered - as in, he's still pointing north
