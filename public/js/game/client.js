@@ -104,7 +104,7 @@ KaboomClient.prototype = {
         var newPlayer = new KaboomPlayer();
         newPlayer.copyStateFrom(playerState);
         window.game.addPlayer(newPlayer);
-        window.renderer.createPlayer(window.game.players.length);
+        window.renderer.createPlayer(newPlayer);
         console.info("after new player joined: " + JSON.stringify(window.game.players));
     },
 
@@ -112,6 +112,12 @@ KaboomClient.prototype = {
         console.info("playerChangedDirection: " + JSON.stringify(playerState));
         var player = window.game.findPlayer(playerState);
         player.copyStateFrom(playerState);
+    },
+
+    playerDisconnected : function(playerState) {
+        console.info("Player disconnected" + JSON.stringify(playerState));
+        window.game.removePlayer(playerState);
+        window.renderer.removePlayer(playerState);
     }
 };
 

@@ -69,14 +69,20 @@ KaboomRenderer.prototype = {
             }
         }
         // create players
-        for (var player = 0; player < game.players.length; player++) {
-            this.createPlayer(player + 1);
-        }
+        for (var i = 0; i < game.players.length; i++) this.createPlayer(game.players[i]);
     },
 
-    createPlayer: function(num) {
-        var playerDiv = $('<div id="player_' + num + '" class="player" />');
+    createPlayer: function(player) {
+        if (! player) return;
+        var playerDiv = $('<div id="player_' + player.id + '" class="player" />');
         this.opts.holding.append(playerDiv);
+    },
+
+    removePlayer: function(player) {
+        var playerDiv = $('div#player_' + player.id);
+        playerDiv.fadeOut(1000, function() { 
+            playerDiv.remove();
+        });
     },
 
     updatePlayerLocations: function() {
@@ -88,7 +94,7 @@ KaboomRenderer.prototype = {
             if (this.opts.showBoundingBoxes) player.showBoundingBox(this.opts.playerLayer, game);
 
             /* We have a convention of using $foo to indicate the jQuery UI element associated with foo */
-            var $playerDiv = $('#player_' + (i + 1));
+            var $playerDiv = $('#player_' + player.id);
 
             if (!$playerDiv.data('isInPlay')) {
                 this.opts.playerLayer.append($playerDiv);
