@@ -1,26 +1,3 @@
-function MockSocket() {
-    this.client = null;
-    this.levelMap = "" + "*****************\n" + "*1 *           4*\n" + "*               *\n" + "*               *\n" + "*               *\n" + "*               *\n" + "*               *\n" + "*   *-* *-*     *\n" + "*               *\n" + "*               *\n" + "*               *\n" + "*****************";
-}
-
-MockSocket.prototype = {
-    init: function(client) {
-        this.client = client;
-    },
-
-    join: function() {
-        var game = new KaboomGame(this.levelMap);
-        var player = game.createPlayer();
-        this.client.gameSuccessfullyJoined(game, player);
-    },
-
-    playerChangedDirection: function(player) {},
-
-    playerDroppedBomb: function(player) {},
-
-    playerDied: function(player) {}
-};
-
 function KaboomSocket() {
     this.client = null;
     this.socket = null;
