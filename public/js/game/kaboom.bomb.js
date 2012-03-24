@@ -4,7 +4,7 @@ function KaboomBomb(position, fuseTimeMs, player, explode) {
   this.droppedBy = player;
   this.range = player.bombPower;
   var me = this;
-  this.bombTimer = setTimeout(function() {explode(me);}, fuseTimeMs);
+  this.bombTimer = setTimeout(explode, fuseTimeMs, me);
 }
 
 KaboomBomb.prototype = {
