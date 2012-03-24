@@ -80,7 +80,7 @@ KaboomRenderer.prototype = {
 
     removePlayer: function(player) {
         var playerDiv = $('div#player_' + player.id);
-        playerDiv.fadeOut(1000, function() { 
+        playerDiv.fadeOut(1000, function() {
             playerDiv.remove();
         });
     },
@@ -116,7 +116,8 @@ KaboomRenderer.prototype = {
         }
     },
 
-    updateSprite: function(player, $player) { /* Sprites are in a 8x4 tile grid, where each tile is 1.5 TILE_SIZE high by 1 TILE_SIZE wide. */
+    updateSprite: function(player, $player) {
+        /* Sprites are in a 8x4 tile grid, where each tile is 1.5 TILE_SIZE high by 1 TILE_SIZE wide. */
         /* Sprite COLUMNS representing players facing N, NE, E, SE, S, SW, W, NW from 0 to 7 */
         var frameIndexX = player.getDirection();
         var spriteLeftPosition = -1 * (game.TILE_SIZE * frameIndexX);

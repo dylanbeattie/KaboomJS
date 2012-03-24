@@ -80,6 +80,16 @@ io.sockets.on("connection", function(socket) {
     player.copyStateFrom(playerState);
     socket.broadcast.emit("player_changed_direction", playerState);
   });
+
+  socket.on("player_dropped_bomb", function(playerState) {
+    console.info("Player %d dropped bomb at %d,%d", playerState.id, playerState.position.x, playerState.position.y);
+    var player = runningGame.findPlayer(playerState);
+    if (!player) {
+      return;
+    }
+    player.copyStateFrom(playerState);
+    socket.broadcast.emit("player_dropped_bomb", playerState);
+  });
 });
 
 ////back door to kaboom
