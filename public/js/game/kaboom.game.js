@@ -58,7 +58,7 @@ KaboomGame.prototype = {
         return (player);
     },
 
-    removePlayer: function(player) { 
+    removePlayer: function(player) {
         var spawn = this.level.freeSpawnPointWhenPlayerDisconnects(player);
         if (spawn && spawn.number) {
             this.players[spawn.number - 1] = null;
