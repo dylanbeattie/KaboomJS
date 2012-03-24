@@ -58,9 +58,13 @@ KaboomGame.prototype = {
         return (player);
     },
 
-    removePlayer: function(player) {
-        /* TODO: Find and free the player slot used by the specified player */
-        /* TODO: remember to set the corresponding spawn point.player back to null */
+    removePlayer: function(player) { 
+        var spawn = this.level.freeSpawnPointWhenPlayerDisconnects(player);
+        if (spawn && spawn.number) {
+            this.players[spawn.number - 1] = null;
+            return(spawn.number);
+        }
+        return(0);
     },
 
     createPlayer: function() {
@@ -444,6 +448,16 @@ function KaboomLevel(initialTileMap) {
             var spawn = this.spawns[i];
             if (spawn.player === null) return (spawn);
         }
+    };
+
+    this.freeSpawnPointWhenPlayerDisconnects = function(player) {
+        for (var i = 0; i < this.spawns.length; i++) {
+            if (this.spawns[i].player && (this.spawns[i].player.id == player.id)) {
+                this.spawns[i].player = null;
+                return(this.spawns[i]);
+            }
+        }
+        return(null);
     };
 
     this.findBombsByPlayer = function(player) {

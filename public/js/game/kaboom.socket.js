@@ -55,6 +55,9 @@ KaboomSocket.prototype = {
         this.socket.on("player_changed_direction", function(data) {
             that.client.playerChangedDirection(data);
         });
+        this.socket.on("player_disconnected", function(player) {
+            that.client.playerDisconnected(player);
+        });
     },
 
     join: function() {

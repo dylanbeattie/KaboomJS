@@ -1,3 +1,15 @@
+BUG 1
+When a player leaves and re-joins a game (and is allocated a second-hand spawn-point), their movements don't appear on other clients' displays.
+
+BUG 2
+When join button is clicked more than once, control toggles onto other player and speed is increased (2x messages, then 3x messages, etc)
+
+BUG 3
+When player is moving, the other players see it, but the moving player's direction isn't rendered - as in, he's still pointing north
+
+
+DONE:
+
 join
   broadcast new player to socket
   reflect new player having joined on other clients' game-state
@@ -10,9 +22,3 @@ player_changed_direction
   when client receives player_changed_direction from server
     should have a JSON message with the player-state, which has the new state of the player that changed
       update client's internal representation of state
-
-BUG 2
-When join button is clicked more than once, control toggles onto other player and speed is increased (2x messages, then 3x messages, etc)
-
-BUG 3
-When player is moving, the other players see it, but the moving player's direction isn't rendered - as in, he's still pointing north
