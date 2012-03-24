@@ -36,10 +36,10 @@ KaboomClient.prototype = {
         if (!window.player) return (true);
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
         if (key == 'space') {
-            this.playerDropsBomb(window.player);
+            this.txPlayerDropsBomb(window.player);
         } else {
             var playerActuallyChanged = window.player.go(key);
-            if (playerActuallyChanged) this.notifyPlayerChanged();
+            if (playerActuallyChanged) this.txNotifyPlayerChanged();
         }
         return (this.sendKeyToBrowser(key));
     },
@@ -53,18 +53,18 @@ KaboomClient.prototype = {
         var key = $.hotkeys.specialKeys[event.which] || String.fromCharCode(event.which).toLowerCase();
         if (key != 'space') {
             window.player.stop(key);
-            this.notifyPlayerChanged();
+            this.txNotifyPlayerChanged();
         }
         return (this.sendKeyToBrowser(key));
     },
 
-    notifyPlayerChanged: function() {
+    txNotifyPlayerChanged: function() {
         if (this.socket) {
             this.socket.playerChangedDirection(window.player);
         }
     },
 
-    join: function() {
+    txJoin: function() {
         console.log('Joining...');
         this.socket = new KaboomSocket();
         this.socket.init(this, window.location.hostname, window.location.port);
@@ -76,7 +76,7 @@ KaboomClient.prototype = {
      * @param gameState The current state of the game that we've just joined
      * @param playerState The player we're going to be controlling in this game.
      */
-    gameSuccessfullyJoined: function(gameState, playerState) {
+    rxGameSuccessfullyJoined: function(gameState, playerState) {
         console.log('Creating game...');
         window.game = new KaboomGame();
         window.game.copyStateFrom(gameState);
@@ -100,7 +100,7 @@ KaboomClient.prototype = {
      * Inform this client that another player has just joined the game that's in progress
      * @param playerState The new player who has connected to the current game of Kaboom
      */
-    playerJoined: function(playerState) {
+    rxPlayerJoined: function(playerState) {
         console.info("playerJoined: " + playerState);
         var newPlayer = new KaboomPlayer();
         newPlayer.copyStateFrom(playerState);
@@ -109,19 +109,26 @@ KaboomClient.prototype = {
         console.info("after new player joined: " + JSON.stringify(window.game.players));
     },
 
-    playerChangedDirection: function(playerState) {
+    rxPlayerChangedDirection: function(playerState) {
         console.info("playerChangedDirection: " + JSON.stringify(playerState));
         var player = window.game.findPlayer(playerState);
         player.copyStateFrom(playerState);
     },
 
-    playerDropsBomb: function(playerState) {
+    txPlayerDropsBomb: function(playerState) {
         if (window.game.playerCanDropBomb(playerState)) {
-            window.game.playerDropBomb(playerState);
+            window.game.playerDroppedBomb(playerState);
+            if (this.socket) {
+                this.socket.playerDroppedBomb(playerState);
+            }
         }
     },
 
-    playerDisconnected : function(playerState) {
+    rxPlayerDroppedBomb: function(playerState) {
+        window.game.playerDroppedBomb(playerState);
+    },
+
+    rxPlayerDisconnected : function(playerState) {
         console.info("Player disconnected" + JSON.stringify(playerState));
         window.game.removePlayer(playerState);
         window.renderer.removePlayer(playerState);

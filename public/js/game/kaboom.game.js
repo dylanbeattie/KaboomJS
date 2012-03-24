@@ -315,7 +315,7 @@ KaboomGame.prototype = {
         return true;
     },
 
-    playerDropBomb: function(player) {
+    playerDroppedBomb: function(player) {
         this.level.bombAt(player, this.DEFAULT_FUSE_TIME_MS, this.boom);
     },
 

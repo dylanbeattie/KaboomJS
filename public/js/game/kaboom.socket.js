@@ -35,28 +35,26 @@ KaboomSocket.prototype = {
         this.socket.on("connect", function() {
             console.info("Connected");
         });
-
         this.socket.on("connect_failed", function() {
             console.info("Connect failed");
         });
-
         this.socket.on("disconnect", function() {
             console.info("Disconnected");
         });
-
         this.socket.on("welcome_ack", function(data) {
-            that.client.gameSuccessfullyJoined(data.gameState, data.playerState);
+            that.client.rxGameSuccessfullyJoined(data.gameState, data.playerState);
         });
-
         this.socket.on("player_joined", function(data) {
-            that.client.playerJoined(data.playerState);
+            that.client.rxPlayerJoined(data.playerState);
         });
-
         this.socket.on("player_changed_direction", function(data) {
-            that.client.playerChangedDirection(data);
+            that.client.rxPlayerChangedDirection(data);
         });
         this.socket.on("player_disconnected", function(player) {
-            that.client.playerDisconnected(player);
+            that.client.rxPlayerDisconnected(player);
+        });
+        this.socket.on("player_dropped_bomb", function(player) {
+            that.client.rxPlayerDroppedBomb(player);
         });
     },
 

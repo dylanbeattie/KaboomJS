@@ -31,7 +31,7 @@
     $(function() {
         var client = new KaboomClient({fps: 30});
         client.init();
-        client.join();
+        client.txJoin();
 
         $("html").bind('keydown', client.onKeyDown.tie(client));
         $("html").bind('keyup', client.onKeyUp.tie(client));
